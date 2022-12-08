@@ -1,0 +1,319 @@
+2022-08-10 09:42:55,499 0x00000770 [INFO] {Aimms.Main} AIMMS Version: 4.87.3.1
+2022-08-10 09:42:55,500 0x00000770 [INFO] {Aimms.Main} Arg  0 : C:\Users\Stijn\AppData\Local\AIMMS\IFA\Aimms\4.87.3.3-x64-VS2017\Bin\Aimms.exe
+2022-08-10 09:42:55,500 0x00000770 [INFO] {Aimms.Main} Arg  1 : --alluser-dir
+2022-08-10 09:42:55,500 0x00000770 [INFO] {Aimms.Main} Arg  2 : C:\Users\Stijn\AppData\Local/AIMMS/LauncherLicense
+2022-08-10 09:42:55,500 0x00000770 [INFO] {Aimms.Main} Arg  3 : C:\Users\Stijn\Documents\temp\TestFileSQLRead\TestFileSQLRead.aimms
+2022-08-10 09:42:55,534 0x00000770 [INFO] {Aimms.Main} Initializing and selecting the license...
+2022-08-10 09:42:55,599 0x0000458c [INFO] {ProxyResolver.PlatformResolver} Retrieved internet explorer settings: AutoDetect=True AutoConfigUrl='' Proxy='' ProxyBypass=''
+2022-08-10 09:42:55,600 0x0000458c [INFO] {ProxyResolver.PlatformResolver} Enable autodetect of WPAD / PAC through DHCP and DNS
+2022-08-10 09:42:55,600 0x0000458c [INFO] {ProxyResolver.PlatformResolver} Resolving proxy information for 'https://licensing.cloud.aimms.com:443/license-ws/license?profile=academic&license=7716bdcf-24af-4fc2-a4f1-f32fd8f5bb5a&version=4.87.3.3'
+2022-08-10 09:42:55,601 0x0000458c [INFO] {ProxyResolver.PlatformResolver} WinHTTP was unable to discover the URL of the Proxy Auto-Configuration (PAC) file
+2022-08-10 09:42:55,602 0x0000458c [INFO] {ProxyResolver.PlatformResolver} Using Proxy='' and ProxyBypass='' for uri='https://licensing.cloud.aimms.com:443/license-ws/license?profile=academic&license=7716bdcf-24af-4fc2-a4f1-f32fd8f5bb5a&version=4.87.3.3'
+2022-08-10 09:42:55,678 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='DC=com, DC=microsoft, CN=Microsoft Root Certificate Authority'
+2022-08-10 09:42:55,678 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=ZA, S=Western Cape, L=Durbanville, O=Thawte, OU=Thawte Certification, CN=Thawte Timestamping CA'
+2022-08-10 09:42:55,678 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='OU=Copyright (c) 1997 Microsoft Corp., OU=Microsoft Corporation, CN=Microsoft Root Authority'
+2022-08-10 09:42:55,678 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=US, O=MSFT, CN=Microsoft Authenticode(tm) Root Authority'
+2022-08-10 09:42:55,678 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='O=Microsoft Trust Network, OU=Microsoft Corporation, OU=Microsoft Time Stamping Service Root, OU=Copyright (c) 1997 Microsoft Corp.'
+2022-08-10 09:42:55,678 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='O=VeriSign Trust Network, OU="VeriSign, Inc.", OU=VeriSign Time Stamping Service Root, OU="NO LIABILITY ACCEPTED, (c)97 VeriSign, Inc."'
+2022-08-10 09:42:55,678 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=US, S=UT, L=Salt Lake City, O=The USERTRUST Network, OU=http://www.usertrust.com, CN=UTN-USERFirst-Object'
+2022-08-10 09:42:55,678 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=BM, O=QuoVadis Limited, OU=Root Certification Authority, CN=QuoVadis Root Certification Authority'
+2022-08-10 09:42:55,678 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='O=Digital Signature Trust Co., CN=DST Root CA X3'
+2022-08-10 09:42:55,680 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=SE, O=AddTrust AB, OU=AddTrust External TTP Network, CN=AddTrust External CA Root'
+2022-08-10 09:42:55,682 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='O=VeriSign Trust Network, OU="VeriSign, Inc.", OU=VeriSign International Server CA - Class 3, OU=www.verisign.com/CPS Incorp.by Ref. LIABILITY LTD.(c)97 VeriSign'
+2022-08-10 09:42:55,682 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=US, O="VeriSign, Inc.", OU=VeriSign Trust Network, OU=Terms of use at https://www.verisign.com/rpa (c)10, CN=VeriSign Class 3 Code Signing 2010 CA'
+2022-08-10 09:42:55,682 0x0000458c [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='OU=Copyright (c) 1997 Microsoft Corp., OU=Microsoft Windows Hardware Compatibility Intermediate CA, OU=Microsoft Corporation, CN=Microsoft Windows Hardware Compatibility'
+2022-08-10 09:42:55,748 0x0000458c [INFO] {com.zaphoyd.websocketpp.access} [connect] Successful connection
+2022-08-10 09:42:55,808 0x0000458c [INFO] {com.zaphoyd.websocketpp.access} [connect] WebSocket Connection iostream transport v-2 "WebSocket++/0.8.1" /license-ws/license?profile=academic&license=7716bdcf-24af-4fc2-a4f1-f32fd8f5bb5a&version=4.87.3.3 101
+2022-08-10 09:42:55,866 0x00000770 [INFO] {Aimms.Main} Successfully selected a license
+2022-08-10 09:42:56,598 0x00000770 [INFO] {AIMMS.IO.AimmsSourceFileName} Source file: aimms
+2022-08-10 09:42:56,599 0x00000770 [INFO] {AIMMS.Solver} Allowed solvers:
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} BARON
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} CONOPT
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} CONOPT_99999
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} CPLEX
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} CPLEX_99999
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} CPOPTIMIZER
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} GUROBI
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} GUROBI_99999
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} KNITRO
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} KNITRO_99999
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} MINOS
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} OCTERACT
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} ODH-CPLEX
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} PATH
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} ROBUSTOPT
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} SNOPT
+2022-08-10 09:42:56,600 0x00000770 [INFO] {AIMMS.Solver} XA
+2022-08-10 09:42:56,815 0x00000770 [INFO] {Aimms.Main} Opening project from: MainProject
+2022-08-10 09:42:56,817 0x00000770 [INFO] {Aimms.Main} Opening project from: C:\Users\Stijn\AppData\Local\AIMMS\IFA\Aimms\4.87.3.3-x64-VS2017\Libraries\AimmsPro
+2022-08-10 09:42:56,818 0x00000770 [INFO] {Aimms.Main} Opening project from: C:\Users\Stijn\AppData\Local\AIMMS\IFA\Aimms\4.87.3.3-x64-VS2017\Libraries\AimmsWebUI
+2022-08-10 09:42:56,937 0x00000770 [INFO] {AIMMS.Database.dbms.DatabaseManager} initProject()
+2022-08-10 09:42:57,980 0x00000770 [INFO] {AIMMS.IO.AimmsSourceFileName} Source file: MainProject\TestFileSQLRead.ams
+2022-08-10 09:42:57,980 0x00000770 [INFO] {AIMMS.IO.AimmsSourceFileName} Source file: C:\Users\Stijn\AppData\Local\AIMMS\IFA\Aimms\4.87.3.3-x64-VS2017\Libraries\AimmsPro\AimmsProLibrary.ams
+2022-08-10 09:42:57,980 0x00000770 [INFO] {AIMMS.IO.AimmsSourceFileName} Source file: C:\Users\Stijn\AppData\Local\AIMMS\IFA\Aimms\4.87.3.3-x64-VS2017\Libraries\AimmsWebUI\AimmsWebUI.ams
+2022-08-10 09:42:58,472 0x00000770 [INFO] {AIMMS.Compiler.ceattr.PerStatementBodyCompiler} Procedure AssertValidFormId, for-statement at line 7: modular compiler failed to retrieve the loop indices, we cannot compile the inner block
+2022-08-10 09:42:58,473 0x00000770 [INFO] {AIMMS.Compiler.ceattr.PerStatementBodyCompiler} Procedure IsValidAnnotationId, for-statement at line 7: modular compiler failed to retrieve the loop indices, we cannot compile the inner block
+2022-08-10 09:42:58,474 0x00000770 [INFO] {AIMMS.Compiler.ceattr.PerStatementBodyCompiler} Procedure CreateHash, for-statement at line 5: modular compiler failed to retrieve the loop indices, we cannot compile the inner block
+2022-08-10 09:42:58,513 0x00000770 [INFO] {AIMMS.Compiler.ceattr.PerStatementBodyCompiler} Procedure bAND, for-statement at line 4: modular compiler failed to retrieve the loop indices, we cannot compile the inner block
+2022-08-10 09:42:58,514 0x00000770 [INFO] {AIMMS.Compiler.ceattr.PerStatementBodyCompiler} Procedure bOR, for-statement at line 4: modular compiler failed to retrieve the loop indices, we cannot compile the inner block
+2022-08-10 09:42:58,518 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  MainInitialization
+2022-08-10 09:42:58,518 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure MainInitialization
+2022-08-10 09:42:58,518 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::LibraryInitialization
+2022-08-10 09:42:58,529 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::BasicDataInitialization
+2022-08-10 09:42:58,529 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::BasicDataInitialization
+2022-08-10 09:42:58,530 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::LocalizationInitialize
+2022-08-10 09:42:58,530 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::LocalizationReadLanguage
+2022-08-10 09:42:58,536 0x00000770 [DEBUG] {AIMMS.Database.Statement} Entering read from file pro::LocalizationReadLanguage::LanguageFileName
+2022-08-10 09:42:58,536 0x00000770 [DEBUG] {AIMMS.Database.Statement} Exit read from file pro::LocalizationReadLanguage::LanguageFileName
+2022-08-10 09:42:58,536 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::LocalizationReadLanguage
+2022-08-10 09:42:58,536 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::LocalizationInitialize
+2022-08-10 09:42:58,555 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::PROLoadClientConfiguration
+2022-08-10 09:42:58,556 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::PROParseCommandlineArguments
+2022-08-10 09:42:58,556 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,556 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::PROParseCommandlineArguments
+2022-08-10 09:42:58,556 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::PROLoadClientConfiguration
+2022-08-10 09:42:58,557 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::LibraryInitialization
+2022-08-10 09:42:58,557 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::LibraryInitialization
+2022-08-10 09:42:58,557 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::InitializeAnnotations
+2022-08-10 09:42:58,557 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,558 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::InitializeAnnotations
+2022-08-10 09:42:58,558 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::InitializeTimeZoneData
+2022-08-10 09:42:58,558 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::DetermineTimeZoneData
+2022-08-10 09:42:58,559 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,572 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,572 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::DetermineTimeZoneData
+2022-08-10 09:42:58,572 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,577 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::InitializeTimeZoneData
+2022-08-10 09:42:58,577 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CheckForOldStyleAnnotations
+2022-08-10 09:42:58,578 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,611 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CheckForOldStyleAnnotations
+2022-08-10 09:42:58,611 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::DetermineLocalCaseDirectory
+2022-08-10 09:42:58,611 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::DetermineLocalCaseDirectory
+2022-08-10 09:42:58,611 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GenerateAllPublicIdentifiersSet
+2022-08-10 09:42:58,611 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateImplicitPublicIdentifiers
+2022-08-10 09:42:58,611 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateIdentifierIfNotPresent
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateIdentifierIfNotPresent
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateImplicitPublicIdentifiers
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateDefaultPublicIdentifiers
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateIdentifierIfNotPresent
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateIdentifierIfNotPresent
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateIdentifierIfNotPresent
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateIdentifierIfNotPresent
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateRuntimeProcedure
+2022-08-10 09:42:58,612 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateRuntimeProcedure
+2022-08-10 09:42:58,614 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui_runtime::InitializeAllDefaultPublicIdentifiers
+2022-08-10 09:42:58,614 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,618 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui_runtime::InitializeAllDefaultPublicIdentifiers
+2022-08-10 09:42:58,618 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateDefaultPublicIdentifiers
+2022-08-10 09:42:58,618 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateExplicitPublicIdentifiers
+2022-08-10 09:42:58,618 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateIdentifierIfNotPresent
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateIdentifierIfNotPresent
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateExplicitPublicIdentifiers
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateIdentifierIfNotPresent
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateIdentifierIfNotPresent
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,619 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:42:58,621 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GenerateAllPublicIdentifiersSet
+2022-08-10 09:42:58,621 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::WebUIDLLPresent
+2022-08-10 09:42:58,627 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::WebUIDLLPresent
+2022-08-10 09:42:58,627 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetAllPages
+2022-08-10 09:42:58,629 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetAllPages
+2022-08-10 09:42:58,629 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::LibraryInitialization
+2022-08-10 09:42:58,632 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  PostMainInitialization
+2022-08-10 09:42:58,632 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure PostMainInitialization
+2022-08-10 09:42:58,634 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::PostLibraryInitialization
+2022-08-10 09:42:58,634 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::PostLibraryInitialization
+2022-08-10 09:42:58,635 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PostLibraryInitialization
+2022-08-10 09:42:58,635 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PROIsInitialized
+2022-08-10 09:42:58,637 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [7] triggered: 
+  [7] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:42:58,637 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [8] triggered: 
+  [8] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:42:58,637 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [9] triggered: 
+  [9] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:42:58,637 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [7] handled: 
+  [7] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:42:58,637 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [8] handled: 
+  [8] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:42:58,637 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [9] handled: 
+  [9] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:42:58,637 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PROIsInitialized
+2022-08-10 09:42:58,637 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PROIsInitialized
+2022-08-10 09:42:58,638 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [10] triggered: 
+  [10] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:42:58,638 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [11] triggered: 
+  [11] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:42:58,638 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [12] triggered: 
+  [12] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:42:58,638 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [10] handled: 
+  [10] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:42:58,638 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [11] handled: 
+  [11] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:42:58,638 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [12] handled: 
+  [12] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:42:58,638 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PROIsInitialized
+2022-08-10 09:42:58,639 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::RefreshAllCases
+2022-08-10 09:42:58,639 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,639 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::LocalLogInfo
+2022-08-10 09:42:58,639 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PROIsInitialized
+2022-08-10 09:42:58,640 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [13] triggered: 
+  [13] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:42:58,640 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [14] triggered: 
+  [14] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:42:58,640 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [15] triggered: 
+  [15] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:42:58,640 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [13] handled: 
+  [13] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:42:58,640 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [14] handled: 
+  [14] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:42:58,640 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [15] handled: 
+  [15] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PROIsInitialized
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::LocalLogInfo
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::ExtendAllCasesFromPROStoragePath
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PROIsInitialized
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [16] triggered: 
+  [16] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [17] triggered: 
+  [17] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [18] triggered: 
+  [18] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [16] handled: 
+  [16] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [17] handled: 
+  [17] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [18] handled: 
+  [18] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PROIsInitialized
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::ExtendAllCasesFromPROStoragePath
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::ExtendAllCasesFromPROStoragePath
+2022-08-10 09:42:58,641 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PROIsInitialized
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [19] triggered: 
+  [19] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [20] triggered: 
+  [20] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [21] triggered: 
+  [21] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [19] handled: 
+  [19] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [20] handled: 
+  [20] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [21] handled: 
+  [21] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PROIsInitialized
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::ExtendAllCasesFromPROStoragePath
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::RefreshAllCases
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::InitializeCurrentCase
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::InitializeCurrentCase
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::InitializeModelWebUIInteraction
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::DataChangeMonitorRegisterCallback
+2022-08-10 09:42:58,644 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 9, body of user-defined function webui::DataChangeMonitorRegisterCallback, with trackingId [22] triggered: 
+  [22] A DataChangeMonitor with ID DataChangeMonitor001 does not exist.
+2022-08-10 09:42:58,645 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 9, body of user-defined function webui::DataChangeMonitorRegisterCallback, with trackingId [22] handled: 
+  [22] A DataChangeMonitor with ID DataChangeMonitor001 does not exist.
+2022-08-10 09:42:58,645 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::createDataChangeMonitorProcedures
+2022-08-10 09:42:58,645 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  dcmr::CreateDataChangeMonitor
+2022-08-10 09:42:58,647 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure dcmr::CreateDataChangeMonitor
+2022-08-10 09:42:58,652 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::createDataChangeMonitorProcedures
+2022-08-10 09:42:58,652 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::DataChangeMonitorRegisterCallback
+2022-08-10 09:42:58,652 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::InitializeModelWebUIInteraction
+2022-08-10 09:42:58,653 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::SyncCompareCaseToCurrentCaseSelection
+2022-08-10 09:42:58,653 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::SyncCompareCaseToCurrentCaseSelection
+2022-08-10 09:42:58,653 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::DataChangeMonitorsUpdate
+2022-08-10 09:42:58,653 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:42:58,653 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::DataChangeMonitorsUpdate
+2022-08-10 09:42:58,653 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PostLibraryInitialization
+2022-08-10 09:43:11,513 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  Uni_prReadInputFromSql
+2022-08-10 09:43:11,514 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  Uni_prSetInputDatabaseConnection
+2022-08-10 09:43:11,515 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  Uni_prSetInputConnectionString
+2022-08-10 09:43:11,515 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:43:11,515 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(1, 0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(2, 0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(3, 0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(4, 0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(5, 0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(6, 0)
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [INFO] {AIMMS.Database.dbms.DatabaseManager} createConnectionString('MySQL ODBC 8.0 ANSI Driver', 'quomare-development-testing.cg6epudbqkfh.eu-central-1.rds.amazonaws.com', 'TESTDB_AIMMS', 'Stijn', <password not logged>, null', 0, @out )
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} driverExists('MySQL ODBC 8.0 ANSI Driver')
+2022-08-10 09:43:11,518 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:43:11,518 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure Uni_prSetInputConnectionString
+2022-08-10 09:43:11,518 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure Uni_prSetInputDatabaseConnection
+2022-08-10 09:43:11,519 0x00000770 [DEBUG] {AIMMS.Database.Statement} Entering read from table Uni_dbAssets
+2022-08-10 09:43:11,519 0x00000770 [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getServer('DRIVER={MySQL ODBC 8.0 ANSI Driver};SERVER=quomare-development-testing.cg6epudbqkfh.eu-central-1.rds.amazonaws.com;DATABASE=TESTDB_AIMMS;UID=Stijn;')
+2022-08-10 09:43:11,519 0x00000770 [DEBUG] {AIMMS.Database.dbms.Database} open('DRIVER={MySQL ODBC 8.0 ANSI Driver};SERVER=quomare-development-testing.cg6epudbqkfh.eu-central-1.rds.amazonaws.com;DATABASE=TESTDB_AIMMS;UID=Stijn;, 0000000000060F04, -1 )
+2022-08-10 09:43:11,519 0x00000770 [INFO] {AIMMS.Database.dbms.Database} connect( dbString = 'DRIVER={MySQL ODBC 8.0 ANSI Driver};SERVER=quomare-development-testing.cg6epudbqkfh.eu-central-1.rds.amazonaws.com;DATABASE=TESTDB_AIMMS;UID=Stijn;', userName = '', password = <not logged>)
+2022-08-10 09:43:11,698 0x00000770 [INFO] {AIMMS.Database.dbms.DBInfoFetcher} determineServerVersion: MySQL Release 5.7.33-log
+2022-08-10 09:43:11,698 0x00000770 [DEBUG] {AIMMS.Database.dbms.DBInfoFetcher} Server found:5
+2022-08-10 09:43:11,698 0x00000770 [DEBUG] {AIMMS.Database.dbms.DBInfoFetcher} ClientVersion:0
+2022-08-10 09:43:11,812 0x00000770 [DEBUG] {AIMMS.Database.dbms.TableCommand} Using SingleValuedFilteredTableReader (default) strategy
+2022-08-10 09:43:11,925 0x00000770 [DEBUG] {AIMMS.Database.Statement} Exit read from table Uni_dbAssets
+2022-08-10 09:43:11,925 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure Uni_prReadInputFromSql
+2022-08-10 09:43:48,234 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PreLibraryTermination
+2022-08-10 09:43:48,236 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PreLibraryTermination
+2022-08-10 09:43:48,260 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  PreMainTermination
+2022-08-10 09:43:49,831 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure PreMainTermination
+2022-08-10 09:43:49,855 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::LibraryTermination
+2022-08-10 09:43:49,855 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::LibraryTermination
+2022-08-10 09:43:49,875 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::LibraryTermination
+2022-08-10 09:43:49,876 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [23] triggered: 
+  [23] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:43:49,876 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [24] triggered: 
+  [24] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:43:49,876 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [25] triggered: 
+  [25] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:43:49,877 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [23] handled: 
+  [23] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:43:49,877 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [24] handled: 
+  [24] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:43:49,877 0x00000770 [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [25] handled: 
+  [25] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:43:49,877 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::LibraryTermination
+2022-08-10 09:43:49,908 0x00000770 [INFO] {AIMMS.Trace.Procedure} Starting Procedure  MainTermination
+2022-08-10 09:43:49,908 0x00000770 [INFO] {AIMMS.Trace.Procedure} Finishing Procedure MainTermination
+2022-08-10 09:43:50,039 0x00000770 [INFO] {AIMMS.Database.dbms.DatabaseManager} exitProject()
+2022-08-10 09:43:50,185 0x00000c70 [INFO] {com.zaphoyd.websocketpp.access} [disconnect] Disconnect close local:[1000] remote:[1000]

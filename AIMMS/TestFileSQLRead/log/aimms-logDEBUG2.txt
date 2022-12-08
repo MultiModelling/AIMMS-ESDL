@@ -1,0 +1,939 @@
+2022-08-10 09:52:21,223 0x0000404c [INFO] {Aimms.Main} AIMMS Version: 4.87.3.1
+2022-08-10 09:52:21,223 0x0000404c [INFO] {Aimms.Main} Arg  0 : C:\Users\Stijn\AppData\Local\AIMMS\IFA\Aimms\4.87.3.3-x64-VS2017\Bin\Aimms.exe
+2022-08-10 09:52:21,223 0x0000404c [INFO] {Aimms.Main} Arg  1 : --alluser-dir
+2022-08-10 09:52:21,223 0x0000404c [INFO] {Aimms.Main} Arg  2 : C:\Users\Stijn\AppData\Local/AIMMS/LauncherLicense
+2022-08-10 09:52:21,223 0x0000404c [INFO] {Aimms.Main} Arg  3 : C:\Users\Stijn\Documents\temp\TestFileSQLRead\TestFileSQLRead.aimms
+2022-08-10 09:52:21,236 0x0000404c [INFO] {Aimms.Main} Initializing and selecting the license...
+2022-08-10 09:52:21,293 0x000035a8 [INFO] {ProxyResolver.PlatformResolver} Retrieved internet explorer settings: AutoDetect=True AutoConfigUrl='' Proxy='' ProxyBypass=''
+2022-08-10 09:52:21,293 0x000035a8 [INFO] {ProxyResolver.PlatformResolver} Enable autodetect of WPAD / PAC through DHCP and DNS
+2022-08-10 09:52:21,293 0x000035a8 [INFO] {ProxyResolver.PlatformResolver} Resolving proxy information for 'https://licensing.cloud.aimms.com:443/license-ws/license?profile=academic&license=7716bdcf-24af-4fc2-a4f1-f32fd8f5bb5a&version=4.87.3.3'
+2022-08-10 09:52:21,295 0x000035a8 [INFO] {ProxyResolver.PlatformResolver} WinHTTP was unable to discover the URL of the Proxy Auto-Configuration (PAC) file
+2022-08-10 09:52:21,295 0x000035a8 [INFO] {ProxyResolver.PlatformResolver} Using Proxy='' and ProxyBypass='' for uri='https://licensing.cloud.aimms.com:443/license-ws/license?profile=academic&license=7716bdcf-24af-4fc2-a4f1-f32fd8f5bb5a&version=4.87.3.3'
+2022-08-10 09:52:21,509 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='DC=com, DC=microsoft, CN=Microsoft Root Certificate Authority'
+2022-08-10 09:52:21,509 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=ZA, S=Western Cape, L=Durbanville, O=Thawte, OU=Thawte Certification, CN=Thawte Timestamping CA'
+2022-08-10 09:52:21,509 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='OU=Copyright (c) 1997 Microsoft Corp., OU=Microsoft Corporation, CN=Microsoft Root Authority'
+2022-08-10 09:52:21,509 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=US, O=MSFT, CN=Microsoft Authenticode(tm) Root Authority'
+2022-08-10 09:52:21,510 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='O=Microsoft Trust Network, OU=Microsoft Corporation, OU=Microsoft Time Stamping Service Root, OU=Copyright (c) 1997 Microsoft Corp.'
+2022-08-10 09:52:21,510 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='O=VeriSign Trust Network, OU="VeriSign, Inc.", OU=VeriSign Time Stamping Service Root, OU="NO LIABILITY ACCEPTED, (c)97 VeriSign, Inc."'
+2022-08-10 09:52:21,510 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=US, S=UT, L=Salt Lake City, O=The USERTRUST Network, OU=http://www.usertrust.com, CN=UTN-USERFirst-Object'
+2022-08-10 09:52:21,511 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=BM, O=QuoVadis Limited, OU=Root Certification Authority, CN=QuoVadis Root Certification Authority'
+2022-08-10 09:52:21,511 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='O=Digital Signature Trust Co., CN=DST Root CA X3'
+2022-08-10 09:52:21,513 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=SE, O=AddTrust AB, OU=AddTrust External TTP Network, CN=AddTrust External CA Root'
+2022-08-10 09:52:21,515 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='O=VeriSign Trust Network, OU="VeriSign, Inc.", OU=VeriSign International Server CA - Class 3, OU=www.verisign.com/CPS Incorp.by Ref. LIABILITY LTD.(c)97 VeriSign'
+2022-08-10 09:52:21,516 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='C=US, O="VeriSign, Inc.", OU=VeriSign Trust Network, OU=Terms of use at https://www.verisign.com/rpa (c)10, CN=VeriSign Class 3 Code Signing 2010 CA'
+2022-08-10 09:52:21,516 0x000035a8 [WARN] {net4cxx.tools.SSLContext} not adding expired certificate with subject ='OU=Copyright (c) 1997 Microsoft Corp., OU=Microsoft Windows Hardware Compatibility Intermediate CA, OU=Microsoft Corporation, CN=Microsoft Windows Hardware Compatibility'
+2022-08-10 09:52:21,582 0x000035a8 [INFO] {com.zaphoyd.websocketpp.access} [connect] Successful connection
+2022-08-10 09:52:21,649 0x000035a8 [INFO] {com.zaphoyd.websocketpp.access} [connect] WebSocket Connection iostream transport v-2 "WebSocket++/0.8.1" /license-ws/license?profile=academic&license=7716bdcf-24af-4fc2-a4f1-f32fd8f5bb5a&version=4.87.3.3 101
+2022-08-10 09:52:21,700 0x0000404c [INFO] {Aimms.Main} Successfully selected a license
+2022-08-10 09:52:22,184 0x0000404c [INFO] {AIMMS.IO.AimmsSourceFileName} Source file: aimms
+2022-08-10 09:52:22,185 0x0000404c [INFO] {AIMMS.Solver} Allowed solvers:
+2022-08-10 09:52:22,185 0x0000404c [INFO] {AIMMS.Solver} BARON
+2022-08-10 09:52:22,185 0x0000404c [INFO] {AIMMS.Solver} CONOPT
+2022-08-10 09:52:22,185 0x0000404c [INFO] {AIMMS.Solver} CONOPT_99999
+2022-08-10 09:52:22,185 0x0000404c [INFO] {AIMMS.Solver} CPLEX
+2022-08-10 09:52:22,185 0x0000404c [INFO] {AIMMS.Solver} CPLEX_99999
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} CPOPTIMIZER
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} GUROBI
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} GUROBI_99999
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} KNITRO
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} KNITRO_99999
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} MINOS
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} OCTERACT
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} ODH-CPLEX
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} PATH
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} ROBUSTOPT
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} SNOPT
+2022-08-10 09:52:22,186 0x0000404c [INFO] {AIMMS.Solver} XA
+2022-08-10 09:52:22,356 0x0000404c [INFO] {Aimms.Main} Opening project from: MainProject
+2022-08-10 09:52:22,357 0x0000404c [INFO] {Aimms.Main} Opening project from: C:\Users\Stijn\AppData\Local\AIMMS\IFA\Aimms\4.87.3.3-x64-VS2017\Libraries\AimmsPro
+2022-08-10 09:52:22,357 0x0000404c [INFO] {Aimms.Main} Opening project from: C:\Users\Stijn\AppData\Local\AIMMS\IFA\Aimms\4.87.3.3-x64-VS2017\Libraries\AimmsWebUI
+2022-08-10 09:52:22,463 0x0000404c [INFO] {AIMMS.Database.dbms.DatabaseManager} initProject()
+2022-08-10 09:52:23,804 0x0000404c [INFO] {AIMMS.IO.AimmsSourceFileName} Source file: MainProject\TestFileSQLRead.ams
+2022-08-10 09:52:23,804 0x0000404c [INFO] {AIMMS.IO.AimmsSourceFileName} Source file: C:\Users\Stijn\AppData\Local\AIMMS\IFA\Aimms\4.87.3.3-x64-VS2017\Libraries\AimmsPro\AimmsProLibrary.ams
+2022-08-10 09:52:23,804 0x0000404c [INFO] {AIMMS.IO.AimmsSourceFileName} Source file: C:\Users\Stijn\AppData\Local\AIMMS\IFA\Aimms\4.87.3.3-x64-VS2017\Libraries\AimmsWebUI\AimmsWebUI.ams
+2022-08-10 09:52:24,188 0x0000404c [INFO] {AIMMS.Compiler.ceattr.PerStatementBodyCompiler} Procedure AssertValidFormId, for-statement at line 7: modular compiler failed to retrieve the loop indices, we cannot compile the inner block
+2022-08-10 09:52:24,189 0x0000404c [INFO] {AIMMS.Compiler.ceattr.PerStatementBodyCompiler} Procedure IsValidAnnotationId, for-statement at line 7: modular compiler failed to retrieve the loop indices, we cannot compile the inner block
+2022-08-10 09:52:24,189 0x0000404c [INFO] {AIMMS.Compiler.ceattr.PerStatementBodyCompiler} Procedure CreateHash, for-statement at line 5: modular compiler failed to retrieve the loop indices, we cannot compile the inner block
+2022-08-10 09:52:24,220 0x0000404c [INFO] {AIMMS.Compiler.ceattr.PerStatementBodyCompiler} Procedure bAND, for-statement at line 4: modular compiler failed to retrieve the loop indices, we cannot compile the inner block
+2022-08-10 09:52:24,221 0x0000404c [INFO] {AIMMS.Compiler.ceattr.PerStatementBodyCompiler} Procedure bOR, for-statement at line 4: modular compiler failed to retrieve the loop indices, we cannot compile the inner block
+2022-08-10 09:52:24,223 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  MainInitialization
+2022-08-10 09:52:24,223 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure MainInitialization
+2022-08-10 09:52:24,223 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::LibraryInitialization
+2022-08-10 09:52:24,230 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::BasicDataInitialization
+2022-08-10 09:52:24,231 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::BasicDataInitialization
+2022-08-10 09:52:24,231 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::LocalizationInitialize
+2022-08-10 09:52:24,231 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::LocalizationReadLanguage
+2022-08-10 09:52:24,237 0x0000404c [DEBUG] {AIMMS.Database.Statement} Entering read from file pro::LocalizationReadLanguage::LanguageFileName
+2022-08-10 09:52:24,238 0x0000404c [DEBUG] {AIMMS.Database.Statement} Exit read from file pro::LocalizationReadLanguage::LanguageFileName
+2022-08-10 09:52:24,238 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::LocalizationReadLanguage
+2022-08-10 09:52:24,238 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::LocalizationInitialize
+2022-08-10 09:52:24,251 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::PROLoadClientConfiguration
+2022-08-10 09:52:24,251 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::PROParseCommandlineArguments
+2022-08-10 09:52:24,251 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,251 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::PROParseCommandlineArguments
+2022-08-10 09:52:24,252 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::PROLoadClientConfiguration
+2022-08-10 09:52:24,252 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::LibraryInitialization
+2022-08-10 09:52:24,252 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::LibraryInitialization
+2022-08-10 09:52:24,252 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::InitializeAnnotations
+2022-08-10 09:52:24,252 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,252 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::InitializeAnnotations
+2022-08-10 09:52:24,252 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::InitializeTimeZoneData
+2022-08-10 09:52:24,252 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::DetermineTimeZoneData
+2022-08-10 09:52:24,253 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,264 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,264 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::DetermineTimeZoneData
+2022-08-10 09:52:24,264 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,268 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::InitializeTimeZoneData
+2022-08-10 09:52:24,268 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CheckForOldStyleAnnotations
+2022-08-10 09:52:24,268 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,301 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CheckForOldStyleAnnotations
+2022-08-10 09:52:24,302 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::DetermineLocalCaseDirectory
+2022-08-10 09:52:24,302 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::DetermineLocalCaseDirectory
+2022-08-10 09:52:24,302 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GenerateAllPublicIdentifiersSet
+2022-08-10 09:52:24,302 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateImplicitPublicIdentifiers
+2022-08-10 09:52:24,302 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateIdentifierIfNotPresent
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateIdentifierIfNotPresent
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateImplicitPublicIdentifiers
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateDefaultPublicIdentifiers
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateIdentifierIfNotPresent
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateIdentifierIfNotPresent
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateIdentifierIfNotPresent
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,303 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateIdentifierIfNotPresent
+2022-08-10 09:52:24,304 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,304 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,304 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,304 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,304 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateRuntimeProcedure
+2022-08-10 09:52:24,304 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateRuntimeProcedure
+2022-08-10 09:52:24,305 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui_runtime::InitializeAllDefaultPublicIdentifiers
+2022-08-10 09:52:24,305 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,308 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui_runtime::InitializeAllDefaultPublicIdentifiers
+2022-08-10 09:52:24,308 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateDefaultPublicIdentifiers
+2022-08-10 09:52:24,308 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateExplicitPublicIdentifiers
+2022-08-10 09:52:24,308 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:52:24,308 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:52:24,308 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateIdentifierIfNotPresent
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateIdentifierIfNotPresent
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateExplicitPublicIdentifiers
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetOrCreateWebUIRuntimeLibrary
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::CreateIdentifierIfNotPresent
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::CreateIdentifierIfNotPresent
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetRuntimeIdentifierRef
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GenerateAllPublicIdentifiersSet
+2022-08-10 09:52:24,309 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::WebUIDLLPresent
+2022-08-10 09:52:24,315 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::WebUIDLLPresent
+2022-08-10 09:52:24,315 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::GetAllPages
+2022-08-10 09:52:24,316 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::GetAllPages
+2022-08-10 09:52:24,316 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::LibraryInitialization
+2022-08-10 09:52:24,319 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  PostMainInitialization
+2022-08-10 09:52:24,319 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure PostMainInitialization
+2022-08-10 09:52:24,320 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::PostLibraryInitialization
+2022-08-10 09:52:24,320 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::PostLibraryInitialization
+2022-08-10 09:52:24,321 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PostLibraryInitialization
+2022-08-10 09:52:24,321 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PROIsInitialized
+2022-08-10 09:52:24,323 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [7] triggered: 
+  [7] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:24,323 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [8] triggered: 
+  [8] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:24,323 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [9] triggered: 
+  [9] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:24,324 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [7] handled: 
+  [7] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:24,324 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [8] handled: 
+  [8] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:24,324 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [9] handled: 
+  [9] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:24,324 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PROIsInitialized
+2022-08-10 09:52:24,324 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PROIsInitialized
+2022-08-10 09:52:24,325 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [10] triggered: 
+  [10] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:24,325 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [11] triggered: 
+  [11] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:24,325 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [12] triggered: 
+  [12] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:24,325 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [10] handled: 
+  [10] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:24,325 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [11] handled: 
+  [11] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:24,325 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [12] handled: 
+  [12] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:24,325 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PROIsInitialized
+2022-08-10 09:52:24,326 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::RefreshAllCases
+2022-08-10 09:52:24,327 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,327 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::LocalLogInfo
+2022-08-10 09:52:24,327 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PROIsInitialized
+2022-08-10 09:52:24,327 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [13] triggered: 
+  [13] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:24,328 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [14] triggered: 
+  [14] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:24,328 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [15] triggered: 
+  [15] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:24,328 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [13] handled: 
+  [13] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:24,328 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [14] handled: 
+  [14] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:24,328 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [15] handled: 
+  [15] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:24,328 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PROIsInitialized
+2022-08-10 09:52:24,328 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::LocalLogInfo
+2022-08-10 09:52:24,328 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,328 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::ExtendAllCasesFromPROStoragePath
+2022-08-10 09:52:24,328 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PROIsInitialized
+2022-08-10 09:52:24,329 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [16] triggered: 
+  [16] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:24,329 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [17] triggered: 
+  [17] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:24,329 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [18] triggered: 
+  [18] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:24,329 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [16] handled: 
+  [16] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:24,329 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [17] handled: 
+  [17] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:24,329 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [18] handled: 
+  [18] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:24,329 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PROIsInitialized
+2022-08-10 09:52:24,329 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::ExtendAllCasesFromPROStoragePath
+2022-08-10 09:52:24,329 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::ExtendAllCasesFromPROStoragePath
+2022-08-10 09:52:24,329 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PROIsInitialized
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [19] triggered: 
+  [19] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [20] triggered: 
+  [20] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [21] triggered: 
+  [21] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [19] handled: 
+  [19] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [20] handled: 
+  [20] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 2, body of user-defined function webui::PROIsInitialized, with trackingId [21] handled: 
+  [21] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PROIsInitialized
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::ExtendAllCasesFromPROStoragePath
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::RefreshAllCases
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::InitializeCurrentCase
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::InitializeCurrentCase
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::InitializeModelWebUIInteraction
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::DataChangeMonitorRegisterCallback
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 9, body of user-defined function webui::DataChangeMonitorRegisterCallback, with trackingId [22] triggered: 
+  [22] A DataChangeMonitor with ID DataChangeMonitor001 does not exist.
+2022-08-10 09:52:24,330 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 9, body of user-defined function webui::DataChangeMonitorRegisterCallback, with trackingId [22] handled: 
+  [22] A DataChangeMonitor with ID DataChangeMonitor001 does not exist.
+2022-08-10 09:52:24,331 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::createDataChangeMonitorProcedures
+2022-08-10 09:52:24,332 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  dcmr::CreateDataChangeMonitor
+2022-08-10 09:52:24,332 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure dcmr::CreateDataChangeMonitor
+2022-08-10 09:52:24,336 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::createDataChangeMonitorProcedures
+2022-08-10 09:52:24,336 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::DataChangeMonitorRegisterCallback
+2022-08-10 09:52:24,336 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::InitializeModelWebUIInteraction
+2022-08-10 09:52:24,336 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::SyncCompareCaseToCurrentCaseSelection
+2022-08-10 09:52:24,336 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::SyncCompareCaseToCurrentCaseSelection
+2022-08-10 09:52:24,336 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::DataChangeMonitorsUpdate
+2022-08-10 09:52:24,336 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:24,336 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::DataChangeMonitorsUpdate
+2022-08-10 09:52:24,336 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PostLibraryInitialization
+2022-08-10 09:52:34,493 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  Uni_prReadInputFromSql
+2022-08-10 09:52:34,494 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  Uni_prSetInputDatabaseConnection
+2022-08-10 09:52:34,494 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  Uni_prSetInputConnectionString
+2022-08-10 09:52:34,494 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:52:34,494 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,495 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Going to execute via ODBC API; Initialize ODBC environment
+2022-08-10 09:52:34,495 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Finished ODBC execution
+2022-08-10 09:52:34,495 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Going to execute via ODBC API; SQLDrivers
+2022-08-10 09:52:34,496 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Finished ODBC execution
+2022-08-10 09:52:34,497 0x0000404c [INFO] {AIMMS.Trace.Procedure} Continuing execution within a loop; turning procedure tracing off
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(1, 0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(2, 0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(3, 0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(4, 0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(5, 0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getNumberOfDrivers(0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getDriver(6, 0)
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [INFO] {AIMMS.Database.dbms.DatabaseManager} createConnectionString('MySQL ODBC 8.0 ANSI Driver', 'quomare-development-testing.cg6epudbqkfh.eu-central-1.rds.amazonaws.com', 'TESTDB_AIMMS', 'Stijn', <password not logged>, null', 0, @out )
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} driverExists('MySQL ODBC 8.0 ANSI Driver')
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} fetchDrivers()
+2022-08-10 09:52:34,497 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure Uni_prSetInputConnectionString
+2022-08-10 09:52:34,497 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure Uni_prSetInputDatabaseConnection
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.Statement} Entering read from table Uni_dbAssets
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.DatabaseManager} getServer('DRIVER={MySQL ODBC 8.0 ANSI Driver};SERVER=quomare-development-testing.cg6epudbqkfh.eu-central-1.rds.amazonaws.com;DATABASE=TESTDB_AIMMS;UID=Stijn;')
+2022-08-10 09:52:34,497 0x0000404c [DEBUG] {AIMMS.Database.dbms.Database} open('DRIVER={MySQL ODBC 8.0 ANSI Driver};SERVER=quomare-development-testing.cg6epudbqkfh.eu-central-1.rds.amazonaws.com;DATABASE=TESTDB_AIMMS;UID=Stijn;, 000000000012096A, -1 )
+2022-08-10 09:52:34,497 0x0000404c [INFO] {AIMMS.Database.dbms.Database} connect( dbString = 'DRIVER={MySQL ODBC 8.0 ANSI Driver};SERVER=quomare-development-testing.cg6epudbqkfh.eu-central-1.rds.amazonaws.com;DATABASE=TESTDB_AIMMS;UID=Stijn;', userName = '', password = <not logged>)
+2022-08-10 09:52:34,657 0x0000404c [INFO] {AIMMS.Database.dbms.DBInfoFetcher} determineServerVersion: MySQL Release 5.7.33-log
+2022-08-10 09:52:34,657 0x0000404c [DEBUG] {AIMMS.Database.dbms.DBInfoFetcher} Server found:5
+2022-08-10 09:52:34,657 0x0000404c [DEBUG] {AIMMS.Database.dbms.DBInfoFetcher} ClientVersion:0
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.MySQLCharacteristics} init
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Going to execute via ODBC API; SQlGetInfo (to obtain data source properties)
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Finished ODBC execution
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.ODBCInfoFetcher} getDataSourceProperty(SQL_IDENTIFIER_QUOTE_CHARL):`
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Going to execute via ODBC API; SQlGetInfo (to obtain data source properties)
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Finished ODBC execution
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.ODBCInfoFetcher} getDataSourceProperty(SQL_KEYWORDSL):ACCESSIBLE,ANALYZE,ASENSITIVE,BEFORE,BIGINT,BINARY,BLOB,CALL,CHANGE,CONDITION,DATABASE,DATABASES,DAY_HOUR,DAY_MICROSECOND,DAY_MINUTE,DAY_SECOND,DELAYED,DETERMINISTIC,DISTINCTROW,DIV,DUAL,EACH,ELSEIF,ENCLOSED,ESCAPED,EXIT,EXPLAIN,FLOAT4,FLOAT8,FORCE,FULLTEXT,GENERAL,GET,HIGH_PRIORITY,HOUR_MICROSECOND,HOUR_MINUTE,HOUR_SECOND,IF,IGNORE,IGNORE_SERVER_IDS,INFILE,INOUT,INT1,INT2,INT3,INT4,INT8,IO_AFTER_GTIDS,IO_BEFORE_GTIDS,ITERATE,KEYS,KILL,LEAVE,LIMIT,LINEAR,LINES,LOAD,LOCALTIME,LOCALTIMESTAMP,LOCK,LONG,LONGBLOB,LONGTEXT,LOOP,LOW_PRIORITY,MASTER_BIND,MASTER_HEARTBEAT_PERIOD,MASTER_SSL_VERIFY_SERVER_CERT,MAXVALUE,MEDIUMBLOB,MEDIUMINT,MEDIUMTEXT,MIDDLEINT,MINUTE_MICROSECOND,MINUTE_SECOND,MOD,MODIFIES,NO_WRITE_TO_BINLOG,NONBLOCKING,ONE_SHOT,OPTIMIZE,OPTIONALLY,OUT,OUTFILE,PARTITION,PURGE,RANGE,READ_ONLY,READS,READ_WRITE,REGEXP,RELEASE,RENAME,REPEAT,REPLACE,REQUIRE,RESIGNAL,RETURN,RLIKE,SCHEMAS,SECOND_MICROSECOND,SENSITIVE,SEPARATOR,SHOW,SIGNAL,SLOW,SPATIAL,SPECIFIC,SQL_AFTER_GTIDS,SQL_BEFORE_GTIDS,SQL_BIG_RESULT,SQL_CALC_FOUND_ROWS,SQLEXCEPTION,SQL_SMALL_RESULT,SSL,STARTING,STRAIGHT_JOIN,TERMINATED,TINYBLOB,TINYINT,TINYTEXT,TRIGGER,UNDO,UNLOCK,UNSIGNED,USE,UTC_DATE,UTC_TIME,UTC_TIMESTAMP,VARBINARY,VARCHARACTER,WHILE,X509,XOR,YEAR_MONTH,ZEROFILL
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Going to execute via ODBC API; SQlGetInfo (to obtain data source properties)
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Finished ODBC execution
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.ODBCInfoFetcher} getDataSourceProperty(SQL_SCHEMA_TERML):
+2022-08-10 09:52:34,657 0x0000404c [TRACE] {AIMMS.Database.dbms.Database} getTable('', 'Assets' )
+2022-08-10 09:52:34,672 0x0000404c [TRACE] {AIMMS.Database.dbms.ODBCInfoFetcher} retrieveTableHeaderInfo('Assets'): columninfo
+2022-08-10 09:52:34,672 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Going to execute via ODBC API; SQLColumns
+2022-08-10 09:52:34,723 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Finished ODBC execution
+2022-08-10 09:52:34,723 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Going to execute via ODBC API; SQlGetInfo (to obtain data source properties)
+2022-08-10 09:52:34,723 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Finished ODBC execution
+2022-08-10 09:52:34,723 0x0000404c [TRACE] {AIMMS.Database.dbms.ODBCInfoFetcher} retrieveTableHeaderInfo('Assets'): primarykeys
+2022-08-10 09:52:34,723 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Going to execute via ODBC API; SQLPrimaryKeys
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Finished ODBC execution
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} ctor `Assets`
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} nrColumns() : 16
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 0 ):id
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 1 ):aggregated
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 2 ):aggregationCount
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 3 ):assetType
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 4 ):commissioningDate
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 5 ):decommissioningDate
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 6 ):description
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 7 ):installationDuration
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 8 ):manufacturer
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 9 ):name
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 10 ):originalIdInSource
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 11 ):owner
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 12 ):shortName
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 13 ):state
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 14 ):surfaceArea
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnName( 15 ):technicalLifetime
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnNumber('id'):0
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnNumber('id'):0
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnNumber('name'):9
+2022-08-10 09:52:34,754 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnNumber('id'):0
+2022-08-10 09:52:34,755 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnNumber('state'):13
+2022-08-10 09:52:34,755 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnNumber('id'):0
+2022-08-10 09:52:34,755 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnType('0' ):DT_CHAR
+2022-08-10 09:52:34,755 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnNumber('name'):9
+2022-08-10 09:52:34,755 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnType('9' ):DT_CHAR
+2022-08-10 09:52:34,755 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnNumber('state'):13
+2022-08-10 09:52:34,755 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} columnType('13' ):DT_CHAR
+2022-08-10 09:52:34,755 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readStart
+2022-08-10 09:52:34,769 0x0000404c [DEBUG] {AIMMS.Database.dbms.TableCommand} Using SingleValuedFilteredTableReader (default) strategy
+2022-08-10 09:52:34,784 0x0000404c [TRACE] {AIMMS.Database.dbms.AutoTransactionStrategy} begin()
+2022-08-10 09:52:34,834 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} TableReader: going to execute sql command: 'SELECT `id`, `name`, `state` FROM `Assets`'
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.SqlExecuter} Done executing sql command: 'SELECT `id`, `name`, `state` FROM `Assets`'
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 00882405-207a-47ed-84f7-1f50025d29e4 )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 022e9e0e-639b-4b43-865f-f6d56fea7170 )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 0262b2e4-dd3d-4e61-a0f1-002089195bbe )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden gasgebruik )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 02a53b5b-1991-4aa3-9dce-ada68ac3f39f )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 02adb05f-520f-49c1-a03f-199eefe00a4c )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 04c177ec-8e09-45c1-a6ee-c4edae63671b )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 0980fd1b-ad62-4914-8876-7084f82a1d3b )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 0b7fb5a4-4cc0-494e-aee7-9aa7942b77ce )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden gasgebruik )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 0bbe4700-272d-41e1-8c67-8a7cee488edc )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden gasgebruik )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 0cc6410b-c562-4feb-addc-c13c72df0350 )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 105d7597-b09e-4717-aa66-f2d7a09325df )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 13f1f628-90b4-4cc7-a485-1668beffecc3 )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 182c8564-52f1-4246-8b87-84d3f283cdc4 )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,851 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 193c6523-83b5-42ed-8670-c7638741363d )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 1be6f2df-4214-4845-b1b6-07fcfff53bdf )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasnetwerk )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 1f19ecc7-1453-4cfd-8e3e-41f5f125662d )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 200e5999-f933-4cc7-b298-3c31156e0739 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 2037c929-687d-4286-824d-bfc27abe6912 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 21de219f-680b-4371-aee0-86908b7bd433 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 24764684-49d8-4b2a-bb19-bc80b044452f )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 25906263-ae23-48e9-b1f5-67092ef676ca )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 27062344-7004-494e-a119-b1f442d05f71 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 278e90a6-a5a6-4c7c-a185-a0476a1bd5f7 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 27b4d6c9-b6d0-4948-b81b-d184e4d996eb )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 30953e57-b9b2-4135-a3ac-7cd9822f4800 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Lucht-Water )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 3125e351-6392-42c4-9120-5ffe72dbd600 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 36ec859d-55f4-447c-8e8e-bdbb33491f5d )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 371f25f2-2069-4aa2-924c-808e93871d65 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 3b1db3ef-b7b5-4aa5-9870-236f7be87ce0 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 3b4ff9ca-3fd4-4ab8-9685-404c72d7d634 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 3b768e74-0fa6-42b3-bc40-96cad70949c2 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 3bb9e9e3-ec21-4e0b-938c-51b17a7c8a9d )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 3c35a437-d2ac-4152-9c7e-071e8a28c51d )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 3db3ff55-29b3-4332-912b-ee6ff4e313bd )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 3e3eedd9-eb0b-44c0-8d14-b4b66c18624e )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 41742538-01a4-43c0-b75e-80381497e8e0 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 424bbb75-fc7d-4f0a-bdb5-74a8d4203d31 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Elektriciteit productie )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 45fc2b8d-487b-41ab-9f2e-338408a6e3c3 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 469b1f3f-dcbe-4469-a36a-91aa6dcc3c7e )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 473dc7bf-b165-44fa-9ea3-d0fd93176664 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 49679e07-6f15-4db7-9739-ad5b12bc65c4 )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 4b7b8b87-a660-4c01-a8ba-db65295f36af )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 4c15188b-5fa0-40ec-b6f6-9e7d8b3ec0ed )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 4d36331d-c220-401b-87a1-f276593714fc )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 505afcb4-76c2-46fb-b7ac-15bc1f9b5bad )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,852 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 51521a64-34b8-4033-8944-21910febc423 )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 51bf251c-8be0-4f7b-8a82-20384f4f974c )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 555ec73d-06ab-421c-a3fe-70da7e4807b0 )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 55c1a503-8885-4876-86f6-c1c19af299cc )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 57468cf2-2b51-4209-a7a5-fa4bde542c15 )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 5a5fc924-c7a1-49c9-9c20-4e5407b78d79 )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 5aaeb4bd-b5c3-468e-a2ae-509e9e2239c3 )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 5c78e857-8766-4ced-8b30-4f2d694864f3 )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 61b4c205-4df0-4d61-a67a-a741373bf711 )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,853 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 657a32f5-170e-4066-b596-1a9a07430cad )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 66a2501a-5e80-46dd-8470-e9ebae85490e )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 66cf9712-3c7b-49f2-b3a1-a4b339bfb5fc )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 677efd1e-238c-41aa-a099-b9531be6d16e )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 68b7c93f-8dec-4398-a71b-17f742b93917 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 6a4cbf56-ff21-40ef-a648-d4d7b5100e04 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 6a94353c-2322-4d28-b34d-f5b0453f1cb7 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 6c25ef1e-00b1-4eb5-9467-74a431ab5ee4 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 6cbcb930-9e77-448d-bcfe-e33a8728e324 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 6ccf39c0-7623-428b-ae06-2a87cd37b52f )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 6ee3a484-5fd9-44fb-99a1-f47b55431895 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 715d0331-15b0-4b9f-9b6f-8a571225b161 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 71eade66-90fd-4d02-b2ab-dff84ebadbb6 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 72b48929-dd3a-448d-b216-71132f4bcf97 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 73bc7979-1f0e-4694-a089-281a4a0f2a66 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 74ef94a3-876f-4aeb-a771-b476fd8cb21c )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 76845289-f6e5-4548-bf4e-64241e301cf4 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 773ce324-2a66-4b2d-8a91-44eef0e04785 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 79581a7c-1f95-432a-8156-ad4d86fa93a2 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 79df0ca6-0cc0-45e1-9ddf-56b681d50a91 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 79e3fe6e-644c-4110-9660-f052bee98b01 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 7ae1b723-61c8-4e89-8cf7-e409e3223096 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 7b357846-6590-40bb-ba93-08cf45684336 )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,854 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 7cfc2f1d-f642-4ad0-a756-4f675eb03534 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 7f59da2d-3708-4a58-af09-dc02b526924e )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 819ec122-3394-4246-9cec-256129e5fc2d )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 8338a6c3-19f6-4446-b5fb-be8e034bc74a )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 84f03309-93ae-4e1f-9275-216b260e38bd )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 8adba4b6-332a-431b-8de4-f59c49a8966f )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 8bf41ff4-9c5b-40bb-bf19-10a77af699d3 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden gasgebruik )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 8e956c0d-3755-46f3-9b48-e93ee96c2114 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 908270fc-f779-4dc1-b04f-03d3ab79f473 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 93742b21-85e0-4315-8733-859a41dfdb9e )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 93c772fc-98bc-4fd4-9480-0b41438840b5 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 94c1c9d0-698a-467c-8cd8-dbd4b2e2a68d )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 951b625d-7d06-4268-b1e9-46bc3746db13 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Elektriciteitskabel Teruglevering )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 95489dcc-1079-480c-874a-ab709bce2ceb )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Elektriciteitsnetwerk )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 9cbf638d-2401-404a-84fb-ca6a1c4dfb61 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, 9fc67be8-ebeb-4fa4-ad2a-778a3ed6bc84 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, a202921b-97e8-4c7f-bd6c-67326bea6a50 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, a375b9b4-c9bb-4614-8eee-a1b97f2fec54 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, a555c319-fe48-4a40-b6d0-54594dc89944 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, a75bada5-b0c7-42cc-a6bf-a105ef0e7f96 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, a7d4058a-319e-42c2-bffa-87d6435c11bc )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, a903c1a8-16ec-41bb-8a69-20436b9bc468 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, ab48dc9d-6a85-4439-84a0-53f8f6aa5806 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, ac4a15a0-ac6c-46c5-8352-5dea7f38e5c9 )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, ad5331e9-e2e8-4afd-9efa-a152bd01e3db )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, afe70508-2d50-412f-a115-c748e67127ef )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,855 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, b2017e73-a536-4312-9e32-506e161ad7da )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Elektriciteit teruglevering )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, b4244b99-dc0e-409b-a43f-8370bb991721 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, b4bdef7f-9299-49e7-a048-fe4c96895aee )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, b9b4021c-f543-4d61-a231-a43f5b0d3d0b )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, be2d48b4-fc20-4dc8-aeb4-0aa724c34ab9 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, bfdebba5-a3ae-4c75-b529-928db1067773 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Elektriciteitskabel Levering )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, c0e7597b-ed5f-4278-aad8-ac2af6a46a98 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, c156c5bc-cac5-47c5-90a3-95a241427a7c )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gas productie )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, c1e5536b-088f-4cb7-8ee9-ba3ea576190c )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, c2757b54-444d-4a4b-86a5-515e49bd24a0 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, c3031e29-bc99-4128-b1a5-7ab8f1602f9e )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, c304faba-1345-4eaa-adff-e1dd3906a3f7 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, c3af1410-c446-4c19-a769-b1eb26fd7063 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, c3b0c43e-e931-4c3d-a729-3ef0e216fe1e )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, cabe7abd-c39a-4c37-9f1c-c76acfa29c30 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, cca819f9-aa9d-4bc3-923f-bede5e513d84 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, cd07886e-4c81-4d00-b787-64c78abeccde )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, cf64fda8-b94c-4d45-8d80-faee63e746c6 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, cf6b71cf-3bc9-4339-a01a-670738ec0f59 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, d0a0d24d-7247-42d3-9c5d-7ef834e2236a )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, d11e4263-ef8d-4763-a790-fb7b36cb1fb7 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, d14db8b7-3a50-4533-8ead-b74e56906556 )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, da76da5f-07a3-4d94-ba17-d501bbc8770b )
+2022-08-10 09:52:34,856 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, dd2ec73f-90ca-4929-b66a-a4165d37eb91 )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, df2100b2-cfb3-4327-9e86-2c30726a86b7 )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, e1ad6911-84b1-4ee8-8f9a-a4cf2da6efc4 )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, e54c506a-9bbd-40d2-ac73-ed419fb83266 )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, e7b193db-f2a7-43a1-85e9-ea80a58db9ff )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtepomp Water-Water )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, ebf64ec8-a833-4f8a-9f69-7f458f6b54fb )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Zonnepanelen )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, ed93a515-9988-41da-83a1-b33c8df1ab36 )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, ef0acf46-ec07-48d9-91ee-67517369f3cc )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Elektriciteit )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, ef828637-a50f-4530-baaf-449455ffc255 )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gebouwgebonden elektriciteitsgebruik )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, f5642ef1-642a-4350-b646-70f2355902dc )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Warmtevraag gebouw )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, f8a7ca64-4d04-44eb-adc8-fe85a6c3f353 )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Procesgebonden gasgebruik )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, f9e558a1-b2dd-4023-b1c0-c4be95c42b61 )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, faa4b1db-f248-45b9-873f-45c0a93dbe45 )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Gasketel )
+2022-08-10 09:52:34,857 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,858 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,858 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(0, ffe1da2d-8681-4958-95fa-0a1023957ebe )
+2022-08-10 09:52:34,858 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(9, Aansluiting Gas )
+2022-08-10 09:52:34,858 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} getColumnValue(13, ENABLED )
+2022-08-10 09:52:34,858 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readNext()
+2022-08-10 09:52:34,858 0x0000404c [TRACE] {AIMMS.Database.dbms.TableCommand} readEnd()
+2022-08-10 09:52:34,858 0x0000404c [TRACE] {AIMMS.Database.dbms.AutoTransactionStrategy} endCycle()
+2022-08-10 09:52:34,888 0x0000404c [DEBUG] {AIMMS.Database.Statement} Exit read from table Uni_dbAssets
+2022-08-10 09:52:34,888 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure Uni_prReadInputFromSql
+2022-08-10 09:52:45,751 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::PreLibraryTermination
+2022-08-10 09:52:45,753 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::PreLibraryTermination
+2022-08-10 09:52:45,770 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  PreMainTermination
+2022-08-10 09:52:48,634 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure PreMainTermination
+2022-08-10 09:52:48,653 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  webui::LibraryTermination
+2022-08-10 09:52:48,653 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure webui::LibraryTermination
+2022-08-10 09:52:48,667 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  pro::LibraryTermination
+2022-08-10 09:52:48,668 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [23] triggered: 
+  [23] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:48,668 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [24] triggered: 
+  [24] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:48,668 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.ErrorCollectorStack} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [25] triggered: 
+  [25] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:48,668 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [23] handled: 
+  [23] The user function library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll cannot be found.
+2022-08-10 09:52:48,668 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [24] handled: 
+  [24] The library C:\Users\Stijn\AppData\Local\AIMMS\PRO\\AimmsProLibrary-2.0\x64\AimmsPROClient.dll has not been loaded because: Error loading library : The parameter is incorrect.
+2022-08-10 09:52:48,668 0x0000404c [INFO] {AIMMS.Incidents.ErrorLogger.Error} Error at line 7, body of user-defined function pro::LibraryTermination, with trackingId [25] handled: 
+  [25] The dll for external procedure "pro::management::IsInitialized" has not been found.
+2022-08-10 09:52:48,668 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure pro::LibraryTermination
+2022-08-10 09:52:48,688 0x0000404c [INFO] {AIMMS.Trace.Procedure} Starting Procedure  MainTermination
+2022-08-10 09:52:48,688 0x0000404c [INFO] {AIMMS.Trace.Procedure} Finishing Procedure MainTermination
+2022-08-10 09:52:48,785 0x0000404c [INFO] {AIMMS.Database.dbms.DatabaseManager} exitProject()
+2022-08-10 09:52:48,785 0x0000404c [TRACE] {AIMMS.Database.dbms.Database} close()
+2022-08-10 09:52:48,918 0x00005a80 [INFO] {com.zaphoyd.websocketpp.access} [disconnect] Disconnect close local:[1000] remote:[1000]

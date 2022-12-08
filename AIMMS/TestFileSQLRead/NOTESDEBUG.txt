@@ -1,0 +1,1 @@
+TableReader: going to execute sql command: 'SELECT `id`, `name`, `state` FROM `Assets`'

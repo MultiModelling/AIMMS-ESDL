@@ -1,0 +1,826 @@
+## ams_version=1.0
+
+Model Main_TestFileSQLRead {
+	Section Universal_Link {
+		Procedure Uni_prReadInputFromSql {
+			Body: {
+				empty Declaration_ESDL_parameters, Uni_sTables;
+				
+				
+				Uni_ServerString := <<Your_Host>>;
+				Uni_UserString := <<Your_User>>;
+				Uni_PasswordString:= <<Your_Password>>;
+				
+				Uni_DBString := "TESTDB_ESDL_to_AIMMS";
+				
+				Uni_prSetInputDatabaseConnection;
+				
+				Uni_spTableLink(Uni_iEveryTable) := "Uni_db" + Uni_iEveryTable;
+				Uni_epTableLink(Uni_iEveryTable):= stringtoelement(Uni_sdbTables, Uni_spTableLink(Uni_iEveryTable), 0);
+				Uni_spQueryString := "Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + Uni_DBString + "' order by database_name, table_name;";
+				Read from table Uni_SQLQuery(Uni_spQueryString) in insert mode;
+				
+				
+				for Uni_iTable do
+				
+					Read from table Uni_epTableLink(Uni_iTable) in insert mode;
+				
+				endfor;
+				
+				
+				!Read from table Uni_dbAssets in replace mode;
+				!Read from table Uni_dbBuildings in insert mode;
+				!Read from table Uni_dbCarriers in insert mode;
+				!Read from table Uni_dbEnergyCarriers in insert mode;
+				!Read from table Uni_dbCommodities in merge mode;
+				!Read from table Uni_dbGasCommodities in insert mode;
+				!Read from table Uni_dbEnergyCommodities in insert mode;
+				!Read from table Uni_dbElectricityCommodities in insert mode;
+				!Read from table Uni_dbMatters in merge mode;
+				!Read from table Uni_dbProducers in insert mode;
+				!Read from table Uni_dbConsumers in insert mode;
+				!Read from table Uni_dbConversions in insert mode;
+				!Read from table Uni_dbTransports in insert mode;
+				!Read from table Uni_dbMapAssetToBuilding in insert mode;
+				!Read from table Uni_dbArcs in insert mode;
+				!Read from table Uni_dbProcessesNew in insert mode;
+				!Read from table Uni_dbCostInformation in insert mode;
+				!Read from table Uni_dbQuantityAndUnitTypes in insert mode;
+				!
+			}
+		}
+		DatabaseProcedure Uni_SQLQuery {
+			Arguments: (iQuery);
+			DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+			SqlQuery: iQuery;
+			Property: UseResultSet;
+			Mapping: {
+				"table_name"	 --> Uni_iTable,
+				"database_name"	 --> Uni_spTableDB(Uni_iTable)
+			}
+			StringParameter iQuery {
+				Property: Input;
+			}
+		}
+		Procedure Uni_prWriteOutputToSql {
+			Body: {
+				
+				
+				for Uni_iTabletoWrite do
+				
+					Write to Table Uni_epTableLink(Uni_iTabletoWrite) in replace mode;
+				
+				endfor;
+			}
+		}
+		Procedure Uni_prSetInputDatabaseConnection {
+			Body: {
+				webui::SetProgressMessage(message :"Setting connection to mySQL " );
+				
+				block !Create database connection string
+				
+				
+					if projectdevelopermode then
+						Uni_epCurrentDatabase := 'test';
+					else
+						Uni_epCurrentDatabase := 'production';
+					endif;
+					Uni_prSetInputConnectionString;
+				onerror _error do
+				
+					DialogError("Error during initialization of database connection", "Database connection failed");
+					errh::MarkAsHandled(_error);
+				
+				endblock;
+			}
+			ElementParameter _error {
+				Range: errh::PendingErrors;
+			}
+		}
+		Procedure Uni_prSetInputConnectionString {
+			Body: {
+				!if pBlockDBConnection then 
+				!	return;
+				!endif;
+				_eDatabaseInterface := StringToElement(AllDatabaseInterfaces, "ODBC");
+				
+				_pNumberOfDrivers := SQLNumberOfDrivers(_eDatabaseInterface);
+				while LoopCount <= _pNumberOfDrivers do
+					SetElementAdd(_Drivers, _eDriver, LoopCount);
+					_spDriverName(_eDriver) := SQLDriverName(_eDatabaseInterface, LoopCount);
+				endwhile;
+				
+				_eDriver := first(_iDriver | FindString(_spDriverName(_iDriver),"MySQL"));
+				if not _eDriver and not pro::IsRunningAtServer then
+					DialogError("Database connection not possible: missing mySQL ODBC driver", "Driver missing");
+					return;
+				endif;
+				
+				
+				!Test database
+				Uni_spDatabaseConnectionString(Uni_epCurrentDatabase)
+					:=
+					SQLCreateConnectionString(
+						DatabaseInterface              :  _eDatabaseInterface, 
+						DriverName                     :  _spDriverName(_eDriver), 
+						ServerName                     :  Uni_ServerString, 
+						DatabaseName                   :  Uni_DBString, 
+						UserId                         :  Uni_UserString, 
+						Password                       :  Uni_PasswordString);
+			}
+			ElementParameter _eDatabaseInterface {
+				Range: AllDatabaseInterfaces;
+			}
+			Parameter _pNumberOfDrivers;
+			Set _Drivers {
+				Index: _iDriver;
+				Parameter: _eDriver;
+			}
+			StringParameter _spDriverName {
+				IndexDomain: _iDriver;
+			}
+		}
+		DeclarationSection Declaration_Tables_Sets {
+			Set Uni_sAllTables {
+				Index: Uni_iEveryTable;
+				InitialData: {
+					data 
+					    { Assets                , Arcs                  , Buildings             , Carriers              , EnergyCarriers        ,
+					      Commodities           , GasCommodities        , ElectricityCommodities, EnergyCommodities     , Matters               ,
+					      Producers             , Consumers             , Conversions           , Processes             , Transports            ,
+					      MapAssetToBuilding    , CostInformations      , QuantityAndUnitTypes  , KPIs                  , ConsumerProfiles      ,
+					      KPIConversions        , KPIsBuildings         , Constraints           }
+				}
+			}
+			Set Uni_sTables {
+				SubsetOf: Uni_sAllTables;
+				Index: Uni_iTable;
+			}
+			Set Uni_sTablestoWrite {
+				SubsetOf: Uni_sTables;
+				Index: Uni_iTabletoWrite;
+			}
+			ElementParameter Uni_epTableLink {
+				IndexDomain: Uni_iEveryTable;
+				Range: Uni_sdbTables;
+			}
+			StringParameter Uni_spTableLink {
+				IndexDomain: Uni_iEveryTable;
+			}
+			StringParameter Uni_spTableDB {
+				IndexDomain: (Uni_iTable);
+			}
+			StringParameter Uni_spQueryString;
+			StringParameter Uni_DBString;
+			StringParameter Uni_ServerString;
+			StringParameter Uni_UserString;
+			StringParameter Uni_PasswordString;
+		}
+		DeclarationSection Declaration_connection {
+			Set Uni_sdbTables {
+				SubsetOf: AllIdentifiers;
+				Index: Uni_idbTable;
+				Definition: {
+					{IndexIdentifiers|IndexIdentifiers in Declaration_DBs}
+				}
+			}
+			StringParameter Uni_spDatabaseConnectionString {
+				IndexDomain: Uni_iDatabase;
+			}
+			Set Uni_sDatabases {
+				Index: Uni_iDatabase;
+				Definition: data{production,test};
+			}
+			ElementParameter Uni_epCurrentDatabase {
+				Range: Uni_sDatabases;
+			}
+		}
+		DeclarationSection Declaration_ESDL_parameters {
+			Set ESDL_AllElements;
+			Set ESDL_sAssets {
+				Index: ESDL_iAsset, ESDL_iAsset2, ESDL_iAsset3;
+				Parameter: ESDL_eAsset;
+			}
+			StringParameter ESDL_spAssetName {
+				IndexDomain: (ESDL_iAsset);
+			}
+			StringParameter ESDL_spAssetState {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spAssetTechnicalLifetime {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spAssetAggregated {
+				IndexDomain: ESDL_iAsset;
+			}
+			Set ESDL_sCarriers {
+				SubsetOf: ESDL_AllElements;
+				Index: ESDL_iCarrier;
+			}
+			StringParameter ESDL_spCarrierName {
+				IndexDomain: ESDL_iCarrier;
+			}
+			Set ESDL_sEnergyCarriers {
+				SubsetOf: ESDL_sCarriers;
+				Index: ESDL_iEnergyCarrier;
+			}
+			StringParameter ESDL_spstateOfMatter {
+				IndexDomain: ESDL_iEnergyCarrier;
+			}
+			StringParameter ESDL_spenergyCarrierType {
+				IndexDomain: ESDL_iEnergyCarrier;
+			}
+			StringParameter ESDL_spEmmision {
+				IndexDomain: ESDL_iEnergyCarrier;
+			}
+			StringParameter ESDL_spEnergyContent {
+				IndexDomain: ESDL_iEnergyCarrier;
+			}
+			Set ESDL_sCommodities {
+				SubsetOf: ESDL_sCarriers;
+				Index: ESDL_iCommodity;
+			}
+			Set ESDL_sGasCommodities {
+				SubsetOf: ESDL_sCommodities;
+				Index: ESDL_iGasCommodity;
+			}
+			Set ESDL_sEnergyCommodities {
+				SubsetOf: ESDL_sCommodities;
+				Index: ESDL_iEnergyCommodity;
+			}
+			Set ESDL_sElectricityCommodities {
+				SubsetOf: ESDL_sCommodities;
+				Index: ESDL_iElectricityCommodity;
+			}
+			Set ESDL_sMatters {
+				SubsetOf: ESDL_sCarriers;
+				Index: ESDL_iMatter;
+			}
+			Set ESDL_sBuildings {
+				SubsetOf: ESDL_AllElements;
+				Index: ESDL_iBuilding;
+			}
+			StringParameter ESDL_spBuildingName {
+				IndexDomain: ESDL_iBuilding;
+			}
+			StringParameter ESDL_spfloorArea {
+				IndexDomain: ESDL_iBuilding;
+			}
+			StringParameter ESDL_spBuildingYear {
+				IndexDomain: ESDL_iBuilding;
+			}
+			StringParameter ESDL_spOriginalIdInSource {
+				IndexDomain: ESDL_iBuilding;
+			}
+			StringParameter ESDL_spSurfaceArea {
+				IndexDomain: ESDL_iBuilding;
+			}
+			StringParameter ESDL_spHeight {
+				IndexDomain: ESDL_iBuilding;
+			}
+			StringParameter ESDL_spLat {
+				IndexDomain: ESDL_iBuilding;
+			}
+			StringParameter ESDL_spLon {
+				IndexDomain: ESDL_iBuilding;
+			}
+			Set ESDL_sConsumers {
+				SubsetOf: ESDL_sAssets;
+				Index: ESDL_iConsumer;
+			}
+			StringParameter ESDL_spConsType {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumerPower {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumerCapacity {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			Set ESDL_sConsumerProfiles {
+				Index: ESDL_iConsumerProfile;
+			}
+			StringParameter ESDL_spConsumerProfileName {
+				IndexDomain: (ESDL_iConsumerProfile);
+			}
+			StringParameter ESDL_spConsumerdataSource {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumerendDate {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumerField {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumerFilters {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumerHost {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumerinterpolationMethod {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumermeasurement {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumermultiplier {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumerprofileQuantityAndUnit {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumerprofileType {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			StringParameter ESDL_spConsumerstartDate {
+				IndexDomain: (ESDL_iConsumer);
+			}
+			Set ESDL_sProducers {
+				SubsetOf: ESDL_sAssets;
+				Index: ESDL_iProducer;
+			}
+			StringParameter ESDL_spProdType {
+				IndexDomain: (ESDL_iProducer);
+			}
+			StringParameter ESDL_spOperationalHours {
+				IndexDomain: (ESDL_iProducer);
+			}
+			StringParameter ESDL_spFullloadHours {
+				IndexDomain: (ESDL_iProducer);
+			}
+			StringParameter ESDL_spProducerPower {
+				IndexDomain: (ESDL_iProducer);
+			}
+			StringParameter ESDL_spProducerCapacity {
+				IndexDomain: (ESDL_iProducer);
+			}
+			Set ESDL_sConversions {
+				SubsetOf: ESDL_sAssets;
+				Index: ESDL_iConversion;
+			}
+			StringParameter ESDL_spEfficiency {
+				IndexDomain: ESDL_iConversion;
+			}
+			StringParameter ESDL_spConversionPower {
+				IndexDomain: ESDL_iConversion;
+			}
+			Set ESDL_sTransports {
+				SubsetOf: ESDL_sAssets;
+				Index: ESDL_iTransport;
+			}
+			StringParameter ESDL_spTransportEffiency {
+				IndexDomain: ESDL_iTransport;
+			}
+			StringParameter ESDL_spTransportcapacity {
+				IndexDomain: ESDL_iTransport;
+			}
+			StringParameter ESDL_spMapAssetToBuilding {
+				IndexDomain: (ESDL_iAsset, ESDL_iBuilding);
+			}
+			StringParameter ESDL_spArcCost {
+				IndexDomain: (ESDL_iAsset,ESDL_iAsset2, ESDL_iCarrier);
+			}
+			Set ESDL_sCostInformation {
+				Index: ESDL_iCostInformation;
+				Parameter: ESDL_eCostInformation;
+			}
+			StringParameter ESDL_spinvestmentCosts {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spmarginalCosts {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spvariableMaintenanceCosts {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spfixedMaintenanceCosts {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spfixedOperationalAndMaintenanceCosts {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spinstallationCosts {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spvariableOperationalCosts {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spfixedOperationalCosts {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spdevelopmentCosts {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spdiscountRate {
+				IndexDomain: ESDL_iAsset;
+			}
+			Set ESDL_sQuantityAndUnitTypes {
+				Index: ESDL_iQuantityAndUnitType;
+				Parameter: ESDL_eQuantityAndUnitType;
+			}
+			StringParameter ESDL_spmultiplier {
+				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+			}
+			StringParameter ESDL_spperMultiplier {
+				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+			}
+			StringParameter ESDL_spperScope {
+				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+			}
+			StringParameter ESDL_spperTimeUnit {
+				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+			}
+			StringParameter ESDL_spphysicalQuantity {
+				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+			}
+			StringParameter ESDL_spunit {
+				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+			}
+			StringParameter ESDL_spUnitType {
+				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+			}
+			StringParameter ESDL_spperUnit {
+				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+			}
+			StringParameter ESDL_spMainCarrierProcess {
+				IndexDomain: (ESDL_iConversion,ESDL_iCarrier);
+			}
+			StringParameter ESDL_spPortTypeProcess {
+				IndexDomain: (ESDL_iConversion,ESDL_iCarrier);
+			}
+			StringParameter ESDL_spRatioProcess {
+				IndexDomain: (ESDL_iConversion,ESDL_iCarrier);
+			}
+			Set ESDL_sKPIs {
+				Index: ESDL_iKPI;
+				Parameter: ESDL_eKPI;
+			}
+			StringParameter ESDL_spKPIName {
+				IndexDomain: (ESDL_iKPI);
+			}
+			StringParameter ESDL_spKPIValue {
+				IndexDomain: (ESDL_iKPI);
+			}
+			StringParameter ESDL_spKPINameBuilding {
+				IndexDomain: (ESDL_iKPI, ESDL_iBuilding);
+			}
+			StringParameter ESDL_spKPIValueBuilding {
+				IndexDomain: (ESDL_iKPI, ESDL_iBuilding);
+			}
+			StringParameter ESDL_spKPINameConversion {
+				IndexDomain: (ESDL_iKPI, ESDL_iConversion);
+			}
+			StringParameter ESDL_spKPIValueConversion {
+				IndexDomain: (ESDL_iKPI, ESDL_iConversion);
+			}
+			Set ESDL_sConstraints {
+				Index: ESDL_iConstraint;
+			}
+			StringParameter ESDL_spConstraintName {
+				IndexDomain: (ESDL_iConstraint,ESDL_iAsset);
+			}
+			StringParameter ESDL_spConstraintAttribute {
+				IndexDomain: (ESDL_iConstraint,ESDL_iAsset);
+			}
+			StringParameter ESDL_spRangeId {
+				IndexDomain: (ESDL_iConstraint,ESDL_iAsset);
+			}
+			StringParameter ESDL_spRangeName {
+				IndexDomain: (ESDL_iConstraint,ESDL_iAsset);
+			}
+			StringParameter ESDL_spRangeMinValue {
+				IndexDomain: (ESDL_iConstraint,ESDL_iAsset);
+			}
+			StringParameter ESDL_spRangeMaxValue {
+				IndexDomain: (ESDL_iConstraint,ESDL_iAsset);
+			}
+		}
+		Section Uni_DBS {
+			DeclarationSection Declaration_DBs {
+				DatabaseTable Uni_dbAssets {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Assets";
+					Mapping: {
+						"id" 			--> ESDL_iAsset,
+						"name" 			--> ESDL_spAssetName(ESDL_iAsset),
+						"state"			--> ESDL_spAssetState(ESDL_iAsset),
+						"technicalLifetime"	--> ESDL_spAssettechnicalLifetime(ESDL_iAsset),
+						"aggregated"		--> ESDL_spAssetAggregated(ESDL_iAsset)
+					}
+				}
+				DatabaseTable Uni_dbArcs {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Arcs";
+					Mapping: {
+						"Node1_id"				--> ESDL_iAsset,
+						"Node2_id"				--> ESDL_iAsset2,
+						"carrier_id"				--> ESDL_iCarrier,
+						"CostDummy" 				--> ESDL_spArcCost(ESDL_iAsset, ESDL_iAsset2, ESDL_iCarrier)
+					}
+				}
+				DatabaseTable Uni_dbBuildings {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Buildings";
+					Mapping: {
+						"id" 			--> ESDL_iBuilding,
+						"name" 			--> ESDL_spBuildingName(ESDL_iBuilding),
+						"floorArea"		--> ESDL_spfloorArea(ESDL_iBuilding), 
+						"buildingYear"		--> ESDL_spBuildingYear(ESDL_iBuilding), 
+						"originalIdInSource"	--> ESDL_spOriginalIdInSource(ESDL_iBuilding), 
+						"surfaceArea"		--> ESDL_spSurfaceArea(ESDL_iBuilding),
+						"height"		--> ESDL_spHeight(ESDL_iBuilding),
+						"Lat"			--> ESDL_spLat(ESDL_iBuilding), 
+						"Lon" 			--> ESDL_spLon(ESDL_iBuilding)
+					}
+				}
+				DatabaseTable Uni_dbCarriers {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Carriers";
+					Mapping: {
+						"id"			--> ESDL_iCarrier,
+						"name"			--> ESDL_spCarrierName(ESDL_iCarrier)
+						
+						!
+						!"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iCarrier),
+						!"energyCarrierType" 	--> ESDL_spenergyCarrierType(ESDL_iCarrier),
+						!"emission" 		--> ESDL_spEmmision(ESDL_iCarrier),
+						!"name"			--> ESDL_spCarrierName(ESDL_iCarrier),
+						!"energyContent"		--> ESDL_spEnergyContent(ESDL_iCarrier)
+					}
+				}
+				DatabaseTable Uni_dbEnergyCarriers {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "EnergyCarriers";
+					Mapping: {
+						"id"			--> ESDL_iEnergyCarrier,
+						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iEnergyCarrier),
+						"energyCarrierType" 	--> ESDL_spenergyCarrierType(ESDL_iEnergyCarrier),
+						"emission" 		--> ESDL_spEmmision(ESDL_iEnergyCarrier),
+						"name"			--> ESDL_spCarrierName(ESDL_iEnergyCarrier),
+						"energyContent"		--> ESDL_spEnergyContent(ESDL_iEnergyCarrier)
+					}
+				}
+				DatabaseTable Uni_dbCommodities {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Commodities";
+					Mapping: {
+						"id"			--> ESDL_iCommodity,
+						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iCommodity),
+						"name"			--> ESDL_spCarrierName(ESDL_iCommodity)
+					}
+				}
+				DatabaseTable Uni_dbGasCommodities {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "GasCommodities";
+					Mapping: {
+						"id"			--> ESDL_iGasCommodity,
+						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iGasCommodity),
+						"name"			--> ESDL_spCarrierName(ESDL_iGasCommodity)
+					}
+				}
+				DatabaseTable Uni_dbElectricityCommodities {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "ElectricityCommodities";
+					Mapping: {
+						"id"			--> ESDL_iElectricityCommodity,
+						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iElectricityCommodity),
+						"name"			--> ESDL_spCarrierName(ESDL_iElectricityCommodity)
+					}
+				}
+				DatabaseTable Uni_dbEnergyCommodities {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "EnergyCommodities";
+					Mapping: {
+						"id"			--> ESDL_iEnergyCommodity,
+						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iEnergyCommodity),
+						"name"			--> ESDL_spCarrierName(ESDL_iEnergyCommodity)
+					}
+				}
+				DatabaseTable Uni_dbMatters {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Matters";
+					Mapping: {
+						"id"			--> ESDL_iMatter,
+						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iMatter),
+						"name"			--> ESDL_spCarrierName(ESDL_iMatter)
+					}
+				}
+				DatabaseTable Uni_dbProducers {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Producers";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"id" 			--> ESDL_iProducer,
+						"prodType" 		--> ESDL_spProdType(ESDL_iProducer),
+						"fullLoadHours" 	--> ESDL_spFullloadHours(ESDL_iProducer),
+						"operationalHours" 	--> ESDL_spOperationalHours(ESDL_iProducer),
+						"power"			--> ESDL_spProducerPower(ESDL_iProducer),
+						"Capacity"		--> ESDL_spProducerCapacity(ESDL_iProducer)
+					}
+				}
+				DatabaseTable Uni_dbConsumers {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Consumers";
+					Mapping: {
+						"id" 			--> ESDL_iConsumer,
+						"consType" 		--> ESDL_spConsType(ESDL_iConsumer),
+						"power"			--> ESDL_spConsumerPower(ESDL_iConsumer),
+						"Capacity"		--> ESDL_spConsumerCapacity(ESDL_iConsumer)
+					}
+				}
+				DatabaseTable Uni_dbConsumerProfiles {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "ConsumerProfiles";
+					Mapping: {
+						"id_consumer" 		--> ESDL_iConsumer,
+						"dataSource" 		--> ESDL_spConsumerdataSource(ESDL_iConsumer),
+						"endDate" 		--> ESDL_spConsumerendDate(ESDL_iConsumer),
+						"field" 		--> ESDL_spConsumerField(ESDL_iConsumer),
+						"filters" 		--> ESDL_spConsumerFilters(ESDL_iConsumer),
+						"host"			--> ESDL_spConsumerHost(ESDL_iConsumer),
+						"interpolationMethod" 	--> ESDL_spConsumerinterpolationMethod(ESDL_iConsumer),
+						"measurement" 		--> ESDL_spConsumermeasurement(ESDL_iConsumer),
+						"multiplier" 		--> ESDL_spConsumermultiplier(ESDL_iConsumer),
+						"profileQuantityAndUnit"--> ESDL_spConsumerprofileQuantityAndUnit(ESDL_iConsumer),
+						"profileType" 		--> ESDL_spConsumerprofileType(ESDL_iConsumer),
+						"startDate"		--> ESDL_spConsumerstartDate(ESDL_iConsumer)
+					}
+				}
+				DatabaseTable Uni_dbConversions {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Conversions";
+					Mapping: {
+						"id" 			--> ESDL_iConversion,
+						"name" 			--> ESDL_spAssetName(ESDL_iConversion),
+						"consType" 		--> ESDL_spEfficiency(ESDL_iConversion),
+						"power"			--> ESDL_spConversionPower(ESDL_iConversion)
+					}
+				}
+				DatabaseTable Uni_dbProcesses {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Processes";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"conversionId" 		--> ESDL_iConversion,
+						"carrierId" 		--> ESDL_iCarrier,
+						"mainPortCarrierId" 	--> ESDL_spMainCarrierProcess(ESDL_iConversion, ESDL_iCarrier),
+						"portType"		--> ESDL_spPortTypeProcess(ESDL_iConversion, ESDL_iCarrier),
+						"ratio"			--> ESDL_spRatioProcess(ESDL_iConversion, ESDL_iCarrier)
+					}
+				}
+				DatabaseTable Uni_dbTransports {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Transports";
+					Mapping: {
+						"id" 			--> ESDL_iTransport,
+						"name" 			--> ESDL_spAssetName(ESDL_iTransport),
+						"effiency" 		--> ESDL_spTransportEffiency(ESDL_iTransport),
+						"capacity" 		--> ESDL_spTransportcapacity(ESDL_iTransport)
+					}
+				}
+				DatabaseTable Uni_dbMapAssetToBuilding {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "MapAssetToBuilding";
+					Mapping: {
+						"id_Asset" 	--> ESDL_iAsset,
+						"id_Building" 	--> ESDL_iBuilding,
+						"Dummy" 	--> ESDL_spMapAssetToBuilding(ESDL_iAsset, ESDL_iBuilding)
+					}
+				}
+				DatabaseTable Uni_dbCostInformations {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "CostInformations";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"AssetId"					--> ESDL_iAsset,
+						"investmentCosts" 				--> ESDL_spinvestmentCosts(ESDL_iAsset),
+						"marginalCosts" 				--> ESDL_spmarginalCosts(ESDL_iAsset),
+						"variableMaintenanceCosts" 			--> ESDL_spvariableMaintenanceCosts(ESDL_iAsset),
+						"fixedMaintenanceCosts"				--> ESDL_spfixedMaintenanceCosts(ESDL_iAsset),
+						"fixedOperationalAndMaintenanceCosts"		--> ESDL_spfixedOperationalAndMaintenanceCosts(ESDL_iAsset),
+						"installationCosts"				--> ESDL_spinstallationCosts(ESDL_iAsset),
+						"variableOperationalCosts"			--> ESDL_spvariableOperationalCosts(ESDL_iAsset),
+						"fixedOperationalCosts"				--> ESDL_spfixedOperationalCosts(ESDL_iAsset),
+						"developmentCosts"				--> ESDL_spdevelopmentCosts(ESDL_iAsset),
+						"discountRate"					--> ESDL_spdiscountRate(ESDL_iAsset)
+					}
+				}
+				DatabaseTable Uni_dbQuantityAndUnitTypes {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "QuantityAndUnitTypes";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"CarrierId"					--> ESDL_iCarrier,
+						"id"						--> ESDL_iQuantityAndUnitType,
+						"multiplier"					--> ESDL_spmultiplier(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
+						"perMultiplier"					--> ESDL_spperMultiplier(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
+						"perScope"					--> ESDL_spperScope(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
+						"perTimeUnit"					--> ESDL_spperTimeUnit(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
+						"physicalQuantity"				--> ESDL_spphysicalQuantity(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
+						"type"						--> ESDL_spUnitType(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
+						"unit"						--> ESDL_spunit(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
+						"perUnit"					--> ESDL_spperUnit(ESDL_iCarrier,ESDL_iQuantityAndUnitType)
+					}
+				}
+				DatabaseTable Uni_dbKPIs {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "KPIs";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"id_KPI"						--> ESDL_iKPI,
+						"name_KPI"						--> ESDL_spKPIName(ESDL_iKPI),
+						"value_KPI"						--> ESDL_spKPIValue(ESDL_iKPI)
+					}
+				}
+				DatabaseTable Uni_dbKPIsBuildings {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "KPIsBuildings";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"id_KPI"						--> ESDL_iKPI,
+						"id_building"						--> ESDL_iBuilding,
+						"name_KPI"						--> ESDL_spKPINameBuilding(ESDL_iKPI, ESDL_iBuilding),
+						"value_KPI"						--> ESDL_spKPIValueBuilding(ESDL_iKPI, ESDL_iBuilding)
+					}
+				}
+				DatabaseTable Uni_dbKPIConversions {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "KPIConversions";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"id_conversion"						--> ESDL_iConversion,
+						"id_KPI"						--> ESDL_iKPI,
+						"name_KPI"						--> ESDL_spKPINameConversion(ESDL_iKPI, ESDL_iConversion),
+						"value_KPI"						--> ESDL_spKPIValueConversion(ESDL_iKPI, ESDL_iConversion)
+					}
+				}
+				DatabaseTable Uni_dbConstraints {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Constraints";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"Node_Id"		-->	ESDL_iAsset,
+						"Constraint_Id"		-->	ESDL_iConstraint,
+						"Constraint_Name"	-->	ESDL_spConstraintName(ESDL_iConstraint,ESDL_iAsset),
+						"Constraint_Attribute"	-->	ESDL_spConstraintAttribute(ESDL_iConstraint,ESDL_iAsset),
+						"range_Id"		-->	ESDL_spRangeId(ESDL_iConstraint,ESDL_iAsset),
+						"range_name"		-->	ESDL_spRangeName(ESDL_iConstraint,ESDL_iAsset),
+						"max"			-->	ESDL_spRangeMinValue(ESDL_iConstraint,ESDL_iAsset), 
+						"min"			-->	ESDL_spRangeMaxValue(ESDL_iConstraint,ESDL_iAsset)
+					}
+				}
+			}
+		}
+	}
+	Section Standard_Stuff {
+		Procedure MainInitialization {
+			Comment: "Add initialization statements here that do NOT require any library being initialized already.";
+		}
+		Procedure PostMainInitialization {
+			Comment: {
+				"Add initialization statements here that require that the libraries are already initialized properly,
+				or add statements that require the Data Management module to be initialized."
+			}
+		}
+		Procedure MainExecution;
+		Procedure PreMainTermination {
+			Body: {
+				return DataManagementExit();
+			}
+			Comment: {
+				"Add termination statements here that require all libraries to be still alive.
+				Return 1 if you allow the termination sequence to continue.
+				Return 0 if you want to cancel the termination sequence."
+			}
+		}
+		Procedure MainTermination {
+			Body: {
+				return 1;
+			}
+			Comment: {
+				"Add termination statements here that do not require all libraries to be still alive.
+				Return 1 to allow the termination sequence to continue.
+				Return 0 if you want to cancel the termination sequence.
+				It is recommended to only use the procedure PreMainTermination to cancel the termination sequence and let this procedure always return 1."
+			}
+		}
+		Section Quantities_and_Units {
+			Comment: {
+				"This section contains all the units and quantities that are added automatically by AIMMS.
+				It is recommended to declare all your quantities here."
+			}
+			Quantity SI_Time_Duration {
+				BaseUnit: s;
+				Conversions: minute->s : #-># * 60;
+				Comment: {
+					"Expresses the value for the duration of periods.
+					
+					The unit s has been added automatically because it is a required unit for AimmsWebUI.
+					
+					The unit minute has been added automatically because it is a required unit for AimmsWebUI."
+				}
+			}
+		}
+	}
+}

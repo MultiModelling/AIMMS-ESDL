@@ -5,7 +5,7 @@
 
 # ## Introduction
 # 
-# This is a ready made code script that transforms an esdl to a database that can be imported to into AIMMS. It uses two python packages 'pyesdl' and 'pymysql' made by respectively TNO and Mysql to transform an esdl file to SQL tables that can be read by AIMMS.
+# This is a ready made code script that transforms an ESDL to a database that can be imported to into AIMMS. It uses two python packages 'pyesdl' and 'pymysql' made by respectively TNO and Mysql to transform an esdl file to SQL tables that can be read by AIMMS.
 
 # ## **Sensitive Quomare user information**
 
@@ -23,17 +23,16 @@
 
 # In[1]:
 
+from dotenv import load_dotenv
+load_dotenv()
 
 
-
-DB = "TESTDB_ESDL_to_AIMMS"
-
-
-Filename = <<Your_ESDL>>
-Outputfile = <<Your_Output>>
-Host = <<Your_Host>>
-User = <<Your_User>>
-PW = <<Your_Password>>
+Filename = os.getenv("ESDL_INPUT_FILENAME")
+Outputfile = os.getenv("ESDL_OUTPUT_FILENAME")
+Host = os.getenv("DATABASE_HOST")
+DB = os.getenv("DATABASE_NAME")
+User = os.getenv("DATABASE_USER")
+PW = os.getenv("DATABASE_PASSWORD")
 
 
 # In[2]:

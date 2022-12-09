@@ -1,16 +1,18 @@
 #!/usr/bin/env python
 # coding: utf-8
+import os
 
 # In[1]:
+from dotenv import load_dotenv
+load_dotenv()
 
 
-DB = "TESTDB_ESDL_to_AIMMS"
-
-Filename = <<Your_ESDL>>
-Outputfile = <<Your_Output>>
-Host = <<Your_Host>>
-User = <<Your_User>>
-PW = <<Your_Password>>
+Filename = os.getenv("ESDL_INPUT_FILENAME")
+Outputfile = os.getenv("ESDL_OUTPUT_FILENAME")
+Host = os.getenv("DATABASE_HOST")
+DB = os.getenv("DATABASE_NAME")
+User = os.getenv("DATABASE_USER")
+PW = os.getenv("DATABASE_PASSWORD")
 
 from esdl.esdl_handler import EnergySystemHandler
 from esdl import esdl

@@ -69,3 +69,6 @@ yarn.lock
 
 *.log
 log4p*.log.*
+
+#Data
+/Python/ESDLs

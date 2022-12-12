@@ -5,18 +5,19 @@ Model Main_TestFileSQLRead {
 		Procedure Uni_prReadInputFromSql {
 			Body: {
 				empty Declaration_ESDL_parameters, Uni_sTables;
-
-				Uni_ServerString := "<<Your_Host>>";
-				Uni_UserString := "<<Your_User>>";
-				Uni_PasswordString:= "<<Your_Password>>";
 				
-				Uni_DBString := "TESTDB_ESDL_to_AIMMS";
+				
+				
+				DATABASE_HOST := "<<Your_Host>>";
+				DATABASE_USER := "<<Your_User>>";
+				DATABASE_PASSWORD:= "<<Your_Password>>";
+				DATABASE_NAME := "<<Your_DB>>";
 				
 				Uni_prSetInputDatabaseConnection;
 				
 				Uni_spTableLink(Uni_iEveryTable) := "Uni_db" + Uni_iEveryTable;
 				Uni_epTableLink(Uni_iEveryTable):= stringtoelement(Uni_sdbTables, Uni_spTableLink(Uni_iEveryTable), 0);
-				Uni_spQueryString := "Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + Uni_DBString + "' order by database_name, table_name;";
+				Uni_spQueryString := "Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + DATABASE_NAME + "' order by database_name, table_name;";
 				Read from table Uni_SQLQuery(Uni_spQueryString) in insert mode;
 				
 				
@@ -47,6 +48,16 @@ Model Main_TestFileSQLRead {
 				!Read from table Uni_dbQuantityAndUnitTypes in insert mode;
 				!
 			}
+		}
+		Procedure Uni_prReadEnv {
+			Body: {
+				
+				Read EnvString from file Uni_Env;
+				
+				
+				!read from file Uni_Env;
+			}
+			Parameter EnvBoole;
 		}
 		DatabaseProcedure Uni_SQLQuery {
 			Arguments: (iQuery);
@@ -122,10 +133,10 @@ Model Main_TestFileSQLRead {
 					SQLCreateConnectionString(
 						DatabaseInterface              :  _eDatabaseInterface, 
 						DriverName                     :  _spDriverName(_eDriver), 
-						ServerName                     :  Uni_ServerString, 
-						DatabaseName                   :  Uni_DBString, 
-						UserId                         :  Uni_UserString, 
-						Password                       :  Uni_PasswordString);
+						ServerName                     :  DATABASE_HOST, 
+						DatabaseName                   :  DATABASE_NAME, 
+						UserId                         :  DATABASE_USER, 
+						Password                       :  DATABASE_PASSWORD);
 			}
 			ElementParameter _eDatabaseInterface {
 				Range: AllDatabaseInterfaces;
@@ -170,12 +181,20 @@ Model Main_TestFileSQLRead {
 				IndexDomain: (Uni_iTable);
 			}
 			StringParameter Uni_spQueryString;
-			StringParameter Uni_DBString;
-			StringParameter Uni_ServerString;
-			StringParameter Uni_UserString;
-			StringParameter Uni_PasswordString;
+			StringParameter ESDL_INPUT_FILENAME;
+			StringParameter ESDL_OUTPUT_FILENAME;
+			StringParameter DATABASE_NAME;
+			StringParameter DATABASE_HOST;
+			StringParameter DATABASE_USER;
+			StringParameter DATABASE_PASSWORD;
 		}
 		DeclarationSection Declaration_connection {
+			File Uni_Env {
+				Name: "Config/.env";
+				Device: Disk;
+				Mode: replace;
+			}
+			StringParameter EnvString;
 			Set Uni_sdbTables {
 				SubsetOf: AllIdentifiers;
 				Index: Uni_idbTable;

@@ -24,7 +24,12 @@ pip install -r requirements.txt
 
 AIMMS
 -----
-Then, open In de Aimms folder the project ‘TestFileSQLRead’ and then open the Mainproject folder. In this folder you see the ‘TestFileSQLRead.ams’-file. At the top of this file, the last three variables above should also be changed.
+Then, open In de Aimms folder the project ‘TestFileSQLRead’ and then open the Config folder. 
+Similar to the file created in the Python folder, create a ```.env``` file based on this new  ```.env-template```. 
+Note that there are two differences with the previous .env file:
+1.  The ```=``` signs are replaced by ```:=``` signs.
+2.  All the statements end with a ```;```.
+
 The steps to run the aimms code would be:
 
 1.	Run: Uniform ESDL-AIMMS link.py

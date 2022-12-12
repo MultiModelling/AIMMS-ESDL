@@ -2,16 +2,19 @@
 
 Model Main_TestFileSQLRead {
 	Section Universal_Link {
+		Procedure Uni_prReadEnv {
+			Body: {
+				
+				Read from file Uni_Env;
+			}
+			Parameter EnvBoole;
+		}
 		Procedure Uni_prReadInputFromSql {
 			Body: {
-				empty Declaration_ESDL_parameters, Uni_sTables;
+				empty Declaration_ESDL_parameters, Uni_sTables, Declaration_connection;
 				
+				Uni_prReadEnv;
 				
-				
-				DATABASE_HOST := "<<Your_Host>>";
-				DATABASE_USER := "<<Your_User>>";
-				DATABASE_PASSWORD:= "<<Your_Password>>";
-				DATABASE_NAME := "<<Your_DB>>";
 				
 				Uni_prSetInputDatabaseConnection;
 				
@@ -49,15 +52,16 @@ Model Main_TestFileSQLRead {
 				!
 			}
 		}
-		Procedure Uni_prReadEnv {
+		Procedure Uni_prWriteOutputToSql {
 			Body: {
 				
-				Read EnvString from file Uni_Env;
 				
+				for Uni_iTabletoWrite do
 				
-				!read from file Uni_Env;
+					Write to Table Uni_epTableLink(Uni_iTabletoWrite) in replace mode;
+				
+				endfor;
 			}
-			Parameter EnvBoole;
 		}
 		DatabaseProcedure Uni_SQLQuery {
 			Arguments: (iQuery);
@@ -70,17 +74,6 @@ Model Main_TestFileSQLRead {
 			}
 			StringParameter iQuery {
 				Property: Input;
-			}
-		}
-		Procedure Uni_prWriteOutputToSql {
-			Body: {
-				
-				
-				for Uni_iTabletoWrite do
-				
-					Write to Table Uni_epTableLink(Uni_iTabletoWrite) in replace mode;
-				
-				endfor;
 			}
 		}
 		Procedure Uni_prSetInputDatabaseConnection {
@@ -181,12 +174,6 @@ Model Main_TestFileSQLRead {
 				IndexDomain: (Uni_iTable);
 			}
 			StringParameter Uni_spQueryString;
-			StringParameter ESDL_INPUT_FILENAME;
-			StringParameter ESDL_OUTPUT_FILENAME;
-			StringParameter DATABASE_NAME;
-			StringParameter DATABASE_HOST;
-			StringParameter DATABASE_USER;
-			StringParameter DATABASE_PASSWORD;
 		}
 		DeclarationSection Declaration_connection {
 			File Uni_Env {
@@ -212,6 +199,12 @@ Model Main_TestFileSQLRead {
 			ElementParameter Uni_epCurrentDatabase {
 				Range: Uni_sDatabases;
 			}
+			StringParameter ESDL_INPUT_FILENAME;
+			StringParameter ESDL_OUTPUT_FILENAME;
+			StringParameter DATABASE_NAME;
+			StringParameter DATABASE_HOST;
+			StringParameter DATABASE_USER;
+			StringParameter DATABASE_PASSWORD;
 		}
 		DeclarationSection Declaration_ESDL_parameters {
 			Set ESDL_AllElements;

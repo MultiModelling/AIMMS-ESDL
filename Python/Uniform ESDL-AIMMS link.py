@@ -455,27 +455,28 @@ if __name__ == "__main__":
     Processes = Conversions
     valProcesses = []
     for a in Conversions:
-        for b in a.port:
-            ratio = 1
-            if(a.behaviour):
-                for i in a.behaviour:
-                    mainport = i.mainPort
-                    for j in i.mainPortRelation:
-                        if (j.port == b):
-                            ratio = j.ratio
-                            break;
-            
-            else:
-                ratio = a.efficiency
-                mainport = a.port[1]
-            if type(a.port[0]) == esdl.InPort:
-                atype = 'In'
-            else:  atype = 'Out'
-            if type(b) == esdl.InPort:
-                btype = 'In'
-            else: btype = 'Out'
-            tup = ('null', mainport.id, mainport.carrier.id, atype, b.id, btype, a.id, a.name, ratio, b.carrier.id, b.carrier.name)
-            valProcesses.append(tup)
+        if (len(a.port) > 1):
+            for b in a.port:
+                ratio = 1
+                if(a.behaviour):
+                    for i in a.behaviour:
+                        mainport = i.mainPort
+                        for j in i.mainPortRelation:
+                            if (j.port == b):
+                                ratio = j.ratio
+                                break;
+                
+                else:
+                    ratio = a.efficiency
+                    mainport = a.port[1]
+                if type(a.port[0]) == esdl.InPort:
+                    atype = 'In'
+                else:  atype = 'Out'
+                if type(b) == esdl.InPort:
+                    btype = 'In'
+                else: btype = 'Out'
+                tup = ('null', mainport.id, mainport.carrier.id, atype, b.id, btype, a.id, a.name, ratio, b.carrier.id, b.carrier.name)
+                valProcesses.append(tup)
     if(valProcesses != []):
         SetofAttributes.append(('quantityAndUnit varchar(100)',
                                 'mainPortId varchar(100)',

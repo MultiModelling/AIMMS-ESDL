@@ -107,14 +107,14 @@ def create_AIMMS_sql(DB, SetofTables,SetofAttributes):
         for i in range(len(SetofTables)):
             query.append('create table ' + SetofTables[i] + '(' + ','.join(SetofAttributes[i]) +')')
 #         query = [
-# '        create table Assets(aggregated varchar(100),aggregationCount varchar(100),assetType varchar(100),commissioningDate varchar(100),decommissioningDate varchar(100),description varchar(100),id varchar(100) Primary Key,installationDuration varchar(100),manufacturer varchar(100),name varchar(500),originalIdInSource varchar(100),owner varchar(100),shortname varchar(500),state varchar(100),surfaceArea varchar(100),technicalLifetime varchar(100));',
+# '        create table Assets(aggregated varchar(100),aggregationCount varchar(100),assetType varchar(100),commissioningDate varchar(100),decommissioningDate varchar(100),description varchar(100),id varchar(100) Primary Key,installationDuration varchar(100),manufacturer varchar(100),name varchar(1500),originalIdInSource varchar(100),owner varchar(100),shortname varchar(1500),state varchar(100),surfaceArea varchar(100),technicalLifetime varchar(100));',
 # '        create table Arcs(NameNode1 varchar(100), idNode1 varchar(100), nameNode2 varchar(100), idNode2 varchar(100), Carrier varchar(100), maxPower varchar(100), simultaneousPower varchar(100),PRIMARY KEY (idNode1, idNode2));',
-# '        create table Producers(id varchar(100) Primary Key, name varchar(500), prodType varchar(100), OperationalHours varchar(100), fullLoadHours varchar(100), power varchar(100));',
-# '        create table Conversions(id varchar(100) Primary Key,name varchar(500), efficiency varchar(100), power varchar(100));',
-# '        create table Consumers(id varchar(100) Primary Key,name varchar(500), consType varchar(100), power varchar(100));',
-# '        create table Transports(id varchar(100) Primary Key,name varchar(500), efficiency varchar(100), capacity varchar(100));',
-# '        create table Products(stateOfMatter varchar(100), energyCarrierType varchar(100), id varchar(100) Primary Key,  emission varchar(100), name varchar(500), energyContent varchar(100));',
-# '        create table Buildings(id varchar(100) Primary Key, floorArea varchar(100), buildingYear varchar(100), originalIdInSource varchar(100),surfaceArea varchar(100), name varchar(500), height varchar(100), asset1 varchar(100), asset2 varchar(100),asset3 varchar(100),asset4 varchar(100));']
+# '        create table Producers(id varchar(100) Primary Key, name varchar(1500), prodType varchar(100), OperationalHours varchar(100), fullLoadHours varchar(100), power varchar(100));',
+# '        create table Conversions(id varchar(100) Primary Key,name varchar(1500), efficiency varchar(100), power varchar(100));',
+# '        create table Consumers(id varchar(100) Primary Key,name varchar(1500), consType varchar(100), power varchar(100));',
+# '        create table Transports(id varchar(100) Primary Key,name varchar(1500), efficiency varchar(100), capacity varchar(100));',
+# '        create table Products(stateOfMatter varchar(100), energyCarrierType varchar(100), id varchar(100) Primary Key,  emission varchar(100), name varchar(1500), energyContent varchar(100));',
+# '        create table Buildings(id varchar(100) Primary Key, floorArea varchar(100), buildingYear varchar(100), originalIdInSource varchar(100),surfaceArea varchar(100), name varchar(1500), height varchar(100), asset1 varchar(100), asset2 varchar(100),asset3 varchar(100),asset4 varchar(100));']
         for i in query:
             cursor.execute(i)
         
@@ -125,7 +125,7 @@ def create_AIMMS_sql(DB, SetofTables,SetofAttributes):
             print("Error: unable to create table %d: %s" %(e.args[0], e.args[1]))
             
 # if __name__ == "__main__" :
-#     my_list =  [('id varchar(100)','name varchar(500)'), ('id varchar(100)','name varchar(500)'), ('id varchar(100)','name varchar(500)'), ('id varchar(100)','name varchar(500)'), ('id varchar(100)','name varchar(500)'), ('id varchar(100)','name varchar(500)'), ('id varchar(100)','name varchar(500)'), ('id varchar(100)','name varchar(500)')]
+#     my_list =  [('id varchar(100)','name varchar(1500)'), ('id varchar(100)','name varchar(1500)'), ('id varchar(100)','name varchar(1500)'), ('id varchar(100)','name varchar(1500)'), ('id varchar(100)','name varchar(1500)'), ('id varchar(100)','name varchar(1500)'), ('id varchar(100)','name varchar(1500)'), ('id varchar(100)','name varchar(1500)')]
 #     create_AIMMS_sql('TESTDB_AIMMS',['Assets', 'Arcs', 'Producers', 'Conversions', 'Consumers', 'Transports', 'Products', 'Buildings'], my_list
 #                     )
 
@@ -236,10 +236,10 @@ if __name__ == "__main__":
                                 'description varchar(100)' ,  
                                 'installationDuration varchar(100)' , 
                                 'manufacturer varchar(100)' , 
-                                'name varchar(500)' , 
+                                'name varchar(1500)' , 
                                 'originalIdInSource varchar(100)' , 
                                 'owner varchar(100)' , 
-                                'shortname varchar(500)' ,
+                                'shortname varchar(1500)' ,
                                 'state varchar(100)' , 
                                 'surfaceArea varchar(100)' , 
                                 'technicalLifetime varchar(100)',
@@ -256,7 +256,7 @@ if __name__ == "__main__":
                 for n in Producers]
     if(Producers != []):
         SetofAttributes.append(('id varchar(100) Primary key', 
-                                'name varchar(500)', 
+                                'name varchar(1500)', 
                                 'prodType varchar(100)', 
                                 'operationalHours varchar(100)', 
                                 'fullLoadHours varchar(100)', 
@@ -270,7 +270,7 @@ if __name__ == "__main__":
 
     if(Consumers != []):    
         SetofAttributes.append(('id varchar(100)  Primary Key', 
-                                'name varchar(500)', 
+                                'name varchar(1500)', 
                                 'consType varchar(100)', 
                                 'power varchar(100)'))
         SetofTables.append('Consumers')
@@ -326,7 +326,7 @@ if __name__ == "__main__":
                                 'interpolationMethod varchar(100)', 
                                 'measurement varchar(100)', 
                                 'multiplier varchar(100)', 
-                                'name varchar(500)',  
+                                'name varchar(1500)',  
                                 'profileQuantityAndUnit varchar(100)', 
                                 'profileType varchar(100)', 
                                 'startDate varchar(100)'))
@@ -338,7 +338,7 @@ if __name__ == "__main__":
                 for n in Conversions]
     if(Conversions != []):    
         SetofAttributes.append(('id varchar(100)  Primary Key', 
-                                'name varchar(500)', 
+                                'name varchar(1500)', 
                                 'efficiency varchar(100)', 
                                 'power varchar(100)'))
         SetofTables.append('Conversions')
@@ -352,7 +352,7 @@ if __name__ == "__main__":
                 for n in Transports]
     if(Transports != []):       
         SetofAttributes.append(('id varchar(100)  Primary Key', 
-                                'name varchar(500)', 
+                                'name varchar(1500)', 
                                 'efficiency varchar(100)', 
                                 'capacity varchar(100)'))
         SetofTables.append('Transports')
@@ -372,13 +372,13 @@ if __name__ == "__main__":
                 1)
                  for a in Arcs for b in a.connectedTo]
     if(Arcs != []): 
-        SetofAttributes.append(('Node1_name varchar(500)', 
+        SetofAttributes.append(('Node1_name varchar(1500)', 
                                 'Node1_id varchar(100)',
-                                'Outport_name varchar(500)',
+                                'Outport_name varchar(1500)',
                                 'Outport_id varchar(100)', 
-                                'Node2_name varchar(500)', 
+                                'Node2_name varchar(1500)', 
                                 'Node2_id varchar(100)',
-                                'Inport_name varchar(500)', 
+                                'Inport_name varchar(1500)', 
                                 'Inport_id varchar(100)',
                                 'PRIMARY KEY (Node1_id, Node2_id)',
                                 'carrier varchar(100)',
@@ -402,13 +402,13 @@ if __name__ == "__main__":
 #                 b.simultaneousPower, 
 #                 1)
 #                  for a in Arcs for b in a.connectedTo]
-#     SetofAttributes.append(('Node1_name varchar(500)', 
+#     SetofAttributes.append(('Node1_name varchar(1500)', 
 #                             'Node1_id varchar(100)',
-#                             'Outport_name varchar(500)',
+#                             'Outport_name varchar(1500)',
 #                             'Outport_id varchar(100)', 
-#                             'Node2_name varchar(500)', 
+#                             'Node2_name varchar(1500)', 
 #                             'Node2_id varchar(100)',
-#                             'Inport_name varchar(500)', 
+#                             'Inport_name varchar(1500)', 
 #                             'Inport_id varchar(100)',
 #                             'PRIMARY KEY (Node1_id, Node2_id)',
 #                             'carrier varchar(100)',
@@ -485,10 +485,10 @@ if __name__ == "__main__":
                                 'portId varchar(100)',
                                 'portType varchar(100)',
                                 'conversionId varchar(100)',
-                                'conversionname varchar(500)',
+                                'conversionname varchar(1500)',
                                 'ratio varchar(100)',
                                 'carrierId varchar(100)',
-                                'carriername varchar(500)'))
+                                'carriername varchar(1500)'))
         SetofTables.append('Processes')
         SetofValues.append(valProcesses)
     
@@ -498,7 +498,7 @@ if __name__ == "__main__":
                 for p in Carriers]
     if(Carriers != []):
         SetofAttributes.append(('id varchar(100) Primary Key',
-                                'name varchar(500)'))
+                                'name varchar(1500)'))
         SetofTables.append('Carriers')
         SetofValues.append(valCarriers)
     
@@ -515,7 +515,7 @@ if __name__ == "__main__":
                                 'stateOfMatter varchar(100)', 
                                 'energyCarrierType varchar(100)',  
                                 'emission varchar(100)',
-                                'name varchar(500)',
+                                'name varchar(1500)',
                                 'energyContent varchar(100)'))
         SetofTables.append('EnergyCarriers')
         SetofValues.append(valEnergyCarriers)
@@ -537,7 +537,7 @@ if __name__ == "__main__":
                  for h in Commodities]
     if(Commodities != []):    
         SetofAttributes.append(('id varchar(100)  Primary Key',
-                                 'name varchar(500)'))
+                                 'name varchar(1500)'))
         SetofTables.append('Commodities')
         SetofValues.append(valCommodities)
     
@@ -586,7 +586,7 @@ if __name__ == "__main__":
                                 'buildingYear varchar(100)', 
                                 'originalIdInSource varchar(100)',
                                 'surfaceArea varchar(100)',
-                                'name varchar(500)', 
+                                'name varchar(1500)', 
                                 'height varchar(100)', 
                                 'Lat varchar(100)', 
                                 'Lon varchar(100)'))
@@ -678,7 +678,7 @@ if __name__ == "__main__":
                 else:
                     temp+=(e.value,)
             valCostInformations.append(temp)
-    CostInformationsAtt = ('AssetId varchar(100)', 'Assetname varchar(500)')
+    CostInformationsAtt = ('AssetId varchar(100)', 'Assetname varchar(1500)')
     if(CostInformations != []):    
         for d in dir(CostInformations[0]):
             CostInformationsAtt += (d  + ' varchar(100)',)
@@ -706,22 +706,22 @@ if __name__ == "__main__":
             valConstraints.append(temp)
                 
 #             ('NodeId varchar(100)',
-#                       'Nodename varchar(500)',
+#                       'Nodename varchar(1500)',
 #                       ' varchar(100)',
-#                       'Constraintname varchar(500)', 
+#                       'Constraintname varchar(1500)', 
 #                       'ConstraintAttribute varchar(100)',
 #                       'RangeId varchar(100)', 
-#                       'Rangename varchar(500)', 
+#                       'Rangename varchar(1500)', 
 #                       'minValue varchar(100)', 
 #                       'maxValue varchar(100)')
     if(Constraints != []):
         SetofAttributes.append(('Node_Id varchar(100)',
-                      'Node_name varchar(500)',
+                      'Node_name varchar(1500)',
                       'Constraint_Id varchar(100)',
-                      'Constraint_name varchar(500)',
+                      'Constraint_name varchar(1500)',
                       'Constraint_Attribute varchar(100)', 
                       'range_Id varchar(100)',
-                      'range_name varchar(500)', 
+                      'range_name varchar(1500)', 
                       'max varchar(100)', 
                       'min varchar(100)'))
         SetofTables.append('Constraints')
@@ -779,7 +779,7 @@ if __name__ == "__main__":
 #                            for p in GenericProfiles]              
 #     SetofAttributes.append(('profileType varchar(100)',
 #                           'profileQuantityAndUnit varchar(100)',
-#                           'name varchar(500)',
+#                           'name varchar(1500)',
 #                           'interpolationMethod varchar(100)',
 #                           'dataSource varchar(100)',
 #                           'setProfile varchar(100)',
@@ -806,171 +806,38 @@ if __name__ == "__main__":
     conn.close()
 
 
-# ### Main function that loads an Loads an ESDL file and restructures the data such that the function above can write everything in a newly created SQL Database. The restructuring gets set in SetofTables, SetofAttributes    SetofValues. With SetofTables a list, SetofAttributes a list of tuples and SetofValues a list of a list of tuples.
-
-# In[7]:
 
 
-import sys
+# # In[3]:
 
-conn = pymysql.connect(
-    host= Host,
-    user=User,
-    password=PW)
-cursor = conn.cursor()
+# import sys
 
-def str_to_class(classname):
-    return getattr(sys.modules[__name__], classname)
+# conn = pymysql.connect(
+#     host= Host,
+#     user=User,
+#     password=PW)
+# cursor = conn.cursor()
+
+# def str_to_class(classname):
+#     return getattr(sys.modules[__name__], classname)
 
 
-def Check_dir(my_class):
-    Attributes = [dir(n) for n in my_class]
-    AllAttributes = set(sum(Attributes, []))
-    return AllAttributes
+# def Check_dir(my_class):
+#     Attributes = [dir(n) for n in my_class]
+#     AllAttributes = set(sum(Attributes, []))
+#     return AllAttributes
 
-if __name__ == "__main__" :
-    #The next set contains all the ESDL classes that have been included in the last main function
-    ThingsInESDL = get_sql("Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + DB + "' order by database_name, table_name;").table_name
-    for i in ThingsInESDL:
-        print(i)
-        dirThing = Check_dir(str_to_class(i))
-        print(i, ': ')
-        for j in dirThing:
-            print('   ',j)
+# if __name__ == "__main__" :
+#     #The next set contains all the ESDL classes that have been included in the last main function
+#     ThingsInESDL = get_sql("Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + DB + "' order by database_name, table_name;").table_name
+#     for i in ThingsInESDL:
+#         print(i)
+#         dirThing = Check_dir(str_to_class(i))
+#         print(i, ': ')
+#         for j in dirThing:
+#             print('   ',j)
     
-conn.close()
+# conn.close()
 
 
-# In[ ]:
 
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# # Space for AIMMS Rest API
-# 
-
-# In[ ]:
-
-
-
-
-
-# # Class that reads the SQL back in. Used to check if the data is ordered correctly and edits the ESDL
-
-# In[8]:
-
-
-conn = pymysql.connect(
-    host= Host,
-    user=User,
-    password=PW)
-cursor = conn.cursor()
-
-class SQLESDL:
-    def __init__(self, DB):
-        self.tables = get_sql("Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + DB + "' order by database_name, table_name;")
-        self.DB= DB
-        
-        for i in self.tables.table_name:
-            setattr(self, i,get_sql('SELECT * FROM '+DB+'.'+i+ ';'))
-
-    
-    def getAttributes(self):    
-        return dir(self)
-
-
-    
- 
-if __name__ == "__main__":
-    Schema = DB
-    Training = SQLESDL(Schema)
-    print(Training.getAttributes())
-    conn.close()
-
-
-# In[9]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# 

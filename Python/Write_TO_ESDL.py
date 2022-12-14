@@ -61,7 +61,45 @@ if __name__ == "__main__":
     
 
 
-# In[3]:
+
+
+# # Class that reads the SQL back in. Used to check if the data is ordered correctly and edits the ESDL
+
+# In[8]:
+
+
+conn = pymysql.connect(
+    host= Host,
+    user=User,
+    password=PW)
+cursor = conn.cursor()
+
+class SQLESDL:
+    def __init__(self, DB):
+        self.tables = get_sql("Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + DB + "' order by database_name, table_name;")
+        self.DB= DB
+        
+        for i in self.tables.table_name:
+            setattr(self, i,get_sql('SELECT * FROM '+DB+'.'+i+ ';'))
+
+    
+    def getAttributes(self):    
+        return dir(self)
+
+
+    
+ 
+if __name__ == "__main__":
+    Schema = DB
+    Training = SQLESDL(Schema)
+    print(Training.getAttributes())
+    conn.close()
+
+
+
+# # Function that writes output to ESDL
+
+# In[ ]:
 
 
 def OutputESDL(Schema):
@@ -92,16 +130,4 @@ def OutputESDL(Schema):
     
 if __name__ == "__main__":
     OutputESDL(DB)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 

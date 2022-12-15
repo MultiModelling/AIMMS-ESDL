@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -358,19 +360,27 @@ if __name__ == "__main__":
         SetofTables.append('Transports')
         SetofValues.append(valTransports)
     
+    
     Arcs = esh.get_all_instances_of_type(esdl.OutPort)
-    valArcs = [(a.energyasset.name,
-                a.energyasset.id, 
-                a.name, 
-                a.id, 
-                b.energyasset.name, 
-                b.energyasset.id, 
-                b.name, 
-                b.id,
-                a.carrier.name, 
-                a.carrier.id, 
-                1)
-                 for a in Arcs for b in a.connectedTo]
+    
+    valArcs=[]
+    for a in Arcs:
+        for b in a.connectedTo:
+            if (a.carrier != None):
+                valArcs.append(a.energyasset.name,
+                               a.energyasset.id,
+                               a.name,
+                               a.id,
+                               b.energyasset.name,
+                               b.energyasset.id,
+                               b.name,
+                               b.id,
+                               a.carrier.name,
+                               a.carrier.id,
+                               1)
+            else:
+                print(f'Note that arc {a.id} misses attribute (carrier)')
+    
     if(Arcs != []): 
         SetofAttributes.append(('Node1_name varchar(1500)', 
                                 'Node1_id varchar(100)',
@@ -450,7 +460,22 @@ if __name__ == "__main__":
 #                                 'ratio varchar(100)'))        
 #         SetofTables.append('Processes')
 #         SetofValues.append(valProcesses)
-    
+
+# valArcs=[]
+#     for a in Arcs:
+#         for b in a.connectedTo:
+#             if (a.carrier != None):
+#                 valArcs.append(a.energyasset.name,
+#                                a.energyasset.id,
+#                                a.name,
+#                                a.id,
+#                                b.energyasset.name,
+#                                b.energyasset.id,
+#                                b.name,
+#                                b.id,
+#                                a.carrier.name,
+#                                a.carrier.id,
+#                                1)
     
     Processes = Conversions
     valProcesses = []
@@ -475,8 +500,15 @@ if __name__ == "__main__":
                 if type(b) == esdl.InPort:
                     btype = 'In'
                 else: btype = 'Out'
-                tup = ('null', mainport.id, mainport.carrier.id, atype, b.id, btype, a.id, a.name, ratio, b.carrier.id, b.carrier.name)
-                valProcesses.append(tup)
+                print(mainport)
+                print(mainport.carrier)
+                print(b)
+                if (mainport.carrier != None):
+                    tup = ('null', mainport.id, mainport.carrier.id, atype, b.id, btype, a.id, a.name, ratio, b.carrier.id, b.carrier.name)
+                    valProcesses.append(tup)
+                else:
+                    print(f'Note that process {b.id} misses attribute (carrier)')
+    
     if(valProcesses != []):
         SetofAttributes.append(('quantityAndUnit varchar(100)',
                                 'mainPortId varchar(100)',

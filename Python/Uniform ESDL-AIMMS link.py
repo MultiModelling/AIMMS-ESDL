@@ -26,7 +26,8 @@
 # In[1]:
 import os
 from dotenv import load_dotenv
-load_dotenv()
+
+load_dotenv() # load environmental variables from the .env file (see .env-template)
 
 
 Filename = os.getenv("ESDL_INPUT_FILENAME")
@@ -367,7 +368,7 @@ if __name__ == "__main__":
     for a in Arcs:
         for b in a.connectedTo:
             if (a.carrier != None):
-                valArcs.append(a.energyasset.name,
+                valArcs.append((a.energyasset.name,
                                a.energyasset.id,
                                a.name,
                                a.id,
@@ -377,7 +378,7 @@ if __name__ == "__main__":
                                b.id,
                                a.carrier.name,
                                a.carrier.id,
-                               1)
+                               1))
             else:
                 print(f'Note that arc {a.id} misses attribute (carrier)')
     
@@ -500,9 +501,9 @@ if __name__ == "__main__":
                 if type(b) == esdl.InPort:
                     btype = 'In'
                 else: btype = 'Out'
-                print(mainport)
-                print(mainport.carrier)
-                print(b)
+                #print(mainport)
+                #print(mainport.carrier)
+                #print(b)
                 if (mainport.carrier != None):
                     tup = ('null', mainport.id, mainport.carrier.id, atype, b.id, btype, a.id, a.name, ratio, b.carrier.id, b.carrier.name)
                     valProcesses.append(tup)
@@ -630,7 +631,7 @@ if __name__ == "__main__":
         SetofAttributes.append(('id_Asset varchar(100) Primary Key', 
                                 'name_Asset varchar(100)',  
                                 'id_Building varchar(100)',
-                                'name_Building varchar(100)', 
+                                'name_Building varchar(700)',
                                 'Dummy varchar(100)'))
         SetofTables.append('MapAssetToBuilding')
         SetofValues.append(valMapAssetToBuilding)
@@ -644,7 +645,7 @@ if __name__ == "__main__":
                     'name_KPI varchar(100)', 
                     'value_KPI varchar(100)',
                     'id_building varchar(100)',
-                    'name_building varchar(100)',
+                    'name_building varchar(700)',
                     'id_conversion varchar(100)',
                     'name_conversion varchar(100)'))
         SetofTables.append('KPIs')
@@ -670,7 +671,7 @@ if __name__ == "__main__":
                     'name_KPI varchar(100)', 
                     'value_KPI varchar(100)',
                     'id_building varchar(100)',
-                    'name_building varchar(100)',
+                    'name_building varchar(700)',
                     'id_conversion varchar(100)',
                     'name_conversion varchar(100)'))
         SetofTables.append('KPIsBuildings')
@@ -726,7 +727,7 @@ if __name__ == "__main__":
     for a in Assets:
         for b in a.constraint:
             Constraints.append(b)
-            print(type(b.attributeReference))
+            #print(type(b.attributeReference))
             temp = (a.id,a.name,b.id, b.name, b.attributeReference)
             c = b.range
             if(c):
@@ -832,7 +833,7 @@ if __name__ == "__main__":
     
 #   for loop that writes the tuple of values to the new database in the corresponding table.
     for a in range(len(SetofTables)):
-        print('Exporting:',SetofTables[a])
+        print('Exporting:',SetofTables[a]) #, SetofValues[a])
         write_table_to_Sql(DB, SetofTables[a], SetofValues[a])
     conn.commit()
     conn.close()

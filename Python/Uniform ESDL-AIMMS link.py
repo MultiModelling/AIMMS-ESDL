@@ -9,25 +9,13 @@
 # 
 # This is a ready made code script that transforms an ESDL to a database that can be imported to into AIMMS. It uses two python packages 'pyesdl' and 'pymysql' made by respectively TNO and Mysql to transform an esdl file to SQL tables that can be read by AIMMS.
 
-# ## **Sensitive Quomare user information**
 
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[1]:
 import os
 from dotenv import load_dotenv
+from sqlalchemy import create_engine
+import pymysql
 
-load_dotenv() # load environmental variables from the .env file (see .env-template)
+load_dotenv() # load environmental variables such as database credentials and input file from the .env file (see .env-template)
 
 
 Filename = os.getenv("ESDL_INPUT_FILENAME")
@@ -38,27 +26,13 @@ User = os.getenv("DATABASE_USER")
 PW = os.getenv("DATABASE_PASSWORD")
 
 
-# In[2]:
+# use sqlAlchemy to connect to (any) database, instead of using direct connection
+# this removes the pandas warning
 
-
-import pymysql
-import warnings
-warnings.filterwarnings("ignore", message= ".*pandas only support SQLAlchemy connectable.*")
-
-
-
-conn = pymysql.connect(
-    host= Host,
-    user=User,
-    password=PW)
+database_url = f"mysql+pymysql://{User}:{PW}@{Host}"
+engine = create_engine(database_url)
+conn = engine.raw_connection()
 cursor = conn.cursor()
-
-
-# In[ ]:
-
-
-
-
 
 # ### Simple function that runs an SQL command
 # 
@@ -74,7 +48,7 @@ import pandas as pd
 
 def get_sql(query):
     try:
-        result = pd.read_sql(query, conn)
+        result = pd.read_sql(query, database_url)
         return result
     except pymysql.Error as e:
         print("Error: unable to fetch data %d: %s" %(e.args[0], e.args[1]))
@@ -93,6 +67,7 @@ def get_sql(query):
 def create_AIMMS_sql(DB, SetofTables,SetofAttributes):
     def __init__(self, DB):
         self.DB = DB
+    print(f"Removing and recreate database {DB}")
     cursor.execute('DROP DATABASE IF EXISTS ' + DB +';')
     cursor.execute('create database ' + DB +';')
     conn.select_db(DB)
@@ -181,8 +156,12 @@ def ExtractDataESDL(TableName, Instances, SetofAttributes, SetofTables, SetofVal
                 temp+= (None,)
             else:
                 if e == object:
-                    temp+=(e.id)
-                temp+=(e,)
+                    temp += (e.id)
+                # add values of singleValue profiles in commodity prices
+                if isinstance(e, esdl.SingleValue):
+                    temp += (str(e.value),)
+                else:
+                    temp += (e,)
         valInstance.append(temp)
     
     InstanceAttr = tuple()
@@ -363,7 +342,6 @@ if __name__ == "__main__":
     
     
     Arcs = esh.get_all_instances_of_type(esdl.OutPort)
-    
     valArcs=[]
     for a in Arcs:
         for b in a.connectedTo:
@@ -380,9 +358,9 @@ if __name__ == "__main__":
                                a.carrier.id,
                                1))
             else:
-                print(f'Note that arc {a.id} misses attribute (carrier)')
+                print(f'Note that arc {a.id} misses attribute (carrier), ignoring Arc {a.name} of {a.energyasset.name}')
     
-    if(Arcs != []): 
+    if len(Arcs) > 0:
         SetofAttributes.append(('Node1_name varchar(1500)', 
                                 'Node1_id varchar(100)',
                                 'Outport_name varchar(1500)',
@@ -755,8 +733,8 @@ if __name__ == "__main__":
                       'Constraint_Attribute varchar(100)', 
                       'range_Id varchar(100)',
                       'range_name varchar(1500)', 
-                      'max varchar(100)', 
-                      'min varchar(100)'))
+                      'min varchar(100)',
+                      'max varchar(100)'))
         SetofTables.append('Constraints')
         SetofValues.append(valConstraints)
     

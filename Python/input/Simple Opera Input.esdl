@@ -1,9 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <esdl:EnergySystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:esdl="http://www.tno.nl/esdl" id="3beab53e-f956-45ac-9fd0-05ba03fb3b84" description="Solar panel" esdlVersion="v2102" version="9" name="Opera Input example">
   <energySystemInformation xsi:type="esdl:EnergySystemInformation" id="1b789820-f90f-459f-87b2-59fc4a385d58">
-    <dataSources xsi:type="esdl:DataSources" id="144a4661-4496-4904-b00a-fa2a9ffb66d5">
-      <dataSource xsi:type="esdl:DataSource" description="dfsdf_asda" id="91ce2a4f-0b8e-4114-b163-ef35ef9365a0" name="NewDataSource"/>
-    </dataSources>
     <carriers xsi:type="esdl:Carriers" id="aa89dfcf-f0f6-4179-9d83-867ff2cee66a">
       <carrier xsi:type="esdl:GasCommodity" id="d3c0dc58-b1d2-431b-9a40-0c6e92ed9635" name="Hydrogen">
         <cost xsi:type="esdl:SingleValue" value="5.0" id="8ddad72b-ce13-4253-9bed-931e6de9c500">

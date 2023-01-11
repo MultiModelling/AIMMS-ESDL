@@ -15,21 +15,38 @@ Model Main_TestFileSQLRead {
 				
 				Uni_prReadEnv;
 				
+				Uni_sAllTables := data{Test_log_table, Test_Arcs, Test_Assets, Test_Consumers, Test_Conversions, Test_KPIConversions, Test_KPIs, Test_Producers,Test_Transports, Test_Matters, Test_Constraints,
+							Test_Buildings, Test_Carriers, Test_Commodities, Test_ConsumerProfiles, Test_CostInformations, Test_EnergyCarriers, Test_KPIsBuildings, Test_MapAssetToBuilding, Test_Processes, Test_QuantityAndUnitTypes};
 				
 				Uni_prSetInputDatabaseConnection;
 				
-				Uni_spTableLink(Uni_iEveryTable) := "Uni_db" + Uni_iEveryTable;
+				ESDL_spDatabaseInsert:= "Start ESDL Read";
+				Uni_RunQuery("INSERT INTO `Test_log_table` (`log`) VALUES ('" + ESDL_spDatabaseInsert +"');");
+				setelementadd(ESDL_sLogId,ESDL_eLogId,card(ESDL_sLogId)+1);
+				ESDL_spLog(ESDL_eLogId) := ESDL_spDatabaseInsert;
+				
+				
+				Uni_spTableLink(Uni_iEveryTable) := FindReplaceStrings(Uni_iEveryTable,'Test_','Uni_db');
 				Uni_epTableLink(Uni_iEveryTable):= stringtoelement(Uni_sdbTables, Uni_spTableLink(Uni_iEveryTable), 0);
 				Uni_spQueryString := "Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + DATABASE_NAME + "' order by database_name, table_name;";
 				Read from table Uni_SQLQuery(Uni_spQueryString) in insert mode;
 				
 				
-				for Uni_iTable do
+				
+				for Uni_iTable|Uni_epTableLink(Uni_iTable) do
 				
 					Read from table Uni_epTableLink(Uni_iTable) in insert mode;
 				
 				endfor;
+				ESDL_spDatabaseInsert:= "Finnish ESDL Read";
+				Uni_RunQuery("INSERT INTO `Test_log_table` (`log`) VALUES ('" + ESDL_spDatabaseInsert +"');");
+				setelementadd(ESDL_sLogId,ESDL_eLogId,card(ESDL_sLogId)+1);
+				ESDL_spLog(ESDL_eLogId) := ESDL_spDatabaseInsert;
 				
+				!ESDL_spDatabaseInsert:= "Reading ESDL complete";
+				!Uni_RunQuery("INSERT INTO `log_table` (`log`) VALUES ('" + ESDL_spDatabaseInsert +"');");
+				!setelementadd(ESDL_sLogId,ESDL_eLogId,card(ESDL_sLogId)+1);
+				!ESDL_spLog(ESDL_eLogId) := ESDL_spDatabaseInsert;
 				
 				!Read from table Uni_dbAssets in replace mode;
 				!Read from table Uni_dbBuildings in insert mode;
@@ -56,9 +73,9 @@ Model Main_TestFileSQLRead {
 			Body: {
 				
 				
-				for Uni_iTabletoWrite do
-				
-					Write to Table Uni_epTableLink(Uni_iTabletoWrite) in replace mode;
+				for Uni_iTabletoWrite| Uni_iTabletoWrite <> 'Test_log_table'  do
+					Uni_RunQuery("Truncate " + Uni_iTabletoWrite);
+					Write to Table Uni_epTableLink(Uni_iTabletoWrite);
 				
 				endfor;
 			}
@@ -73,6 +90,14 @@ Model Main_TestFileSQLRead {
 				"database_name"	 --> Uni_spTableDB(Uni_iTable)
 			}
 			StringParameter iQuery {
+				Property: Input;
+			}
+		}
+		DatabaseProcedure Uni_RunQuery {
+			Arguments: (_spquery);
+			DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+			SqlQuery: _spquery;
+			StringParameter _spquery {
 				Property: Input;
 			}
 		}
@@ -120,16 +145,30 @@ Model Main_TestFileSQLRead {
 				endif;
 				
 				
-				!Test database
-				Uni_spDatabaseConnectionString(Uni_epCurrentDatabase)
-					:=
-					SQLCreateConnectionString(
-						DatabaseInterface              :  _eDatabaseInterface, 
-						DriverName                     :  _spDriverName(_eDriver), 
-						ServerName                     :  DATABASE_HOST, 
-						DatabaseName                   :  DATABASE_NAME, 
-						UserId                         :  DATABASE_USER, 
-						Password                       :  DATABASE_PASSWORD);
+				
+				if projectdevelopermode then
+					!Test database
+					Uni_spDatabaseConnectionString(Uni_epCurrentDatabase)
+						:=
+						SQLCreateConnectionString(
+							DatabaseInterface              :  _eDatabaseInterface, 
+							DriverName                     :  _spDriverName(_eDriver), 
+							ServerName                     :  DATABASE_HOST, 
+							DatabaseName                   :  DATABASE_NAME, 
+							UserId                         :  DATABASE_USER, 
+							Password                       :  DATABASE_PASSWORD);
+				else
+					!production database
+					Uni_spDatabaseConnectionString(Uni_epCurrentDatabase)
+						:=
+						SQLCreateConnectionString(
+							DatabaseInterface              :  _eDatabaseInterface, 
+							DriverName                     :  _spDriverName(_eDriver), 
+							ServerName                     :  DATABASE_HOST, 
+							DatabaseName                   :  DATABASE_NAME, 
+							UserId                         :  DATABASE_USER, 
+							Password                       :  DATABASE_PASSWORD);
+				endif;
 			}
 			ElementParameter _eDatabaseInterface {
 				Range: AllDatabaseInterfaces;
@@ -144,23 +183,26 @@ Model Main_TestFileSQLRead {
 			}
 		}
 		DeclarationSection Declaration_Tables_Sets {
-			Set Uni_sAllTables {
-				Index: Uni_iEveryTable;
-				InitialData: {
+			Set Uni_sStandardTables {
+				Index: Uni_iStandardTable;
+				Definition: {
 					data 
 					    { Assets                , Arcs                  , Buildings             , Carriers              , EnergyCarriers        ,
 					      Commodities           , GasCommodities        , ElectricityCommodities, EnergyCommodities     , Matters               ,
 					      Producers             , Consumers             , Conversions           , Processes             , Transports            ,
 					      MapAssetToBuilding    , CostInformations      , QuantityAndUnitTypes  , KPIs                  , ConsumerProfiles      ,
-					      KPIConversions        , KPIsBuildings         , Constraints           }
+					      KPIConversions        , KPIsBuildings         , Constraints           };
 				}
+			}
+			Set Uni_sAllTables {
+				Index: Uni_iEveryTable;
 			}
 			Set Uni_sTables {
 				SubsetOf: Uni_sAllTables;
 				Index: Uni_iTable;
 			}
 			Set Uni_sTablestoWrite {
-				SubsetOf: Uni_sTables;
+				SubsetOf: Uni_sAllTables;
 				Index: Uni_iTabletoWrite;
 			}
 			ElementParameter Uni_epTableLink {
@@ -174,10 +216,14 @@ Model Main_TestFileSQLRead {
 				IndexDomain: (Uni_iTable);
 			}
 			StringParameter Uni_spQueryString;
+			StringParameter Uni_spdbStrings {
+				IndexDomain: Uni_iStandardTable;
+				Definition: "Test_" + Uni_iStandardTable;
+			}
 		}
 		DeclarationSection Declaration_connection {
 			File Uni_Env {
-				Name: "Config/.env";
+				Name: "config/.env";
 				Device: Disk;
 				Mode: replace;
 			}
@@ -205,6 +251,15 @@ Model Main_TestFileSQLRead {
 			StringParameter DATABASE_HOST;
 			StringParameter DATABASE_USER;
 			StringParameter DATABASE_PASSWORD;
+			StringParameter ESDL_spDatabaseInsert;
+			StringParameter ESDL_spLog {
+				IndexDomain: ESDL_iLogId;
+			}
+			Set ESDL_sLogId {
+				SubsetOf: Integers;
+				Index: ESDL_iLogId;
+				Parameter: ESDL_eLogId;
+			}
 		}
 		DeclarationSection Declaration_ESDL_parameters {
 			Set ESDL_AllElements;
@@ -222,6 +277,12 @@ Model Main_TestFileSQLRead {
 				IndexDomain: ESDL_iAsset;
 			}
 			StringParameter ESDL_spAssetAggregated {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spAssetLat {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spAssetLon {
 				IndexDomain: ESDL_iAsset;
 			}
 			Set ESDL_sCarriers {
@@ -511,18 +572,20 @@ Model Main_TestFileSQLRead {
 			DeclarationSection Declaration_DBs {
 				DatabaseTable Uni_dbAssets {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Assets";
+					TableName: "Test_Assets";
 					Mapping: {
 						"id" 			--> ESDL_iAsset,
 						"name" 			--> ESDL_spAssetName(ESDL_iAsset),
 						"state"			--> ESDL_spAssetState(ESDL_iAsset),
 						"technicalLifetime"	--> ESDL_spAssettechnicalLifetime(ESDL_iAsset),
-						"aggregated"		--> ESDL_spAssetAggregated(ESDL_iAsset)
+						"aggregated"		--> ESDL_spAssetAggregated(ESDL_iAsset),
+						"lat" 			--> ESDL_spAssetLat(ESDL_iAsset),
+						"lon"			--> ESDL_spAssetLon(ESDL_iAsset)
 					}
 				}
 				DatabaseTable Uni_dbArcs {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Arcs";
+					TableName: "Test_Arcs";
 					Mapping: {
 						"Node1_id"				--> ESDL_iAsset,
 						"Node2_id"				--> ESDL_iAsset2,
@@ -532,7 +595,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbBuildings {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Buildings";
+					TableName: "Test_Buildings";
 					Mapping: {
 						"id" 			--> ESDL_iBuilding,
 						"name" 			--> ESDL_spBuildingName(ESDL_iBuilding),
@@ -547,7 +610,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbCarriers {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Carriers";
+					TableName: "Test_Carriers";
 					Mapping: {
 						"id"			--> ESDL_iCarrier,
 						"name"			--> ESDL_spCarrierName(ESDL_iCarrier)
@@ -562,7 +625,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbEnergyCarriers {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "EnergyCarriers";
+					TableName: "Test_EnergyCarriers";
 					Mapping: {
 						"id"			--> ESDL_iEnergyCarrier,
 						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iEnergyCarrier),
@@ -574,7 +637,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbCommodities {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Commodities";
+					TableName: "Test_Commodities";
 					Mapping: {
 						"id"			--> ESDL_iCommodity,
 						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iCommodity),
@@ -583,7 +646,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbGasCommodities {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "GasCommodities";
+					TableName: "Test_GasCommodities";
 					Mapping: {
 						"id"			--> ESDL_iGasCommodity,
 						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iGasCommodity),
@@ -592,7 +655,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbElectricityCommodities {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "ElectricityCommodities";
+					TableName: "Test_ElectricityCommodities";
 					Mapping: {
 						"id"			--> ESDL_iElectricityCommodity,
 						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iElectricityCommodity),
@@ -601,7 +664,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbEnergyCommodities {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "EnergyCommodities";
+					TableName: "Test_EnergyCommodities";
 					Mapping: {
 						"id"			--> ESDL_iEnergyCommodity,
 						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iEnergyCommodity),
@@ -610,7 +673,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbMatters {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Matters";
+					TableName: "Test_Matters";
 					Mapping: {
 						"id"			--> ESDL_iMatter,
 						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iMatter),
@@ -619,7 +682,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbProducers {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Producers";
+					TableName: "Test_Producers";
 					Property: NoImplicitMapping;
 					Mapping: {
 						"id" 			--> ESDL_iProducer,
@@ -632,7 +695,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbConsumers {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Consumers";
+					TableName: "Test_Consumers";
 					Mapping: {
 						"id" 			--> ESDL_iConsumer,
 						"consType" 		--> ESDL_spConsType(ESDL_iConsumer),
@@ -642,7 +705,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbConsumerProfiles {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "ConsumerProfiles";
+					TableName: "Test_ConsumerProfiles";
 					Mapping: {
 						"id_consumer" 		--> ESDL_iConsumer,
 						"dataSource" 		--> ESDL_spConsumerdataSource(ESDL_iConsumer),
@@ -660,7 +723,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbConversions {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Conversions";
+					TableName: "Test_Conversions";
 					Mapping: {
 						"id" 			--> ESDL_iConversion,
 						"name" 			--> ESDL_spAssetName(ESDL_iConversion),
@@ -670,7 +733,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbProcesses {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Processes";
+					TableName: "Test_Processes";
 					Property: NoImplicitMapping;
 					Mapping: {
 						"conversionId" 		--> ESDL_iConversion,
@@ -682,7 +745,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbTransports {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Transports";
+					TableName: "Test_Transports";
 					Mapping: {
 						"id" 			--> ESDL_iTransport,
 						"name" 			--> ESDL_spAssetName(ESDL_iTransport),
@@ -692,7 +755,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbMapAssetToBuilding {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "MapAssetToBuilding";
+					TableName: "Test_MapAssetToBuilding";
 					Mapping: {
 						"id_Asset" 	--> ESDL_iAsset,
 						"id_Building" 	--> ESDL_iBuilding,
@@ -701,7 +764,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbCostInformations {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "CostInformations";
+					TableName: "Test_CostInformations";
 					Property: NoImplicitMapping;
 					Mapping: {
 						"AssetId"					--> ESDL_iAsset,
@@ -719,7 +782,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbQuantityAndUnitTypes {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "QuantityAndUnitTypes";
+					TableName: "Test_QuantityAndUnitTypes";
 					Property: NoImplicitMapping;
 					Mapping: {
 						"CarrierId"					--> ESDL_iCarrier,
@@ -736,7 +799,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbKPIs {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "KPIs";
+					TableName: "Test_KPIs";
 					Property: NoImplicitMapping;
 					Mapping: {
 						"id_KPI"						--> ESDL_iKPI,
@@ -746,7 +809,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbKPIsBuildings {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "KPIsBuildings";
+					TableName: "Test_KPIsBuildings";
 					Property: NoImplicitMapping;
 					Mapping: {
 						"id_KPI"						--> ESDL_iKPI,
@@ -757,7 +820,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbKPIConversions {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "KPIConversions";
+					TableName: "Test_KPIConversions";
 					Property: NoImplicitMapping;
 					Mapping: {
 						"id_conversion"						--> ESDL_iConversion,
@@ -768,7 +831,7 @@ Model Main_TestFileSQLRead {
 				}
 				DatabaseTable Uni_dbConstraints {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "Constraints";
+					TableName: "Test_Constraints";
 					Property: NoImplicitMapping;
 					Mapping: {
 						"Node_Id"		-->	ESDL_iAsset,

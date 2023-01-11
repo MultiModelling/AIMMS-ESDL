@@ -18,6 +18,7 @@ import pymysql
 load_dotenv() # load environmental variables such as database credentials and input file from the .env file (see .env-template)
 
 
+
 Filename = os.getenv("ESDL_INPUT_FILENAME")
 Outputfile = os.getenv("ESDL_OUTPUT_FILENAME")
 Host = os.getenv("DATABASE_HOST")
@@ -35,15 +36,7 @@ conn = engine.raw_connection()
 cursor = conn.cursor()
 
 # ### Simple function that runs an SQL command
-# 
-
-# In[3]:
-
-
-
-
-
-
+#
 import pandas as pd
 
 def get_sql(query):
@@ -64,13 +57,41 @@ def get_sql(query):
 # In[4]:
 
 
-def create_AIMMS_sql(DB, SetofTables,SetofAttributes):
+def create_AIMMS_sql(ApiUser, DB, SetofTables,SetofAttributes):
     def __init__(self, DB):
         self.DB = DB
-    print(f"Removing and recreate database {DB}")
-    cursor.execute('DROP DATABASE IF EXISTS ' + DB +';')
-    cursor.execute('create database ' + DB +';')
-    conn.select_db(DB)
+        
+
+    cursor.execute("SHOW DATABASES")
+    consists = False
+    for x in cursor:
+        if(x[0]==DB):
+          consists=True
+    if consists == False:
+        cursor.execute("CREATE DATABASE "+DB)
+
+  
+    conn.select_db(DB)  
+    tables = []
+    tablequery ="Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE' and table_schema = '" + DB+"' and table_name LIKE 'test%' order by database_name, table_name;"
+    tables = pd.read_sql(tablequery, conn)
+    print(tables.table_name)
+    
+
+    query = ["DROP TABLE `"+DB+"`.`"+ i +'`;' for i in tables.table_name]
+
+   
+    for i in query:
+        try:
+            cursor.execute(i)
+        except pymysql.Error as e:
+                print(i)
+                print("Error: unable to Drop table %d: %s" %(e.args[0], e.args[1]))
+    
+    #Progress update
+    print('Refresh Tables')
+        
+    
 
 #     query = "SELECT concat('DROP TABLE IF EXISTS `', table_name, '`;') FROM information_schema.tables WHERE table_schema = '"+ DB + "';"
 #     cursor.execute(query)
@@ -82,8 +103,11 @@ def create_AIMMS_sql(DB, SetofTables,SetofAttributes):
     
     try:
         query = []
+        query.append("CREATE TABLE `"+ApiUser+ """_log_table` (`id` int(11) NOT NULL AUTO_INCREMENT,
+                          `log` varchar(45) DEFAULT NULL,
+                          PRIMARY KEY (`id`))""")
         for i in range(len(SetofTables)):
-            query.append('create table ' + SetofTables[i] + '(' + ','.join(SetofAttributes[i]) +')')
+            query.append('create table '+ ApiUser+ '_'+ SetofTables[i] + '(' + ','.join(SetofAttributes[i]) +')')
 #         query = [
 # '        create table Assets(aggregated varchar(100),aggregationCount varchar(100),assetType varchar(100),commissioningDate varchar(100),decommissioningDate varchar(100),description varchar(100),id varchar(100) Primary Key,installationDuration varchar(100),manufacturer varchar(100),name varchar(1500),originalIdInSource varchar(100),owner varchar(100),shortname varchar(1500),state varchar(100),surfaceArea varchar(100),technicalLifetime varchar(100));',
 # '        create table Arcs(NameNode1 varchar(100), idNode1 varchar(100), nameNode2 varchar(100), idNode2 varchar(100), Carrier varchar(100), maxPower varchar(100), simultaneousPower varchar(100),PRIMARY KEY (idNode1, idNode2));',
@@ -113,17 +137,17 @@ def create_AIMMS_sql(DB, SetofTables,SetofAttributes):
 # In[5]:
 
 
-def write_table_to_Sql(DB, Sheet, val):
+def write_table_to_Sql(ApiUser,DB, Sheet, val):
     # Build query
     numofcol = get_sql(
-        "SELECT COUNT(*) as NumberofCol from INFORMATION_SCHEMA.COLUMNS where table_schema = '"+ DB +"' and table_name = '" + Sheet + "';")
+        "SELECT COUNT(*) as NumberofCol from INFORMATION_SCHEMA.COLUMNS where table_schema = '"+ DB +"' and table_name = '" + ApiUser+'_'+Sheet + "';")
     numb = numofcol['NumberofCol'][0]
-    query = 'INSERT INTO ' + DB + '.' + Sheet + ' VALUES (' + numb * '%s,'
+    query = 'INSERT INTO ' + DB + '.'+ ApiUser+ '_'+  Sheet + ' VALUES (' + numb * '%s,'
     query = query[:-1] + ');'
     print(query)
     # Check query
     cursor.executemany(query, val)
-    print('INSERT ' +Sheet+ ' COMPLETE')
+    print('INSERT ' + ApiUser+ '_'+  Sheet + ' COMPLETE')
 
 
 # In[6]:
@@ -177,7 +201,9 @@ def ExtractDataESDL(TableName, Instances, SetofAttributes, SetofTables, SetofVal
 
 
 
-if __name__ == "__main__":
+
+def handler(event = None,context = {'User': 'Test'}):
+    ApiUser = context['User']
     esh = EnergySystemHandler()
     es = esh.load_file(Filename)
     # xml_string = esh.to_string()
@@ -189,24 +215,44 @@ if __name__ == "__main__":
     
 
     Assets = esh.get_all_instances_of_type(esdl.EnergyAsset)
-    valAssets = [[n.id,
-                  n.aggregated, 
-                  n.aggregationCount, 
-                  n.assetType, 
-                  n.commissioningDate,
-                  n.decommissioningDate, 
-                  n.description,  
-                  n.installationDuration, 
-                  n.manufacturer, 
-                  n.name, 
-                  n.originalIdInSource, 
-                  n.owner,
-                  n.shortName, 
-                  n.state, 
-                  n.surfaceArea, 
-                  n.technicalLifetime, 
-                  n.costInformation] 
-                for n in Assets]
+    valAssets = []
+    for n in Assets:
+        tup = (n.id,
+                      n.aggregated, 
+                      n.aggregationCount, 
+                      n.assetType, 
+                      n.commissioningDate,
+                      n.decommissioningDate, 
+                      n.description,  
+                      n.installationDuration, 
+                      n.manufacturer, 
+                      n.name, 
+                      n.originalIdInSource, 
+                      n.owner,
+                      n.shortName, 
+                      n.state, 
+                      n.surfaceArea, 
+                      n.technicalLifetime, 
+                      n.costInformation) 
+        if n.geometry:
+            if type(n.geometry) == esdl.MultiLine:
+                n.geometry = n.geometry.line
+            if type(n.geometry) == esdl.Line:
+                n.geometry = n.geometry.point[0]
+            if type(n.geometry) == esdl.MultiPolygon:
+                n.geometry = n.geometry.polygon
+            if type(n.geometry) == esdl.Polygon:  
+                if n.geometry.interior  == []:
+                    n.geometry = n.geometry.exterior.point[0]
+                elif n.geometry.exterior  == []:
+                    n.geometry = n.geometry.interior.point[0]
+            
+            tup = tup + (n.geometry.lat,n.geometry.lon)
+                
+        else:
+            tup = tup + (None,None)
+        valAssets.append(tup)
+                
     if(Assets != []):
         SetofTables.append('Assets')
         SetofAttributes.append(('id varchar(100) Primary key' ,
@@ -225,7 +271,9 @@ if __name__ == "__main__":
                                 'state varchar(100)' , 
                                 'surfaceArea varchar(100)' , 
                                 'technicalLifetime varchar(100)',
-                                'costInformation_id varchar(100)'))
+                                'costInformation_id varchar(100)',
+                                'lat varchar(100)',
+                                'lon varchar(100)'))
         SetofValues.append(valAssets)
     
     Producers = esh.get_all_instances_of_type(esdl.Producer)
@@ -342,6 +390,7 @@ if __name__ == "__main__":
     
     
     Arcs = esh.get_all_instances_of_type(esdl.OutPort)
+    
     valArcs=[]
     for a in Arcs:
         for b in a.connectedTo:
@@ -358,9 +407,21 @@ if __name__ == "__main__":
                                a.carrier.id,
                                1))
             else:
-                print(f'Note that arc {a.id} misses attribute (carrier), ignoring Arc {a.name} of {a.energyasset.name}')
+                valArcs.append((a.energyasset.name,
+                               a.energyasset.id,
+                               a.name,
+                               a.id,
+                               b.energyasset.name,
+                               b.energyasset.id,
+                               b.name,
+                               b.id,
+                               None,
+                               None,
+                               1))
+                
+                print(f'Note that arc {a.id} misses attribute (carrier), the Arc {a.name} of {a.energyasset.name} misses carrier')
     
-    if len(Arcs) > 0:
+    if len(Arcs) > 0: 
         SetofAttributes.append(('Node1_name varchar(1500)', 
                                 'Node1_id varchar(100)',
                                 'Outport_name varchar(1500)',
@@ -616,18 +677,24 @@ if __name__ == "__main__":
         
     KPIs = esh.get_all_instances_of_type(esdl.KPI)
     valKPIs = []
-    if(KPIs != []):
-        for k in KPIs:
+    
+    for k in KPIs:
+        if type(k) in [esdl.IntKPI, esdl.DoubleKPI, esdl.StringKPI]:
+            print(type(k))
             valKPIs.append((k.id,k.name,k.value,'null','null','null','null'))
-        SetofAttributes.append(('id_KPI varchar(100)', 
-                    'name_KPI varchar(100)', 
-                    'value_KPI varchar(100)',
-                    'id_building varchar(100)',
-                    'name_building varchar(700)',
-                    'id_conversion varchar(100)',
-                    'name_conversion varchar(100)'))
-        SetofTables.append('KPIs')
-        SetofValues.append(valKPIs) 
+        elif type(k) == esdl.DistributionKPI:
+            valKPIs.append((k.id,k.name,'null','null','null','null','null'))
+        else:
+            print("KPI type: ", type(k), " is not supported" )
+    SetofAttributes.append(('id_KPI varchar(100)', 
+                'name_KPI varchar(100)', 
+                'value_KPI varchar(100)',
+                'id_building varchar(100)',
+                'name_building varchar(700)',
+                'id_conversion varchar(100)',
+                'name_conversion varchar(100)'))
+    SetofTables.append('KPIs')
+    SetofValues.append(valKPIs)
     
     KPIsBuildings = []
     valKPIsBuildings=[]
@@ -639,10 +706,7 @@ if __name__ == "__main__":
                 for i in range(len(ks.kpi)):
                     temp = (ks.kpi[i].id, ks.kpi[i].name, ks.kpi[i].value,b.id, b.name, 'null','null')
                     valKPIsBuildings.append(temp)
-    else:
-        for k in KPIs:
-            tup = (k.id, k.name, k.value,'null','null','null','null')
-            valKPIsBuildings.append(tup)
+
             
     if(valKPIsBuildings != []):    
         SetofAttributes.append(('id_KPI varchar(100)', 
@@ -733,8 +797,8 @@ if __name__ == "__main__":
                       'Constraint_Attribute varchar(100)', 
                       'range_Id varchar(100)',
                       'range_name varchar(1500)', 
-                      'min varchar(100)',
-                      'max varchar(100)'))
+                      'max varchar(100)', 
+                      'min varchar(100)'))
         SetofTables.append('Constraints')
         SetofValues.append(valConstraints)
     
@@ -807,15 +871,14 @@ if __name__ == "__main__":
     
     
 
-    create_AIMMS_sql(DB,SetofTables,SetofAttributes)
+    create_AIMMS_sql(ApiUser,DB,SetofTables,SetofAttributes)
     
 #   for loop that writes the tuple of values to the new database in the corresponding table.
     for a in range(len(SetofTables)):
         print('Exporting:',SetofTables[a]) #, SetofValues[a])
-        write_table_to_Sql(DB, SetofTables[a], SetofValues[a])
+        write_table_to_Sql(ApiUser,DB, SetofTables[a], SetofValues[a])
     conn.commit()
     conn.close()
-
 
 
 
@@ -850,5 +913,6 @@ if __name__ == "__main__":
     
 # conn.close()
 
-
+if __name__ == "__main__":
+    Read = handler()
 

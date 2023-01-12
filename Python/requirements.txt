@@ -3,4 +3,4 @@ pymysql==1.0.2
 pyESDL
 python-dotenv==0.21.0
 cryptography
-SQLAlchemy
+sqlalchemy

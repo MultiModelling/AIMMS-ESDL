@@ -12,6 +12,8 @@
 
 import os
 from dotenv import load_dotenv
+from pyecore.ecore import EEnum, EEnumLiteral
+from pyecore.valuecontainer import EOrderedSet
 from sqlalchemy import create_engine
 import pymysql
 
@@ -25,6 +27,9 @@ DB = os.getenv("DATABASE_NAME")
 User = os.getenv("DATABASE_USER")
 PW = os.getenv("DATABASE_PASSWORD")
 
+print("ESDL-AIMMS Universal link")
+print(f"Config: db={DB}, host={Host}, inputFile={Filename}, outputFile={Outputfile}")
+print(f'Processing ESDL...')
 
 # use sqlAlchemy to connect to (any) database, instead of using direct connection
 # this removes the pandas warning
@@ -40,8 +45,19 @@ cursor = conn.cursor()
 # In[3]:
 
 
-
-
+'''
+Converts a list of string to a string or an enum to its name
+Returns the value itself if it is not a list or an enum
+'''
+def convert_to_string(esdl_attribute_value) -> str:
+    if isinstance(esdl_attribute_value, EOrderedSet):
+        return ','.join([convert_to_string(s) for s in esdl_attribute_value])
+    if isinstance(esdl_attribute_value, EEnum):
+        return esdl_attribute_value.name
+    if isinstance(esdl_attribute_value, EEnumLiteral):
+        return esdl_attribute_value.name
+    else:
+        return esdl_attribute_value
 
 
 import pandas as pd
@@ -189,27 +205,48 @@ if __name__ == "__main__":
     
 
     Assets = esh.get_all_instances_of_type(esdl.EnergyAsset)
-    valAssets = [[n.id,
-                  n.aggregated, 
-                  n.aggregationCount, 
-                  n.assetType, 
-                  n.commissioningDate,
-                  n.decommissioningDate, 
-                  n.description,  
-                  n.installationDuration, 
-                  n.manufacturer, 
-                  n.name, 
-                  n.originalIdInSource, 
-                  n.owner,
-                  n.shortName, 
-                  n.state, 
-                  n.surfaceArea, 
-                  n.technicalLifetime, 
-                  n.costInformation] 
-                for n in Assets]
+    valAssets = []
+    for n in Assets:
+        tup = (n.id,
+              n.eClass.name,
+              n.aggregated,
+              n.aggregationCount,
+              n.assetType,
+              n.commissioningDate,
+              n.decommissioningDate,
+              n.description,
+              n.installationDuration,
+              n.manufacturer,
+              n.name,
+              n.originalIdInSource,
+              n.owner,
+              n.shortName,
+              n.state,
+              n.surfaceArea,
+              n.technicalLifetime,
+              n.costInformation.id if n.costInformation else None)
+        if n.geometry:
+            geo = n.geometry
+            if type(n.geometry) == esdl.MultiLine:
+                geo = n.geometry.line
+            if type(n.geometry) == esdl.Line:
+                geo = n.geometry.point[0]
+            if type(n.geometry) == esdl.MultiPolygon:
+                geo = n.geometry.polygon
+            if type(n.geometry) == esdl.Polygon:
+                if not n.geometry.interior:
+                    geo = n.geometry.exterior.point[0]
+                elif not n.geometry.exterior:
+                    geo = n.geometry.interior.point[0]
+            tup = tup + (geo.lat, geo.lon)
+        else:
+            tup = tup + (None, None)
+        valAssets.append(tup)
+
     if(Assets != []):
         SetofTables.append('Assets')
-        SetofAttributes.append(('id varchar(100) Primary key' ,
+        SetofAttributes.append(('id varchar(100) Primary key',
+                                'esdlType varchar(100)',
                                 'aggregated varchar(100)', 
                                 'aggregationCount varchar(100)', 
                                 'assetType varchar(100)', 
@@ -225,35 +262,43 @@ if __name__ == "__main__":
                                 'state varchar(100)' , 
                                 'surfaceArea varchar(100)' , 
                                 'technicalLifetime varchar(100)',
-                                'costInformation_id varchar(100)'))
+                                'costInformation_id varchar(100)',
+                                'lat varchar(100)',
+                                'lon varchar(100)'))
         SetofValues.append(valAssets)
     
     Producers = esh.get_all_instances_of_type(esdl.Producer)
-    valProducers = [(n.id, 
+    valProducers = [(n.id,
+                     n.eClass.name,
                      n.name, 
                      n.prodType, 
                      n.operationalHours, 
-                     n.fullLoadHours, 
+                     n.fullLoadHours,
+                     convert_to_string(n.type) if hasattr(n, 'type') else None,
                      n.power)
                 for n in Producers]
     if(Producers != []):
-        SetofAttributes.append(('id varchar(100) Primary key', 
+        SetofAttributes.append(('id varchar(100) Primary key',
+                                'esdlType varchar(100)',
                                 'name varchar(1500)', 
                                 'prodType varchar(100)', 
                                 'operationalHours varchar(100)', 
-                                'fullLoadHours varchar(100)', 
+                                'fullLoadHours varchar(100)',
+                                'type varchar(100)',
                                 'power varchar(100)'))
         SetofTables.append('Producers')
         SetofValues.append(valProducers)
     
     Consumers = esh.get_all_instances_of_type(esdl.Consumer)
-    valConsumers = [(n.id, n.name, n.consType, n.power) 
+    valConsumers = [(n.id, n.eClass.name, n.name, n.consType, convert_to_string(n.type) if hasattr(n,'type') else None, n.power)
                 for n in Consumers]
 
     if(Consumers != []):    
-        SetofAttributes.append(('id varchar(100)  Primary Key', 
+        SetofAttributes.append(('id varchar(100)  Primary Key',
+                                'esdlType varchar(100)',
                                 'name varchar(1500)', 
-                                'consType varchar(100)', 
+                                'consType varchar(100)',
+                                'type varchar(100)',
                                 'power varchar(100)'))
         SetofTables.append('Consumers')
         SetofValues.append(valConsumers)
@@ -316,26 +361,33 @@ if __name__ == "__main__":
         SetofValues.append(valConsumerProfiles)
     
     Conversions = esh.get_all_instances_of_type(esdl.Conversion)
-    valConversions = [(n.id, n.name, n.efficiency, n.power) 
-                for n in Conversions]
+    valConversions = [
+        (n.id, n.eClass.name, n.name, n.efficiency, convert_to_string(n.type) if hasattr(n, 'type') else None, n.power)
+        for n in Conversions]
     if(Conversions != []):    
-        SetofAttributes.append(('id varchar(100)  Primary Key', 
+        SetofAttributes.append(('id varchar(100)  Primary Key',
+                                'esdlType varchar(100)',
                                 'name varchar(1500)', 
-                                'efficiency varchar(100)', 
+                                'efficiency varchar(100)',
+                                'type varchar(100)',
                                 'power varchar(100)'))
         SetofTables.append('Conversions')
         SetofValues.append(valConversions)
     
     Transports = esh.get_all_instances_of_type(esdl.Transport)
-    valTransports = [(n.id, 
-                      n.name, 
-                      n.efficiency, 
-                      n.capacity) 
-                for n in Transports]
+    valTransports = [(n.id,
+                      n.eClass.name,
+                      n.name,
+                      n.efficiency,
+                      convert_to_string(n.type) if hasattr(n, 'type') else None,
+                      n.capacity)
+                     for n in Transports]
     if(Transports != []):       
-        SetofAttributes.append(('id varchar(100)  Primary Key', 
+        SetofAttributes.append(('id varchar(100)  Primary Key',
+                                'esdlType varchar(100)',
                                 'name varchar(1500)', 
-                                'efficiency varchar(100)', 
+                                'efficiency varchar(100)',
+                                'type varchar(100)',
                                 'capacity varchar(100)'))
         SetofTables.append('Transports')
         SetofValues.append(valTransports)
@@ -345,20 +397,19 @@ if __name__ == "__main__":
     valArcs=[]
     for a in Arcs:
         for b in a.connectedTo:
-            if (a.carrier != None):
-                valArcs.append((a.energyasset.name,
-                               a.energyasset.id,
-                               a.name,
-                               a.id,
-                               b.energyasset.name,
-                               b.energyasset.id,
-                               b.name,
-                               b.id,
-                               a.carrier.name,
-                               a.carrier.id,
-                               1))
-            else:
-                print(f'Note that arc {a.id} misses attribute (carrier), ignoring Arc {a.name} of {a.energyasset.name}')
+            valArcs.append((a.energyasset.name,
+                            a.energyasset.id,
+                            a.name,
+                            a.id,
+                            b.energyasset.name,
+                            b.energyasset.id,
+                            b.name,
+                            b.id,
+                            a.carrier.name if a.carrier else None,
+                            a.carrier.id if a.carrier else None,
+                            1))
+            if a.carrier is None:
+                print(f'Note: Arc {a.id} with name {a.name} of assets {a.energyasset.name} misses attribute (carrier)')
     
     if len(Arcs) > 0:
         SetofAttributes.append(('Node1_name varchar(1500)', 
@@ -518,7 +569,7 @@ if __name__ == "__main__":
                     p.stateOfMatter, 
                     p.energyCarrierType, 
                     p.emission, 
-                    p.name , 
+                    p.name,
                     p.energyContent)
                 for p in EnergyCarriers]
     if(EnergyCarriers != []):
@@ -616,18 +667,23 @@ if __name__ == "__main__":
         
     KPIs = esh.get_all_instances_of_type(esdl.KPI)
     valKPIs = []
-    if(KPIs != []):
-        for k in KPIs:
+    for k in KPIs:
+        if type(k) in [esdl.IntKPI, esdl.DoubleKPI, esdl.StringKPI]:
+            print(type(k))
             valKPIs.append((k.id,k.name,k.value,'null','null','null','null'))
-        SetofAttributes.append(('id_KPI varchar(100)', 
-                    'name_KPI varchar(100)', 
-                    'value_KPI varchar(100)',
-                    'id_building varchar(100)',
-                    'name_building varchar(700)',
-                    'id_conversion varchar(100)',
-                    'name_conversion varchar(100)'))
-        SetofTables.append('KPIs')
-        SetofValues.append(valKPIs) 
+        elif type(k) == esdl.DistributionKPI:
+            valKPIs.append((k.id, k.name, 'null', 'null', 'null', 'null', 'null'))
+        else:
+            print("KPI type: ", type(k), " is not supported")
+    SetofAttributes.append(('id_KPI varchar(100)',
+                'name_KPI varchar(100)',
+                'value_KPI varchar(100)',
+                'id_building varchar(100)',
+                'name_building varchar(700)',
+                'id_conversion varchar(100)',
+                'name_conversion varchar(100)'))
+    SetofTables.append('KPIs')
+    SetofValues.append(valKPIs)
     
     KPIsBuildings = []
     valKPIsBuildings=[]

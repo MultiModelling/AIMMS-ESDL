@@ -15,21 +15,43 @@ Model Main_TestFileSQLRead {
 				
 				Uni_prReadEnv;
 				
-				
+				!Uni_sAllTables := data{Test_log_table, Test_Arcs, Test_Assets, Test_Consumers, Test_Conversions, Test_KPIConversions, Test_KPIs, Test_Producers,Test_Transports, Test_Matters, Test_Constraints,
+				!			Test_Buildings, Test_Carriers, Test_Commodities, Test_AssetProfiles, Test_CostInformations, Test_EnergyCarriers, Test_KPIsBuildings, Test_MapAssetToBuilding, Test_Processes, Test_QuantityAndUnitTypes};
+				Uni_sAllTables := data{log_table, Arcs, Assets, Consumers, Conversions, KPIsAssets, KPIs, Producers,Transports, Matters, Constraints, ElectricityCommodities, EnergyCommodities, GasCommodities, Storages,
+							Buildings, Carriers, Commodities, AssetProfiles, CostInformations, EnergyCarriers, KPIsBuildings, MapAssetToBuilding, Processes, AssetQuantityAndUnitTypes,AssetQuantityAndUnitInfluxDB, CarrierQuantityAndUnitTypes};
 				Uni_prSetInputDatabaseConnection;
 				
+				ESDL_spDatabaseInsert:= "Start ESDL Read";
+				Uni_RunQuery("INSERT INTO `log_table` (`log`) VALUES ('" + ESDL_spDatabaseInsert +"');");
+				setelementadd(ESDL_sLogId,ESDL_eLogId,card(ESDL_sLogId)+1);
+				ESDL_spLog(ESDL_eLogId) := ESDL_spDatabaseInsert;
+				
+				
+				!Uni_spTableLink(Uni_iEveryTable) := FindReplaceStrings(Uni_iEveryTable,'Test_','Uni_db');
 				Uni_spTableLink(Uni_iEveryTable) := "Uni_db" + Uni_iEveryTable;
 				Uni_epTableLink(Uni_iEveryTable):= stringtoelement(Uni_sdbTables, Uni_spTableLink(Uni_iEveryTable), 0);
 				Uni_spQueryString := "Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + DATABASE_NAME + "' order by database_name, table_name;";
 				Read from table Uni_SQLQuery(Uni_spQueryString) in insert mode;
 				
 				
-				for Uni_iTable do
 				
+				for Uni_iTable|Uni_epTableLink(Uni_iTable) do
+					ESDL_spDatabaseInsert:= "Read" +Uni_iTable;
+					Uni_RunQuery("INSERT INTO `log_table` (`log`) VALUES ('" + ESDL_spDatabaseInsert +"');");
+					setelementadd(ESDL_sLogId,ESDL_eLogId,card(ESDL_sLogId)+1);
+					ESDL_spLog(ESDL_eLogId) := ESDL_spDatabaseInsert;
 					Read from table Uni_epTableLink(Uni_iTable) in insert mode;
 				
 				endfor;
+				ESDL_spDatabaseInsert:= "Finish ESDL Read";
+				Uni_RunQuery("INSERT INTO `log_table` (`log`) VALUES ('" + ESDL_spDatabaseInsert +"');");
+				setelementadd(ESDL_sLogId,ESDL_eLogId,card(ESDL_sLogId)+1);
+				ESDL_spLog(ESDL_eLogId) := ESDL_spDatabaseInsert;
 				
+				!ESDL_spDatabaseInsert:= "Reading ESDL complete";
+				!Uni_RunQuery("INSERT INTO `log_table` (`log`) VALUES ('" + ESDL_spDatabaseInsert +"');");
+				!setelementadd(ESDL_sLogId,ESDL_eLogId,card(ESDL_sLogId)+1);
+				!ESDL_spLog(ESDL_eLogId) := ESDL_spDatabaseInsert;
 				
 				!Read from table Uni_dbAssets in replace mode;
 				!Read from table Uni_dbBuildings in insert mode;
@@ -56,9 +78,9 @@ Model Main_TestFileSQLRead {
 			Body: {
 				
 				
-				for Uni_iTabletoWrite do
-				
-					Write to Table Uni_epTableLink(Uni_iTabletoWrite) in replace mode;
+				for Uni_iTabletoWrite| Uni_iTabletoWrite <> 'log_table'  do
+					Uni_RunQuery("Truncate " + Uni_iTabletoWrite);
+					Write to Table Uni_epTableLink(Uni_iTabletoWrite);
 				
 				endfor;
 			}
@@ -73,6 +95,14 @@ Model Main_TestFileSQLRead {
 				"database_name"	 --> Uni_spTableDB(Uni_iTable)
 			}
 			StringParameter iQuery {
+				Property: Input;
+			}
+		}
+		DatabaseProcedure Uni_RunQuery {
+			Arguments: (_spquery);
+			DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+			SqlQuery: _spquery;
+			StringParameter _spquery {
 				Property: Input;
 			}
 		}
@@ -120,16 +150,30 @@ Model Main_TestFileSQLRead {
 				endif;
 				
 				
-				!Test database
-				Uni_spDatabaseConnectionString(Uni_epCurrentDatabase)
-					:=
-					SQLCreateConnectionString(
-						DatabaseInterface              :  _eDatabaseInterface, 
-						DriverName                     :  _spDriverName(_eDriver), 
-						ServerName                     :  DATABASE_HOST, 
-						DatabaseName                   :  DATABASE_NAME, 
-						UserId                         :  DATABASE_USER, 
-						Password                       :  DATABASE_PASSWORD);
+				
+				if projectdevelopermode then
+					!Test database
+					Uni_spDatabaseConnectionString(Uni_epCurrentDatabase)
+						:=
+						SQLCreateConnectionString(
+							DatabaseInterface              :  _eDatabaseInterface, 
+							DriverName                     :  _spDriverName(_eDriver), 
+							ServerName                     :  DATABASE_HOST, 
+							DatabaseName                   :  DATABASE_NAME, 
+							UserId                         :  DATABASE_USER, 
+							Password                       :  DATABASE_PASSWORD);
+				else
+					!production database
+					Uni_spDatabaseConnectionString(Uni_epCurrentDatabase)
+						:=
+						SQLCreateConnectionString(
+							DatabaseInterface              :  _eDatabaseInterface, 
+							DriverName                     :  _spDriverName(_eDriver), 
+							ServerName                     :  DATABASE_HOST, 
+							DatabaseName                   :  DATABASE_NAME, 
+							UserId                         :  DATABASE_USER, 
+							Password                       :  DATABASE_PASSWORD);
+				endif;
 			}
 			ElementParameter _eDatabaseInterface {
 				Range: AllDatabaseInterfaces;
@@ -144,23 +188,26 @@ Model Main_TestFileSQLRead {
 			}
 		}
 		DeclarationSection Declaration_Tables_Sets {
-			Set Uni_sAllTables {
-				Index: Uni_iEveryTable;
-				InitialData: {
+			Set Uni_sStandardTables {
+				Index: Uni_iStandardTable;
+				Definition: {
 					data 
 					    { Assets                , Arcs                  , Buildings             , Carriers              , EnergyCarriers        ,
 					      Commodities           , GasCommodities        , ElectricityCommodities, EnergyCommodities     , Matters               ,
 					      Producers             , Consumers             , Conversions           , Processes             , Transports            ,
-					      MapAssetToBuilding    , CostInformations      , QuantityAndUnitTypes  , KPIs                  , ConsumerProfiles      ,
-					      KPIConversions        , KPIsBuildings         , Constraints           }
+					      MapAssetToBuilding    , CostInformations      , QuantityAndUnitTypes  , KPIs                  , AssetProfiles      ,
+					      KPIConversions        , KPIsBuildings         , Constraints           };
 				}
+			}
+			Set Uni_sAllTables {
+				Index: Uni_iEveryTable;
 			}
 			Set Uni_sTables {
 				SubsetOf: Uni_sAllTables;
 				Index: Uni_iTable;
 			}
 			Set Uni_sTablestoWrite {
-				SubsetOf: Uni_sTables;
+				SubsetOf: Uni_sAllTables;
 				Index: Uni_iTabletoWrite;
 			}
 			ElementParameter Uni_epTableLink {
@@ -174,10 +221,17 @@ Model Main_TestFileSQLRead {
 				IndexDomain: (Uni_iTable);
 			}
 			StringParameter Uni_spQueryString;
+			StringParameter Uni_spdbStrings {
+				IndexDomain: Uni_iStandardTable;
+				Definition: {
+					Uni_iStandardTable
+					!"Test_" + Uni_iStandardTable
+				}
+			}
 		}
 		DeclarationSection Declaration_connection {
 			File Uni_Env {
-				Name: "Config/.env";
+				Name: "config/.env";
 				Device: Disk;
 				Mode: replace;
 			}
@@ -205,14 +259,26 @@ Model Main_TestFileSQLRead {
 			StringParameter DATABASE_HOST;
 			StringParameter DATABASE_USER;
 			StringParameter DATABASE_PASSWORD;
+			StringParameter ESDL_spDatabaseInsert;
+			StringParameter ESDL_spLog {
+				IndexDomain: ESDL_iLogId;
+			}
+			Set ESDL_sLogId {
+				SubsetOf: Integers;
+				Index: ESDL_iLogId;
+				Parameter: ESDL_eLogId;
+			}
 		}
 		DeclarationSection Declaration_ESDL_parameters {
 			Set ESDL_AllElements;
 			Set ESDL_sAssets {
 				Index: ESDL_iAsset, ESDL_iAsset2, ESDL_iAsset3;
-				Parameter: ESDL_eAsset;
+				Parameter: ESDL_eAsset, ESDL_eAsset2;
 			}
 			StringParameter ESDL_spAssetName {
+				IndexDomain: (ESDL_iAsset);
+			}
+			StringParameter ESDL_spAssetType {
 				IndexDomain: (ESDL_iAsset);
 			}
 			StringParameter ESDL_spAssetState {
@@ -224,11 +290,20 @@ Model Main_TestFileSQLRead {
 			StringParameter ESDL_spAssetAggregated {
 				IndexDomain: ESDL_iAsset;
 			}
+			StringParameter ESDL_spAssetLat {
+				IndexDomain: ESDL_iAsset;
+			}
+			StringParameter ESDL_spAssetLon {
+				IndexDomain: ESDL_iAsset;
+			}
 			Set ESDL_sCarriers {
 				SubsetOf: ESDL_AllElements;
 				Index: ESDL_iCarrier;
 			}
 			StringParameter ESDL_spCarrierName {
+				IndexDomain: ESDL_iCarrier;
+			}
+			StringParameter ESDL_spCarrierCost {
 				IndexDomain: ESDL_iCarrier;
 			}
 			Set ESDL_sEnergyCarriers {
@@ -262,6 +337,12 @@ Model Main_TestFileSQLRead {
 			Set ESDL_sElectricityCommodities {
 				SubsetOf: ESDL_sCommodities;
 				Index: ESDL_iElectricityCommodity;
+			}
+			StringParameter ESDL_spElectricityCommodityVoltage {
+				IndexDomain: ESDL_iElectricityCommodity;
+			}
+			StringParameter ESDL_spElectricityCommodityrenewableFactor {
+				IndexDomain: ESDL_iElectricityCommodity;
 			}
 			Set ESDL_sMatters {
 				SubsetOf: ESDL_sCarriers;
@@ -308,44 +389,44 @@ Model Main_TestFileSQLRead {
 			StringParameter ESDL_spConsumerCapacity {
 				IndexDomain: (ESDL_iConsumer);
 			}
-			Set ESDL_sConsumerProfiles {
-				Index: ESDL_iConsumerProfile;
+			Set ESDL_sAssetProfiles {
+				Index: ESDL_iAssetProfile;
 			}
-			StringParameter ESDL_spConsumerProfileName {
-				IndexDomain: (ESDL_iConsumerProfile);
+			StringParameter ESDL_spAssetProfileName {
+				IndexDomain: (ESDL_iAsset);
 			}
-			StringParameter ESDL_spConsumerdataSource {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetdataSource {
+				IndexDomain: (ESDL_iAsset);
 			}
-			StringParameter ESDL_spConsumerendDate {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetdDate {
+				IndexDomain: (ESDL_iAsset);
 			}
-			StringParameter ESDL_spConsumerField {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetField {
+				IndexDomain: (ESDL_iAsset);
 			}
-			StringParameter ESDL_spConsumerFilters {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetFilters {
+				IndexDomain: ESDL_iAsset;
 			}
-			StringParameter ESDL_spConsumerHost {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetHost {
+				IndexDomain: (ESDL_iAsset);
 			}
-			StringParameter ESDL_spConsumerinterpolationMethod {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetinterpolationMethod {
+				IndexDomain: (ESDL_iAsset);
 			}
-			StringParameter ESDL_spConsumermeasurement {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetmeasurement {
+				IndexDomain: (ESDL_iAsset);
 			}
-			StringParameter ESDL_spConsumermultiplier {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetmultiplier {
+				IndexDomain: (ESDL_iAsset);
 			}
-			StringParameter ESDL_spConsumerprofileQuantityAndUnit {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetprofileQuantityAndUnit {
+				IndexDomain: (ESDL_iAsset);
 			}
-			StringParameter ESDL_spConsumerprofileType {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetprofileType {
+				IndexDomain: (ESDL_iAsset);
 			}
-			StringParameter ESDL_spConsumerstartDate {
-				IndexDomain: (ESDL_iConsumer);
+			StringParameter ESDL_spAssetstartDate {
+				IndexDomain: (ESDL_iAsset);
 			}
 			Set ESDL_sProducers {
 				SubsetOf: ESDL_sAssets;
@@ -385,6 +466,31 @@ Model Main_TestFileSQLRead {
 			}
 			StringParameter ESDL_spTransportcapacity {
 				IndexDomain: ESDL_iTransport;
+			}
+			Set ESDL_sStorages {
+				SubsetOf: ESDL_sAssets;
+				Index: ESDL_iStorage;
+			}
+			StringParameter ESDL_spStorageChargeEffiency {
+				IndexDomain: ESDL_iStorage;
+			}
+			StringParameter ESDL_spStorageDischargeEffiency {
+				IndexDomain: ESDL_iStorage;
+			}
+			StringParameter ESDL_spStorageSelfDischargeRate {
+				IndexDomain: ESDL_iStorage;
+			}
+			StringParameter ESDL_spStorageFillLevel {
+				IndexDomain: ESDL_iStorage;
+			}
+			StringParameter ESDL_spStorageMaxChargeRate {
+				IndexDomain: ESDL_iStorage;
+			}
+			StringParameter ESDL_spStorageMaxDischargeRate {
+				IndexDomain: ESDL_iStorage;
+			}
+			StringParameter ESDL_spStorageCapacity {
+				IndexDomain: ESDL_iStorage;
 			}
 			StringParameter ESDL_spMapAssetToBuilding {
 				IndexDomain: (ESDL_iAsset, ESDL_iBuilding);
@@ -426,33 +532,33 @@ Model Main_TestFileSQLRead {
 			StringParameter ESDL_spdiscountRate {
 				IndexDomain: ESDL_iAsset;
 			}
-			Set ESDL_sQuantityAndUnitTypes {
-				Index: ESDL_iQuantityAndUnitType;
+			Set ESDL_sCarrierQuantityAndUnitTypes {
+				Index: ESDL_iCarrierQuantityAndUnitType;
 				Parameter: ESDL_eQuantityAndUnitType;
 			}
 			StringParameter ESDL_spmultiplier {
-				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+				IndexDomain: (ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType);
 			}
 			StringParameter ESDL_spperMultiplier {
-				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+				IndexDomain: (ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType);
 			}
 			StringParameter ESDL_spperScope {
-				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+				IndexDomain: (ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType);
 			}
 			StringParameter ESDL_spperTimeUnit {
-				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+				IndexDomain: (ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType);
 			}
 			StringParameter ESDL_spphysicalQuantity {
-				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+				IndexDomain: (ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType);
 			}
 			StringParameter ESDL_spunit {
-				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+				IndexDomain: (ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType);
 			}
 			StringParameter ESDL_spUnitType {
-				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+				IndexDomain: (ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType);
 			}
 			StringParameter ESDL_spperUnit {
-				IndexDomain: (ESDL_iCarrier,ESDL_iQuantityAndUnitType);
+				IndexDomain: (ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType);
 			}
 			StringParameter ESDL_spMainCarrierProcess {
 				IndexDomain: (ESDL_iConversion,ESDL_iCarrier);
@@ -462,6 +568,36 @@ Model Main_TestFileSQLRead {
 			}
 			StringParameter ESDL_spRatioProcess {
 				IndexDomain: (ESDL_iConversion,ESDL_iCarrier);
+			}
+			Set ESDL_sAssetQuantityAndUnitTypes {
+				Index: ESDL_iAssetQuantityAndUnitType;
+			}
+			Set ESDL_sAssetQuantityAndUnitInfluxDB {
+				Index: ESDL_iAssetQuantityAndUnitInfluxDB;
+			}
+			StringParameter ESDL_spAssetmultiplierUnit {
+				IndexDomain: (ESDL_iAsset);
+			}
+			StringParameter ESDL_spAssetperMultiplier {
+				IndexDomain: (ESDL_iAsset);
+			}
+			StringParameter ESDL_spAssetperScope {
+				IndexDomain: (ESDL_iAsset);
+			}
+			StringParameter ESDL_spAssetperTimeUnit {
+				IndexDomain: (ESDL_iAsset);
+			}
+			StringParameter ESDL_spAssetphysicalQuantity {
+				IndexDomain: (ESDL_iAsset);
+			}
+			StringParameter ESDL_spAssetunit {
+				IndexDomain: (ESDL_iAsset);
+			}
+			StringParameter ESDL_spAssetUnitType {
+				IndexDomain: (ESDL_iAsset);
+			}
+			StringParameter ESDL_spAssetperUnit {
+				IndexDomain: (ESDL_iAsset);
 			}
 			Set ESDL_sKPIs {
 				Index: ESDL_iKPI;
@@ -479,11 +615,11 @@ Model Main_TestFileSQLRead {
 			StringParameter ESDL_spKPIValueBuilding {
 				IndexDomain: (ESDL_iKPI, ESDL_iBuilding);
 			}
-			StringParameter ESDL_spKPINameConversion {
-				IndexDomain: (ESDL_iKPI, ESDL_iConversion);
+			StringParameter ESDL_spKPINameAsset {
+				IndexDomain: (ESDL_iKPI, ESDL_iAsset);
 			}
-			StringParameter ESDL_spKPIValueConversion {
-				IndexDomain: (ESDL_iKPI, ESDL_iConversion);
+			StringParameter ESDL_spKPIValueAsset {
+				IndexDomain: (ESDL_iKPI, ESDL_iAsset);
 			}
 			Set ESDL_sConstraints {
 				Index: ESDL_iConstraint;
@@ -516,8 +652,11 @@ Model Main_TestFileSQLRead {
 						"id" 			--> ESDL_iAsset,
 						"name" 			--> ESDL_spAssetName(ESDL_iAsset),
 						"state"			--> ESDL_spAssetState(ESDL_iAsset),
+						"esdlType"		--> ESDL_spAssetType(ESDL_iAsset),
 						"technicalLifetime"	--> ESDL_spAssettechnicalLifetime(ESDL_iAsset),
-						"aggregated"		--> ESDL_spAssetAggregated(ESDL_iAsset)
+						"aggregated"		--> ESDL_spAssetAggregated(ESDL_iAsset),
+						"lat" 			--> ESDL_spAssetLat(ESDL_iAsset),
+						"lon"			--> ESDL_spAssetLon(ESDL_iAsset)
 					}
 				}
 				DatabaseTable Uni_dbArcs {
@@ -550,8 +689,8 @@ Model Main_TestFileSQLRead {
 					TableName: "Carriers";
 					Mapping: {
 						"id"			--> ESDL_iCarrier,
-						"name"			--> ESDL_spCarrierName(ESDL_iCarrier)
-						
+						"name"			--> ESDL_spCarrierName(ESDL_iCarrier),
+						"cost"			--> ESDL_spCarrierCost(ESDL_iCarrier)
 						!
 						!"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iCarrier),
 						!"energyCarrierType" 	--> ESDL_spenergyCarrierType(ESDL_iCarrier),
@@ -595,8 +734,9 @@ Model Main_TestFileSQLRead {
 					TableName: "ElectricityCommodities";
 					Mapping: {
 						"id"			--> ESDL_iElectricityCommodity,
-						"stateOfMatter" 	--> ESDL_spStateOfMatter(ESDL_iElectricityCommodity),
-						"name"			--> ESDL_spCarrierName(ESDL_iElectricityCommodity)
+						"name"			--> ESDL_spCarrierName(ESDL_iElectricityCommodity),
+						"voltage" 		--> ESDL_spElectricityCommodityVoltage(ESDL_iElectricityCommodity),
+						"renewableFactor" 		--> ESDL_spElectricityCommodityrenewableFactor(ESDL_iElectricityCommodity)
 					}
 				}
 				DatabaseTable Uni_dbEnergyCommodities {
@@ -640,22 +780,22 @@ Model Main_TestFileSQLRead {
 						"Capacity"		--> ESDL_spConsumerCapacity(ESDL_iConsumer)
 					}
 				}
-				DatabaseTable Uni_dbConsumerProfiles {
+				DatabaseTable Uni_dbAssetProfiles {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "ConsumerProfiles";
+					TableName: "AssetProfiles";
 					Mapping: {
-						"id_consumer" 		--> ESDL_iConsumer,
-						"dataSource" 		--> ESDL_spConsumerdataSource(ESDL_iConsumer),
-						"endDate" 		--> ESDL_spConsumerendDate(ESDL_iConsumer),
-						"field" 		--> ESDL_spConsumerField(ESDL_iConsumer),
-						"filters" 		--> ESDL_spConsumerFilters(ESDL_iConsumer),
-						"host"			--> ESDL_spConsumerHost(ESDL_iConsumer),
-						"interpolationMethod" 	--> ESDL_spConsumerinterpolationMethod(ESDL_iConsumer),
-						"measurement" 		--> ESDL_spConsumermeasurement(ESDL_iConsumer),
-						"multiplier" 		--> ESDL_spConsumermultiplier(ESDL_iConsumer),
-						"profileQuantityAndUnit"--> ESDL_spConsumerprofileQuantityAndUnit(ESDL_iConsumer),
-						"profileType" 		--> ESDL_spConsumerprofileType(ESDL_iConsumer),
-						"startDate"		--> ESDL_spConsumerstartDate(ESDL_iConsumer)
+						"id_Asset" 		--> ESDL_iAsset,
+						"dataSource" 		--> ESDL_spAssetdataSource(ESDL_iAsset),
+						"endDate" 		--> ESDL_spAssetdDate(ESDL_iAsset),
+						"field" 		--> ESDL_spAssetField(ESDL_iAsset),
+						"filters" 		--> ESDL_spAssetFilters(ESDL_iAsset),
+						"host"			--> ESDL_spAssetHost(ESDL_iAsset),
+						"interpolationMethod" 	--> ESDL_spAssetinterpolationMethod(ESDL_iAsset),
+						"measurement" 		--> ESDL_spAssetmeasurement(ESDL_iAsset),
+						"multiplier" 		--> ESDL_spAssetmultiplier(ESDL_iAsset),
+						"profileQuantityAndUnit"--> ESDL_spAssetprofileQuantityAndUnit(ESDL_iAsset),
+						"profileType" 		--> ESDL_spAssetprofileType(ESDL_iAsset),
+						"startDate"		--> ESDL_spAssetstartDate(ESDL_iAsset)
 					}
 				}
 				DatabaseTable Uni_dbConversions {
@@ -690,6 +830,22 @@ Model Main_TestFileSQLRead {
 						"capacity" 		--> ESDL_spTransportcapacity(ESDL_iTransport)
 					}
 				}
+				DatabaseTable Uni_dbStorages {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "Storages";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"id" 			--> ESDL_iStorage,
+						"name" 			--> ESDL_spAssetName(ESDL_iStorage),
+						"chargeEffiency" 	--> ESDL_spStorageChargeEffiency(ESDL_iStorage),
+						"dischargeEffiency" 	--> ESDL_spStorageDischargeEffiency(ESDL_iStorage),
+						"selfDischargeRate" 	--> ESDL_spStorageSelfDischargeRate(ESDL_iStorage),
+						"fillLevel"		--> ESDL_spStorageFillLevel(ESDL_iStorage),
+						"maxChargeRate" 	--> ESDL_spStorageMaxChargeRate(ESDL_iStorage),
+						"maxDischargeRate" 	--> ESDL_spStorageMaxDischargeRate(ESDL_iStorage),
+						"capacity" 		--> ESDL_spStorageCapacity(ESDL_iStorage)
+					}
+				}
 				DatabaseTable Uni_dbMapAssetToBuilding {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
 					TableName: "MapAssetToBuilding";
@@ -717,21 +873,48 @@ Model Main_TestFileSQLRead {
 						"discountRate"					--> ESDL_spdiscountRate(ESDL_iAsset)
 					}
 				}
-				DatabaseTable Uni_dbQuantityAndUnitTypes {
+				DatabaseTable Uni_dbCarrierQuantityAndUnitTypes {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "QuantityAndUnitTypes";
+					TableName: "CarrierQuantityAndUnitTypes";
 					Property: NoImplicitMapping;
 					Mapping: {
 						"CarrierId"					--> ESDL_iCarrier,
-						"id"						--> ESDL_iQuantityAndUnitType,
-						"multiplier"					--> ESDL_spmultiplier(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
-						"perMultiplier"					--> ESDL_spperMultiplier(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
-						"perScope"					--> ESDL_spperScope(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
-						"perTimeUnit"					--> ESDL_spperTimeUnit(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
-						"physicalQuantity"				--> ESDL_spphysicalQuantity(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
-						"type"						--> ESDL_spUnitType(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
-						"unit"						--> ESDL_spunit(ESDL_iCarrier,ESDL_iQuantityAndUnitType),
-						"perUnit"					--> ESDL_spperUnit(ESDL_iCarrier,ESDL_iQuantityAndUnitType)
+						"id"						--> ESDL_iCarrierQuantityAndUnitType,
+						"multiplier"					--> ESDL_spmultiplier(ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType),
+						"perMultiplier"					--> ESDL_spperMultiplier(ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType),
+						"perScope"					--> ESDL_spperScope(ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType),
+						"perTimeUnit"					--> ESDL_spperTimeUnit(ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType),
+						"physicalQuantity"				--> ESDL_spphysicalQuantity(ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType),
+						"type"						--> ESDL_spUnitType(ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType),
+						"unit"						--> ESDL_spunit(ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType),
+						"perUnit"					--> ESDL_spperUnit(ESDL_iCarrier,ESDL_iCarrierQuantityAndUnitType)
+					}
+				}
+				DatabaseTable Uni_dbAssetQuantityAndUnitTypes {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "AssetQuantityAndUnitTypes";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"Asset_Id"					--> ESDL_iAsset,
+						"id"						--> ESDL_iAssetQuantityAndUnitType,
+						"multiplier"					--> ESDL_spAssetmultiplierUnit(ESDL_iAsset),
+						"perMultiplier"					--> ESDL_spAssetperMultiplier(ESDL_iAsset),
+						"perScope"					--> ESDL_spAssetperScope(ESDL_iAsset),
+						"perTimeUnit"					--> ESDL_spAssetperTimeUnit(ESDL_iAsset),
+						"physicalQuantity"				--> ESDL_spAssetphysicalQuantity(ESDL_iAsset),
+						"type"						--> ESDL_spAssetUnitType(ESDL_iAsset),
+						"unit"						--> ESDL_spAssetunit(ESDL_iAsset),
+						"perUnit"					--> ESDL_spAssetperUnit(ESDL_iAsset)
+					}
+				}
+				DatabaseTable Uni_dbAssetQuantityAndUnitInfluxDB {
+					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
+					TableName: "AssetQuantityAndUnitInfluxDB";
+					Property: NoImplicitMapping;
+					Mapping: {
+						"Asset_Id"					--> ESDL_iAsset,
+						"id"						--> ESDL_iAssetQuantityAndUnitInfluxDB,
+						"multiplier"					--> ESDL_spAssetmultiplier(ESDL_iAsset)
 					}
 				}
 				DatabaseTable Uni_dbKPIs {
@@ -755,15 +938,15 @@ Model Main_TestFileSQLRead {
 						"value_KPI"						--> ESDL_spKPIValueBuilding(ESDL_iKPI, ESDL_iBuilding)
 					}
 				}
-				DatabaseTable Uni_dbKPIConversions {
+				DatabaseTable Uni_dbKPIsAssets {
 					DataSource: Uni_spDatabaseConnectionString(Uni_epCurrentDatabase);
-					TableName: "KPIConversions";
+					TableName: "KPIsAssets";
 					Property: NoImplicitMapping;
 					Mapping: {
-						"id_conversion"						--> ESDL_iConversion,
+						"id_asset"						--> ESDL_iAsset,
 						"id_KPI"						--> ESDL_iKPI,
-						"name_KPI"						--> ESDL_spKPINameConversion(ESDL_iKPI, ESDL_iConversion),
-						"value_KPI"						--> ESDL_spKPIValueConversion(ESDL_iKPI, ESDL_iConversion)
+						"name_KPI"						--> ESDL_spKPINameAsset(ESDL_iKPI, ESDL_iAsset),
+						"value_KPI"						--> ESDL_spKPIValueAsset(ESDL_iKPI, ESDL_iAsset)
 					}
 				}
 				DatabaseTable Uni_dbConstraints {
@@ -777,8 +960,8 @@ Model Main_TestFileSQLRead {
 						"Constraint_Attribute"	-->	ESDL_spConstraintAttribute(ESDL_iConstraint,ESDL_iAsset),
 						"range_Id"		-->	ESDL_spRangeId(ESDL_iConstraint,ESDL_iAsset),
 						"range_name"		-->	ESDL_spRangeName(ESDL_iConstraint,ESDL_iAsset),
-						"max"			-->	ESDL_spRangeMinValue(ESDL_iConstraint,ESDL_iAsset), 
-						"min"			-->	ESDL_spRangeMaxValue(ESDL_iConstraint,ESDL_iAsset)
+						"max"			-->	ESDL_spRangeMaxValue(ESDL_iConstraint,ESDL_iAsset), 
+						"min"			-->	ESDL_spRangeMinValue(ESDL_iConstraint,ESDL_iAsset)
 					}
 				}
 			}

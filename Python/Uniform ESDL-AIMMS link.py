@@ -98,6 +98,9 @@ def create_AIMMS_sql(DB, SetofTables,SetofAttributes):
     
     try:
         query = []
+        query.append("""CREATE TABLE `log_table` (`id` int(11) NOT NULL AUTO_INCREMENT,
+                          `log` varchar(45) DEFAULT NULL,
+                          PRIMARY KEY (`id`))""")
         for i in range(len(SetofTables)):
             query.append('create table ' + SetofTables[i] + '(' + ','.join(SetofAttributes[i]) +')')
 #         query = [
@@ -192,8 +195,7 @@ def ExtractDataESDL(TableName, Instances, SetofAttributes, SetofTables, SetofVal
     SetofValues.append(valInstance)
 
 
-
-if __name__ == "__main__":
+def handler(event = None,context = None):
     esh = EnergySystemHandler()
     es = esh.load_file(Filename)
     # xml_string = esh.to_string()
@@ -208,7 +210,7 @@ if __name__ == "__main__":
     valAssets = []
     for n in Assets:
         tup = (n.id,
-              n.eClass.name,
+              n.eClass.__name__,
               n.aggregated,
               n.aggregationCount,
               n.assetType,
@@ -304,14 +306,14 @@ if __name__ == "__main__":
         SetofValues.append(valConsumers)
     
     Singlevalueprofiles = esh.get_all_instances_of_type(esdl.SingleValue)
-    ConsumerProfiles = []
-    valConsumerProfiles = []
-    for n in Consumers:
+    AssetProfiles = []
+    valAssetProfiles = []
+    for n in Assets:
         for p in n.port:
             for pr in p.profile:
-                ConsumerProfiles.append(pr)
+                AssetProfiles.append(pr)
                 if(pr in Singlevalueprofiles):
-                    valConsumerProfiles.append((n.id,
+                    valAssetProfiles.append((n.id,
                                                 n.name,
                                                 'null', 
                                                 'null', 
@@ -327,7 +329,7 @@ if __name__ == "__main__":
                                                 'null', 
                                                 'null'))
                 else:
-                    valConsumerProfiles.append((n.id,
+                    valAssetProfiles.append((n.id,
                                                 n.name,
                                                 pr.dataSource, 
                                                 pr.endDate, 
@@ -341,9 +343,9 @@ if __name__ == "__main__":
                                                 pr.profileQuantityAndUnit,
                                                 pr.profileType,
                                                 pr.startDate))
-    if(valConsumerProfiles != []):    
-        SetofAttributes.append(('id_consumer varchar(100)', 
-                                'name_consumer varchar(100)',
+    if(valAssetProfiles != []):    
+        SetofAttributes.append(('id_Asset varchar(100)', 
+                                'name_Asset varchar(100)',
                                 'dataSource varchar(100)', 
                                 'endDate varchar(100)', 
                                 'field varchar(100)', 
@@ -357,8 +359,8 @@ if __name__ == "__main__":
                                 'profileQuantityAndUnit varchar(100)', 
                                 'profileType varchar(100)', 
                                 'startDate varchar(100)'))
-        SetofTables.append('ConsumerProfiles')
-        SetofValues.append(valConsumerProfiles)
+        SetofTables.append('AssetProfiles')
+        SetofValues.append(valAssetProfiles)
     
     Conversions = esh.get_all_instances_of_type(esdl.Conversion)
     valConversions = [
@@ -392,6 +394,34 @@ if __name__ == "__main__":
         SetofTables.append('Transports')
         SetofValues.append(valTransports)
     
+    Storages = esh.get_all_instances_of_type(esdl.Storage)
+    valStorages = [(n.id,
+                 n.eClass.name,
+                 n.name,
+                 n.chargeEfficiency,
+                 n.dischargeEfficiency,
+                 n.selfDischargeRate,
+                 n.fillLevel,
+                 n.maxChargeRate,
+                 n.maxDischargeRate,
+                 convert_to_string(n.type) if hasattr(n, 'type') else None,
+                 n.capacity)
+                for n in Storages]
+    if(Storages != []):       
+        SetofAttributes.append(('id varchar(100)  Primary Key',
+                                'esdlType varchar(100)',
+                                'name varchar(1500)', 
+                                'chargeEfficiency varchar(100)',
+                                'dischargeEfficiency varchar(100)',
+                                'selfDischargeRate varchar(100)',
+                                'fillLevel varchar(100)',
+                                'maxChargeRate varchar(100)',
+                                'maxDischargeRate varchar(100)',
+                                'type varchar(100)',
+                                'capacity varchar(100)'))
+        SetofTables.append('Storage')
+        SetofValues.append(valStorages)
+        
     
     Arcs = esh.get_all_instances_of_type(esdl.OutPort)
     valArcs=[]
@@ -556,11 +586,13 @@ if __name__ == "__main__":
     
     Carriers = esh.get_all_instances_of_type(esdl.Carrier)
     valCarriers = [(p.id,
-                    p.name)
+                    p.name,
+                    p.cost.value if p.cost and p.cost.value else None)
                 for p in Carriers]
     if(Carriers != []):
         SetofAttributes.append(('id varchar(100) Primary Key',
-                                'name varchar(1500)'))
+                                'name varchar(1500)', 
+                                'cost varchar(100)'))
         SetofTables.append('Carriers')
         SetofValues.append(valCarriers)
     
@@ -666,22 +698,21 @@ if __name__ == "__main__":
         SetofValues.append(valMapAssetToBuilding)
         
     KPIs = esh.get_all_instances_of_type(esdl.KPI)
-    valKPIs = []
-    for k in KPIs:
-        if type(k) in [esdl.IntKPI, esdl.DoubleKPI, esdl.StringKPI]:
-            print(type(k))
-            valKPIs.append((k.id,k.name,k.value,'null','null','null','null'))
-        elif type(k) == esdl.DistributionKPI:
-            valKPIs.append((k.id, k.name, 'null', 'null', 'null', 'null', 'null'))
-        else:
-            print("KPI type: ", type(k), " is not supported")
+    valKPIs = [(k.id,
+                k.name,
+                k.value if type(k) in [esdl.IntKPI, esdl.DoubleKPI, esdl.StringKPI] else None)
+                for k in KPIs]
+    # for k in KPIs:
+    #     if type(k) in [esdl.IntKPI, esdl.DoubleKPI, esdl.StringKPI]:
+    #         print(type(k))
+    #         valKPIs.append((k.id,k.name,k.value))
+    #     elif type(k) == esdl.DistributionKPI:
+    #         valKPIs.append((k.id, k.name, 'null'))
+    #     else:
+    #         print("KPI type: ", type(k), " is not supported")
     SetofAttributes.append(('id_KPI varchar(100)',
                 'name_KPI varchar(100)',
-                'value_KPI varchar(100)',
-                'id_building varchar(100)',
-                'name_building varchar(700)',
-                'id_conversion varchar(100)',
-                'name_conversion varchar(100)'))
+                'value_KPI varchar(100)'))
     SetofTables.append('KPIs')
     SetofValues.append(valKPIs)
     
@@ -693,44 +724,46 @@ if __name__ == "__main__":
             if (ks):
                 KPIsBuildings.append(ks)
                 for i in range(len(ks.kpi)):
-                    temp = (ks.kpi[i].id, ks.kpi[i].name, ks.kpi[i].value,b.id, b.name, 'null','null')
+                    temp = (ks.kpi[i].id, 
+                            ks.kpi[i].name, 
+                            ks.kpi[i].value if type(ks.kpi[i]) in [esdl.IntKPI, esdl.DoubleKPI, esdl.StringKPI] else None,
+                            b.id, 
+                            b.name)
                     valKPIsBuildings.append(temp)
-    else:
-        for k in KPIs:
-            tup = (k.id, k.name, k.value,'null','null','null','null')
-            valKPIsBuildings.append(tup)
             
     if(valKPIsBuildings != []):    
         SetofAttributes.append(('id_KPI varchar(100)', 
                     'name_KPI varchar(100)', 
                     'value_KPI varchar(100)',
                     'id_building varchar(100)',
-                    'name_building varchar(700)',
-                    'id_conversion varchar(100)',
-                    'name_conversion varchar(100)'))
+                    'name_building varchar(1500)'))
         SetofTables.append('KPIsBuildings')
         SetofValues.append(valKPIsBuildings)
     
-    KPIConversions = []
-    valKPIConversions=[]
-    if (Conversions != []):        
-        for b in Conversions:
+    KPIsAssets = []
+    valKPIsAssets =[]
+    if (Assets != []):        
+        for b in Assets:
             ks = b.KPIs
             if (ks):
-                KPIConversions.append(ks)
+                KPIsAssets.append(ks)
                 for i in range(len(ks.kpi)):
-                    temp = (ks.kpi[i].id, ks.kpi[i].name, ks.kpi[i].value,'null','null',b.id, b.name, )
-                    valKPIConversions.append(temp)
+                    temp = (ks.kpi[i].id, 
+                            ks.kpi[i].name, 
+                            ks.kpi[i].value if type(ks.kpi[i]) in [esdl.IntKPI, esdl.DoubleKPI, esdl.StringKPI] else None,
+                            b.id, 
+                            b.name)
+                    valKPIsAssets.append(temp)
         
         SetofAttributes.append(('id_KPI varchar(100)', 
                     'name_KPI varchar(100)', 
                     'value_KPI varchar(100)',
-                    'id_building varchar(100)',
-                    'name_building varchar(100)',
-                    'id_conversion varchar(100)',
-                    'name_conversion varchar(100)'))
-        SetofTables.append('KPIConversions')
-        SetofValues.append(valKPIConversions)
+                    'id_asset varchar(100)',
+                    'name_asset varchar(100)',
+                    'PRIMARY KEY (id_KPI, id_asset)'))
+        SetofTables.append('KPIsAssets')
+        SetofValues.append(valKPIsAssets)
+    
         
     CostInformations = esh.get_all_instances_of_type(esdl.CostInformation)
     valCostInformations = []
@@ -796,7 +829,7 @@ if __name__ == "__main__":
     
     
     QuantityAndUnitTypes = esh.get_all_instances_of_type(esdl.QuantityAndUnitType)
-    valQuantityAndUnitTypes = []
+    valCarrierQuantityAndUnitTypes = []
     valEnergyContentUnit = []
     valEmissionUnits = []
     for c in Carriers:
@@ -810,7 +843,7 @@ if __name__ == "__main__":
                 else:
                     temp+=(a,)
             valEmissionUnits.append(temp)
-            valQuantityAndUnitTypes.append(temp)
+            valCarrierQuantityAndUnitTypes.append(temp)
         if c not in Commodities:
             f = c.energyContentUnit
             if(f):
@@ -822,17 +855,76 @@ if __name__ == "__main__":
                     else:
                         temp+=(a,)
                 valEnergyContentUnit.append(temp)
-                valQuantityAndUnitTypes.append(temp)
+                valCarrierQuantityAndUnitTypes.append(temp)
             
             
     
-    QuantityAndUnitTypesAtt = ('CarrierId varchar(100)', 'CarrierDescription varchar(100)', 'type varchar(100)')
+    CarrierQuantityAndUnitTypesAtt = ('CarrierId varchar(100)', 'CarrierDescription varchar(100)', 'type varchar(100)')
     if(QuantityAndUnitTypes != []): 
         for d in dir(QuantityAndUnitTypes[0]):
-            QuantityAndUnitTypesAtt += (d + ' varchar(100)',)
-        SetofAttributes.append(QuantityAndUnitTypesAtt)
-        SetofTables.append('QuantityAndUnitTypes')
-        SetofValues.append(valQuantityAndUnitTypes)
+            CarrierQuantityAndUnitTypesAtt += (d + ' varchar(100)',)
+        SetofAttributes.append(CarrierQuantityAndUnitTypesAtt)
+        SetofTables.append('CarrierQuantityAndUnitTypes')
+        SetofValues.append(valCarrierQuantityAndUnitTypes)
+      
+        
+    valAssetQuantityAndUnitTypes = []
+    valAssetQuantityAndUnitReferences = []
+    valAssetQuantityAndUnitInfluxDB = []
+
+    QuantityAndUnitReferences = esh.get_all_instances_of_type(esdl.QuantityAndUnitReference)
+    InfluxDBProfiles = esh.get_all_instances_of_type(esdl.InfluxDBProfile)
+    for a in Assets:
+        for p in a.port:
+            for pr in p.profile:
+                temp = (a.id,a.name,p.id)
+                if(pr in QuantityAndUnitReferences):
+                    pr = pr.reference
+                if(pr in InfluxDBProfiles):
+                    temp += (           pr.id,
+                                        pr.profileType, 
+                                        pr.profileQuantityAndUnit,
+                                        pr.name,
+                                        pr.interpolationMethod,
+                                        pr.dataSource,
+                                        pr.multiplier)
+                    valAssetQuantityAndUnitInfluxDB.append(temp)
+                    temp = (a.id,a.name,p.id)
+                    pr = pr.profileQuantityAndUnit
+                
+                if(type(pr) == esdl.QuantityAndUnitType):
+                    for q in dir(QuantityAndUnitTypes[0]):
+                        e = getattr(pr, q)
+                        if e == None:
+                            temp+= (None,)
+                        else:
+                            temp += (e,)
+                    valAssetQuantityAndUnitTypes.append(temp)
+                else: print(f"Profile type {type(pr)} is not supported")
+                    
+                
+                    
+             
+    if(len(QuantityAndUnitTypes) > 0): 
+        AssetQuantityAndUnitTypesAtt = ['asset_id varchar(100)','asset_name varchar(100)','port_id varchar(100)']
+        for d in dir(QuantityAndUnitTypes[0]):
+            AssetQuantityAndUnitTypesAtt += (d + ' varchar(100)',)
+        SetofAttributes.append(AssetQuantityAndUnitTypesAtt)
+        SetofTables.append('AssetQuantityAndUnitTypes')
+        SetofValues.append(valAssetQuantityAndUnitTypes)
+    if(len(InfluxDBProfiles) > 0): 
+        AssetQuantityAndUnitInfluxDBAtt = ['asset_id varchar(100)','asset_name varchar(100)','port_id varchar(100)']
+        AssetQuantityAndUnitInfluxDBAtt += ('id varchar(100)',
+                            'profileType varchar(100)', 
+                            'profileQuantityAndUnit varchar(100)',
+                            'name varchar(100)',
+                            'interpolationMethod varchar(100)',
+                            'dataSource varchar(100)',
+                            'multiplier varchar(100)')
+        SetofAttributes.append(AssetQuantityAndUnitInfluxDBAtt)
+        SetofTables.append('AssetQuantityAndUnitInfluxDB')
+        SetofValues.append(valAssetQuantityAndUnitInfluxDB)
+
         
 #     GenericProfiles = esh.get_all_instances_of_type(esdl.GenericProfile)
 #     valGenericProfiles = [(p.profileType, 
@@ -870,7 +962,6 @@ if __name__ == "__main__":
         print('Exporting:',SetofTables[a]) #, SetofValues[a])
         write_table_to_Sql(DB, SetofTables[a], SetofValues[a])
     conn.commit()
-    conn.close()
 
 
 
@@ -906,5 +997,9 @@ if __name__ == "__main__":
     
 # conn.close()
 
+if __name__ == "__main__":
 
 
+    handler()
+    conn.close()
+    engine.dispatch

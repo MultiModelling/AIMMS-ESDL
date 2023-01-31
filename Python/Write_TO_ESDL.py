@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
-import os 
+import os
+from dotenv import load_dotenv
+from pyecore.ecore import EEnum, EEnumLiteral
+from pyecore.valuecontainer import EOrderedSet
+from sqlalchemy import create_engine
+import pymysql
 from uuid import uuid4 
 
 # In[1]:
-from dotenv import load_dotenv
 load_dotenv()
 
 
@@ -20,20 +24,44 @@ from esdl import esdl
 import pymysql
 import pandas as pd
 import warnings
-warnings.filterwarnings("ignore", message= ".*pandas only supports SQLAlchemy connectable*")
 
 
 
+database_url = f"mysql+pymysql://{User}:{PW}@{Host}"
+engine = create_engine(database_url)
+conn = engine.raw_connection()
+cursor = conn.cursor()
 
 
 
 def get_sql(query):
     try:
-        result = pd.read_sql(query, conn)
+        result = pd.read_sql(query, database_url)
         return result
     except pymysql.Error as e:
         print("Error: unable to fetch data %d: %s" %(e.args[0], e.args[1]))
 
+class SQLESDL:
+    def __init__(self, DB):
+        self.tables = get_sql("Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + DB + "' order by database_name, table_name;")
+        self.DB= DB
+        
+        for i in self.tables.table_name:
+            setattr(self, i,get_sql('SELECT * FROM '+DB+'.'+i+ ';'))
+
+    
+    def getAttributes(self):    
+        return dir(self)
+
+
+    
+ 
+if __name__ == "__main__":
+    Schema = DB
+    Training = SQLESDL(Schema)
+    print(Training.getAttributes())
+    print(Training.Assets)
+    
 
 
 
@@ -43,23 +71,14 @@ def get_sql(query):
 # In[8]:
 
 
-conn = pymysql.connect(
-    host= Host,
-    user=User,
-    password=PW)
-conn.select_db(DB)
-cursor = conn.cursor()
 
 class SQLESDL:
-    def __init__(self, DB, ApiUser):
-        self.tables =  get_sql("Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE' and table_schema = '" + DB+"' and table_name LIKE '" + ApiUser+"_%' order by database_name, table_name;")
-        self.ApiUser = ApiUser
+    def __init__(self, DB):
+        self.tables = get_sql("Select table_schema as database_name, table_name from information_schema.tables where table_type = 'BASE TABLE'and table_schema = '" + DB + "' order by database_name, table_name;")
         self.DB= DB
         
         for i in self.tables.table_name:
-            j = i.replace((ApiUser+'_'), '')
-            print((ApiUser+'_'),j)
-            setattr(self, j,get_sql('SELECT * FROM '+DB+'.'+i+ ';'))
+            setattr(self, i,get_sql('SELECT * FROM '+DB+'.'+i+ ';'))
 
     
     def getAttributes(self):    
@@ -68,11 +87,11 @@ class SQLESDL:
 
     
  
-# if __name__ == "__main__":
-#     Schema = DB
-#     Training = SQLESDL(Schema)
-#     print(Training.getAttributes())
-#     conn.close()
+if __name__ == "__main__":
+    Schema = DB
+    Training = SQLESDL(Schema)
+    print(Training.getAttributes())
+
 
 
 
@@ -81,10 +100,11 @@ class SQLESDL:
 # In[ ]:
 
 
+
 def OutputESDL(Schema,context= {'User': 'Test'}):
-    ApiUser = context['User']
+   
     
-    Training = SQLESDL(Schema,ApiUser)
+    Training = SQLESDL(Schema)
     esh = EnergySystemHandler()
     es = esh.load_file(Filename)
     asset = esh.get_all_instances_of_type(esdl.Asset)
@@ -104,16 +124,26 @@ def OutputESDL(Schema,context= {'User': 'Test'}):
         print(changables.name, changables.state, row.state)
         changables.state = row.state
         
-    
-    
+    dfProducers = Training.Producers
+    Producers = esh.get_all_instances_of_type(esdl.Producer)
+    for p in Producers:
+        p.power = float(dfProducers.loc[dfProducers["id"]==p.id].power)
+        
+    dfAssetProfiles = Training.AssetProfiles
+    AssetProfiles = esh.get_all_instances_of_type(esdl.GenericProfile)
+    for p in AssetProfiles:
+        if type(p) == esdl.InfluxDBProfile:
+            p.multiplier = float(dfAssetProfiles.loc[dfAssetProfiles["field"]==p.field].multiplier)
 
-            
+
     df2 = Training.KPIs
-    df2 = df2[df2['name_KPI']== "1"]
-    print(df2)
-    for i,row in df2.iterrows():
+    df3 = df2.where(df2.id_KPI.str.contains('TEACOS_Was_Optional_')).dropna()
+
+    print(df3)
+    for i,row in df3.iterrows():
         Assetname = row.id_KPI.replace("TEACOS_Was_Optional_",'')
-        AssetId = get_sql("SELECT * FROM "+Schema+"."+ApiUser+"_Assets where `name` =  '"+ Assetname.lstrip() +"';").id[0]
+        query = "SELECT * FROM "+Schema+ ".Assets where `name` =  '"+ Assetname.lstrip() +"';"
+        AssetId = get_sql(query).id[0]
         
         changables = esh.get_by_id(AssetId)
         changables_kpi_list = changables.KPIs
@@ -125,11 +155,32 @@ def OutputESDL(Schema,context= {'User': 'Test'}):
         changables.KPIs.kpi.append(kpiwasoptional)
         print(kpiwasoptional, AssetId,1)
     
+    
+    df4 = df2.where(df2.id_KPI.str.contains('TEACOS_Inversted_W_')).dropna()
+    print(df4)
+    for i,row in df4.iterrows():
+        Assetname = row.id_KPI.replace("TEACOS_Inversted_W_",'')
+        query = "SELECT * FROM "+Schema+ ".Assets where `name` =  '"+ Assetname.lstrip() +"';"
+        AssetId = get_sql(query).id[0]
+        
+        changables = esh.get_by_id(AssetId)
+        changables_kpi_list = changables.KPIs
+        if not changables_kpi_list:
+            changables.KPIs = esdl.KPIs(id=str(uuid4()))
+
+        
+        kpiConstraints = esdl.IntKPI(id = row.id_KPI,name = row.name_KPI, value = int(row.value_KPI))
+        changables.KPIs.kpi.append(kpiConstraints)
+    
     print(esh.to_string())
     esh.save_as(Outputfile)
 
     conn.close()
     
+    
 if __name__ == "__main__":
-    OutputESDL(DB,{'User':'Test'})
+    OutputESDL(DB)
 
+
+
+    engine.dispatch
